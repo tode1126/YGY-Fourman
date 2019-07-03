@@ -23,6 +23,10 @@
 		<c:if test="${empty sessionScope.userLoginInfo}">
 		<li><a href="${root }/main/user/loginForm.do">로그인</a></li>
 		</c:if>
+		<c:if test="${not empty sessionScope.userLoginInfo}">
+			<li>이메일 : ${sessionScope.userLoginInfo.user_Email} 
+			<a href="${root }/user/logout.do">로그아웃</a></li>
+		</c:if>
 	</ul>
 </div>
 </body>

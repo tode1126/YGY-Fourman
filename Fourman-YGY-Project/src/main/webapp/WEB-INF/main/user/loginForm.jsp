@@ -14,7 +14,7 @@
 <c:if test="${empty sessionScope.userLoginInfo}">
 	<body>
 	<div class="login">
-		<form class="loginform" method="post" action="loginAction.do">
+		<form class="loginform" method="post" action="loginAction.do" onsubmit="passChange(this)">
 			<div class="svgContainer">
 				<div>
 					<svg class="mySVG" xmlns="http://www.w3.org/2000/svg"
@@ -168,9 +168,10 @@
 			</div>
 			<div class="inputGroup inputGroup2">
 				<label for="password">Password</label> <input type="password"
-					id="password" name="pass" class="password" />
+					id="password" name="password" class="password" />
 			</div>
 			<div class="inputGroup inputGroup3">
+				<input type="hidden" id="pass" name="pass" value="" />
 				<button id="login">Log in</button>
 			</div>
 			<div>
