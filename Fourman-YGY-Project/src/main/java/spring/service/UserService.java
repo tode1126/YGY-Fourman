@@ -1,0 +1,23 @@
+package spring.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import spring.data.UserDao;
+import spring.data.UserDto;
+
+@Service
+public class UserService {
+	
+	@Autowired
+	private UserDao dao;
+	
+	public int userSelectCount(String email) {
+		return dao.userSelectCount(email);
+	}
+	
+	public UserDto userGradeCheck(String email,String pass) {
+		UserDto dto = dao.userGradeCheck(email, pass);
+		return dto;
+	}
+}

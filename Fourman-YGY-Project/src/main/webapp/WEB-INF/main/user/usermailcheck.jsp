@@ -8,26 +8,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<c:set var="root" value="<%=request.getContextPath() %>"/>
-<link rel="stylesheet" href="${root }/css/layout/topStyle.css"/>
+<c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 </head>
-
 <body>
-<a style="text-decoration: none;" href="${root}/main/main.do">
-<img src="${root}/image/LOGO.png" align="middle" class="logo">
-</a>
-<div class="etc">
-	여기요
-</div>
+${email}<br>
+메일 인증이 필요합니다.<br>
+발송후 3~5분이 소요 될수 있습니다.<br>
+<a href="${root }/user/usermailcheck.do?email=${email}">메일 전송</a>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

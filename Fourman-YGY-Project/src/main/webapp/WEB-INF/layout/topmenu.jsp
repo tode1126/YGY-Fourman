@@ -21,7 +21,7 @@
 		<li><a>남미음식</a></li>
 		<li><a>후기게시판</a></li>
 		<c:if test="${empty sessionScope.userLoginInfo}">
-		<li><a href="${root }/main/user/loginform.do">로그인</a></li>
+		<li><a href="${root }/main/user/loginForm.do">로그인</a></li>
 		</c:if>
 	</ul>
 </div>
