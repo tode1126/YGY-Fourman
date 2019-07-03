@@ -13,6 +13,7 @@
 </head>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <body>
+
 <div class="menu">
 	<ul class="menu">
 		<li><a href="./admin/admin.do">한식</a></li>
@@ -24,5 +25,6 @@
 		<li><a href="${root }/user/loginform.do">로그인</a></li>
 	</ul>
 </div>
+
 </body>
 </html>
