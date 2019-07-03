@@ -11,7 +11,6 @@
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <link rel="stylesheet" href="${root }/css/layout/topmenuStyle.css"/>
 </head>
-<c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <body>
 <div class="menu">
 	<ul class="menu">
@@ -21,7 +20,9 @@
 		<li><a>중</a></li>
 		<li><a>관리자</a></li>
 		<li><a>메뉴</a></li>
-		<li><a href="${root }/user/loginform.do">로그인</a></li>
+		<c:if test="${empty sessionScope.userLoginInfo}">
+		<li><a href="${root }/main/user/loginform.do">로그인</a></li>
+		</c:if>
 	</ul>
 </div>
 </body>

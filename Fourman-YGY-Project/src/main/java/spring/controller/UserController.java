@@ -6,11 +6,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
-	@RequestMapping("/user/loginform.do")
+	@RequestMapping("/main/user/loginform.do")
 	public ModelAndView loginform() {
 		ModelAndView model = new ModelAndView();
 		
-		model.setViewName("/user/loginform");
+		model.setViewName("/main/user/loginForm");
 		return model;
 	}
 	
