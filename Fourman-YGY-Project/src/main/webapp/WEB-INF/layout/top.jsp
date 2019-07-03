@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<a style="text-decoration: none;" href="${root}/main/main.do">
+<a style="text-decoration: none;" href="${root}/main.do">
 <img src="${root}/image/LOGO.png" align="middle" class="logo">
 </a>
 <div class="etc">

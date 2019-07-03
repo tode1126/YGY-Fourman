@@ -39,7 +39,7 @@ public class UserController {
 		HttpSession session = request.getSession();
 		UserDto loginCk = service.userGradeCheck(email, pass);
 		String path = request.getContextPath();
-		String go = "redirect: " + path + "/main/main.do";
+		String go = "redirect: " + path + "/main.do";
 		System.out.println(pass);
 		if (loginCk != null) {
 			if (loginCk.getState() == 1) {
