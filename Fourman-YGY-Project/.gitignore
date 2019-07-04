@@ -2,25 +2,6 @@
 # Created by https://www.gitignore.io/api/windows,eclipse,java-web
 # Edit at https://www.gitignore.io/?templates=windows,eclipse,java-web
 
-# Directories #
-/build/
-/bin/
-target/
-.idea
-classes/
-META-INF/
-  
-# OS Files #
-.DS_Store
-  
-*.class
-  
-# Package Files #
-*.jar
-*.war
-*.ear
-*.db
-
 ### Eclipse ###
 .metadata
 bin/
