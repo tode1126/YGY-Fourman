@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <link rel="stylesheet" href="${root }/css/user/loginForm.css">
 </head>
@@ -171,16 +172,20 @@
 					id="password" name="password" class="password" />
 			</div>
 			<div class="inputGroup inputGroup3">
-				<input type="hidden" id="pass" name="pass" value="" />
 				<button id="login">Log in</button>
 			</div>
 			<div>
-				<a id="userrating" href="userrating.do">회원가입</a> <a id="search"
+				<a id="userrating" href="userGrade.do">회원가입</a> <a id="search"
 					href="searchform.do">PW 찾기</a>
 			</div>
 		</form>
-		<script type="text/javascript" src="${root }/js/user/loginForm.js"></script>
 		</div>
+		<script type="text/javascript" src="${root }/js/user/loginForm.js"></script>
+		<c:if test="${not empty param.loginFalse }" >
+			<script type="text/javascript">
+				loginFalse();
+			</script>
+		</c:if>
 </c:if>
 </body>
 </html>

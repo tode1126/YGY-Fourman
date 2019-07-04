@@ -12,11 +12,29 @@ public class UserDao extends SqlSessionDaoSupport {
 		int n = getSqlSession().selectOne("user.userSelectCount",email);
 		return n;
 	}
+	public int userNickCount(String nickName) {
+		int n = getSqlSession().selectOne("user.userNickCount",nickName);
+		return n;
+	}
 	public UserDto userGradeCheck(String email,String pass) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("email", email);
 		map.put("pass",pass);
 		UserDto n = getSqlSession().selectOne("user.userGradeCheck", map);
 		return n;
+	}
+	public void userInsert(UserDto dto) {
+		getSqlSession().insert("user.userInsert",dto);
+		return;
+	}
+	public void userStateUpdate(String email) {
+		getSqlSession().update("user.userStateUpdate", email);
+		return;
+	}
+	public int userLoginCheck(String email,String pass) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email",email);
+		map.put("pass",pass);
+		return getSqlSession().selectOne("user.userLoginCheck", map);
 	}
 }

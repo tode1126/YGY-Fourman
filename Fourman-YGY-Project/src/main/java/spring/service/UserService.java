@@ -16,8 +16,23 @@ public class UserService {
 		return dao.userSelectCount(email);
 	}
 	
+	public int userNickCount(String nickName) {
+		return dao.userSelectCount(nickName);
+	}
+	
 	public UserDto userGradeCheck(String email,String pass) {
 		UserDto dto = dao.userGradeCheck(email, pass);
 		return dto;
+	}
+	public void userInsert(UserDto dto) {
+		dao.userInsert(dto);
+		return;
+	}
+	public void userStateUpdate(String email) {
+		dao.userStateUpdate(email);
+		return;
+	}
+	public int userLoginCheck(String email,String pass) {
+		return dao.userLoginCheck(email, pass);
 	}
 }

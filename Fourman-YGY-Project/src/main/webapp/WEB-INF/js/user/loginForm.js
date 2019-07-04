@@ -342,5 +342,9 @@ function SHA256(s){
 }
  
  function passChange(f){
-	 f.pass.value=SHA256(f.password.value);
+	 f.password.value=SHA256(f.password.value);
+ }
+ 
+ function loginFalse(){
+	 swal("Oops", "이메일 혹은 비밀번호가 틀렸습니다 \n 다시시도해주세요", "error");
  }
