@@ -17,7 +17,7 @@
 <img src="${root}/image/LOGO.png" align="middle" class="logo">
 </a>
 <div class="etc">
-	여기요
+	1200px 이상에서 사용할 것 권장
 </div>
 </body>
 </html>
