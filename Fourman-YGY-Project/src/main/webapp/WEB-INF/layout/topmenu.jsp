@@ -9,21 +9,25 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
+<script src="./js/layout/topmenuJs.js"></script>
 <link rel="stylesheet" href="${root }/css/layout/topmenuStyle.css"/>
 </head>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <body>
 
 <div class="menu">
-	<ul class="menu">
-		<li><a href="./admin/admin.do">한식</a></li>
-		<li><a href="./restraunt/restraunt.do">양식</a></li>
-		<li><a>중식</a></li>
-		<li><a>일식</a></li>
-		<li><a>남미음식</a></li>
-		<li><a>후기게시판</a></li>
-		<li><a href="${root }/user/loginform.do">로그인</a></li>
-	</ul>
+	<nav class="navBar">
+    <div class="container">
+        <ul class="nav">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+</nav>
 </div>
 
 </body>
