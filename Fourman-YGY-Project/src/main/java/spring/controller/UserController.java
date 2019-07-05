@@ -3,6 +3,7 @@ package spring.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -33,24 +34,30 @@ public class UserController {
 	@Autowired
 	private UserService service;
 
-	@RequestMapping("/main/user/loginForm.do")
-	public ModelAndView loginForm() {
+	@RequestMapping("/main/user/loginform.do")
+	public ModelAndView loginform() {
 		ModelAndView model = new ModelAndView();
 
-		model.setViewName("/main/user/loginForm");
+		model.setViewName("/main/user/loginform");
 		return model;
+	}
+	
+	@RequestMapping("/user/logout.do")
+	public String logout(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		session.removeAttribute("userLoginInfo");
+		
+		return "main.tiles";
 	}
 
 	@RequestMapping("/main/user/loginAction.do")
-	public ModelAndView loginAction(@RequestParam String email, @RequestParam(name = "password") String pass,
-			HttpServletRequest request) {
+	public String loginAction(@RequestParam String email, @RequestParam(name = "password") String pass,
+			HttpServletRequest request,Model model) {
 		HttpSession session = request.getSession();
-		String path = request.getContextPath();
-		ModelAndView model = new ModelAndView();
-		String go = "redirect: " + path + "/main.do";
 
-		System.out.println(pass);
-		
+		String go = "main.tiles";
+
 		if(service.userLoginCheck(email, pass)>0) {
 			UserDto udto = service.userGradeCheck(email, pass);
 			if(udto.getState() == 1) {
@@ -60,15 +67,21 @@ public class UserController {
 				dto.setUser_Pass(pass);
 				dto.setUser_grade(udto.getGrade());
 				session.setAttribute("userLoginInfo", dto);
+				if(udto.getGrade()==1)
+					go="main.tiles";
+				if(udto.getGrade()==2)
+					go="restraunt.tiles";
+				if(udto.getGrade()==3)
+					go="admin.tiles";
 			}else if(udto.getState() == 0){
-				model.addObject("email", email);
+				model.addAttribute("email", email);
 				go = "/main/user/userMailCheck";
 			}
 		}else {
-			go = "redirect:/main/user/loginForm.do?loginFalse=true";
+			go = "redirect:/main/user/loginform.do?loginFalse=true";
 		}
-		model.setViewName(go);
-		return model;
+
+		return go;
 	}
 
 	@RequestMapping("/main/user/userGrade.do")
@@ -76,10 +89,10 @@ public class UserController {
 		return "/main/user/userGrade";
 	}
 
-	@RequestMapping("/main/user/userForm.do")
-	public String userForm(@RequestParam int grade, Model model) {
+	@RequestMapping("/main/user/userform.do")
+	public String userform(@RequestParam int grade, Model model) {
 		model.addAttribute("grade", grade);
-		return "/main/user/userForm";
+		return "/main/user/userform";
 	}
 
 	@RequestMapping("/main/user/emailCheck.do")
@@ -109,11 +122,10 @@ public class UserController {
 	}
 
 	@RequestMapping("/main/user/userAction.do")
-	public ModelAndView userAction(@ModelAttribute UserDto dto, HttpServletRequest request) {
+	public ModelAndView userAction(@ModelAttribute UserDto dto) {
 		ModelAndView model = new ModelAndView();
-		String path = request.getContextPath();
 		
-		String go = "redirect: " + path + "/main.do";
+		String go = "main.tiles";
 
 		String fullHp = dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3();
 		dto.setHp(fullHp);
@@ -154,5 +166,27 @@ public class UserController {
 		service.userStateUpdate(email);	
 		return go;
 	}
+	
+	@RequestMapping("/main/user/userSearchAction.do")
+	public String userSearchAction(@RequestParam String email)
+	{
+		MimeMessage message=mailSender.createMimeMessage();
+		try{
+			message.setSubject("비밀번호 찾기 결과 입니다");//메일 제목
+			message.setText("1111");//메일 내용
+			message.setRecipients(MimeMessage.RecipientType.TO,
+					InternetAddress.parse(email));
+			mailSender.send(message);
+		}catch(MessagingException e){
+			System.out.println("메일 보내기 오류:"+e.getMessage());
+		}
+		return "/main/user/userSearch";
+	}
+	
+	@RequestMapping("/main/user/userSearch.do")
+	public String userSearch() {
+		return "/main/user/userSearch";
+	}
+	
 
 }

@@ -14,7 +14,7 @@
 <body>
 <div class="menu">
 	<ul class="menu">
-		<li><a>현재</a></li>
+		<li><a href="${root }/admin/userManagement/allUserList.do">전체회원</a></li>
 		<li><a>개발</a></li>
 		<li><a>진행</a></li>
 		<li><a>중</a></li>

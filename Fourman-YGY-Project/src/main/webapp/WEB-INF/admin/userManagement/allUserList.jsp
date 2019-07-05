@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>     
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<c:set var="root" value="<%=request.getContextPath()%>"></c:set>
+<link rel="stylesheet" href="${root }/css/admin/allUserList.css">
+</head>
+<body>
+<c:if test="${not empty sessionScope.userLoginInfo and sessionScope.userLoginInfo.user_grade eq '3'}">
+<div id="userListLayout">
+<h2>회원 목록</h2>
+<div class="page">
+		  <table id="userList">
+ 			 <tr>
+ 			 	<th width="80">번호</th>
+  				<th width="150">이메일</th>
+  				<th width="150">닉네임</th>
+  				<th width="150">휴대폰</th>
+  				<th width="80">회원상태</th>
+			  	<th width="180">가입일</th>
+			  	<th width="80">회원등급</th>
+  				<th width="80">비활성화</th>
+			</tr>
+  	<c:forEach items="${list }" var="dto" varStatus="i">
+			<tr>
+				<td align="center">${no - i.index }</td>
+				<td>${dto.email }</td>
+				<td>${dto.nickName }</td>
+				<td align="center">${dto.hp }</td>
+				<td align="center">${dto.state }</td>
+				<fmt:formatDate var="date" value="${dto.regday }" pattern="yyyy년 MM월 dd일"/>
+				<td align="center">${date }</td>
+				<td align="center">${dto.grade }</td>
+				<td align="center"><input type="button" value="비활성화" class="userButton" onclick="location.href=''"></td>
+			</tr>
+		</c:forEach>
+	</table>
+</div> 
+	<div class="pageNum">
+			<c:if test="${startPage > 1 }">
+				<div><a href="allUserList.do?pageNum=${startPage-1 }">◀</a></div>
+			</c:if>
+			
+			<c:forEach var="pp" begin="${startPage }" end="${endPage }">
+				<c:if test="${pp eq currentPage }">
+					<div><a href="allUserList.do?pageNum=${pp }" style="color: red;font-size: bold;">${pp }</a></div>
+				</c:if>
+				<c:if test="${pp ne currentPage }">
+					<div><a href="allUserList.do?pageNum=${pp }" style="color: black;">${pp }</a></div>
+				</c:if>
+			</c:forEach>
+			
+			<c:if test="${endPage<totalPage }">
+				<div><a href="allUserList.do?pageNum=${endPage+1 }">▶</a></div>
+			</c:if>
+	</div>
+</div>
+</c:if>
+</body>
+</html>

@@ -10,7 +10,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
-<link rel="stylesheet" href="${root }/css/user/loginForm.css">
+<link rel="stylesheet" href="${root }/css/user/loginform.css">
 </head>
 <c:if test="${empty sessionScope.userLoginInfo}">
 	<body>
@@ -176,11 +176,11 @@
 			</div>
 			<div>
 				<a id="userrating" href="userGrade.do">회원가입</a> <a id="search"
-					href="searchform.do">PW 찾기</a>
+					href="userSearch.do">PW 찾기</a>
 			</div>
 		</form>
 		</div>
-		<script type="text/javascript" src="${root }/js/user/loginForm.js"></script>
+		<script type="text/javascript" src="${root }/js/user/loginform.js"></script>
 		<c:if test="${not empty param.loginFalse }" >
 			<script type="text/javascript">
 				loginFalse();

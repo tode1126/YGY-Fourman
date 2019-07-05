@@ -26,7 +26,7 @@
 					여기요의 다양한 정보와<br>서비스를 모두 이용하실 수 있습니다.
 				</p>
 				<span> 
-					<a href="userForm.do?grade=1"> 
+					<a href="userform.do?grade=1"> 
 					<img src="${root}/image/Ji_btn_user.gif">
 					</a>
 				</span>
@@ -37,7 +37,7 @@
 					여기요의 기업지원을 위한<br> 서비스를 모두 이용하실 수 있습니다.
 				</p>
 				<span> 
-					<a href="userForm.do?grade=2"> 
+					<a href="userform.do?grade=2"> 
 					<img src="${root}/image/Ji_btn_user-1.gif">
 					</a>
 				</span>
