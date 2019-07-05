@@ -62,7 +62,6 @@ public class UserController {
 			UserDto udto = service.userGradeCheck(email, pass);
 			if(udto.getState() == 1) {
 				LoginDto dto = new LoginDto();
-				
 				dto.setUser_Email(email);
 				dto.setUser_Pass(pass);
 				dto.setUser_grade(udto.getGrade());
