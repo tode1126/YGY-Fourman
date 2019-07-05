@@ -9,16 +9,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
-
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <link rel="stylesheet" href="${root }/css/client/clientLayoutStyle.css"/>
-
-
-
 </head>
 <body>
-
 <!-- 고정 메인화면  -->
 <div id="Top" class="Layout">
 	<tiles:insertAttribute name="top" />
@@ -27,25 +21,20 @@
 	<tiles:insertAttribute name="topmenu" />
 </div>
 
-
-
 <!-- 고객센터  메인화면  -->
-
 <div id="ClientTop2" class="Layout">
    <tiles:insertAttribute name="top2"/>
 </div>
-
 <div id="ClientTop3" class="Layout">
    <tiles:insertAttribute name="top3"/>
 </div>
-
 <div id="ClientLeftmenu" class="Layout">
 	<tiles:insertAttribute name="leftmenu"/>
 </div>
-
 <div id="ClientMain" class="Layout">
 	<tiles:insertAttribute name="clientMain"/>
 </div>
+
 
 <div id="Bottom" class="Layout">
 	<tiles:insertAttribute name="bottom" />

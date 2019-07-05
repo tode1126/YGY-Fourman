@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+   	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="mainLayout" template="/WEB-INF/layout/layout.jsp">
+		<put-attribute name="top" value="/WEB-INF/layout/top.jsp"/>
+		<put-attribute name="bottom" value="/WEB-INF/layout/bottom.jsp"/>
+		<put-attribute name="topmenu" value="/WEB-INF/layout/topmenu.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	</definition>
+	
+	<definition name="adminLayout" template="/WEB-INF/layout/admin/layoutAdmin.jsp">
+		<put-attribute name="top" value="/WEB-INF/layout/top.jsp"/>
+		<put-attribute name="bottom" value="/WEB-INF/layout/bottom.jsp"/>
+		<put-attribute name="topmenu" value="/WEB-INF/layout/admin/topmenuAdmin.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	</definition>
+	<definition name="restrauntLayout" template="/WEB-INF/layout/restraunt/layoutRestraunt.jsp">
+		<put-attribute name="top" value="/WEB-INF/layout/top.jsp"/>
+		<put-attribute name="bottom" value="/WEB-INF/layout/bottom.jsp"/>
+		<put-attribute name="topmenu" value="/WEB-INF/layout/restraunt/topmenuRestraunt.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	</definition>
+	
+	
+	
+	<definition name="main.tiles" extends="mainLayout">
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	</definition>
+	<definition name="admin.tiles" extends="adminLayout">
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	</definition>
+	<definition name="restraunt.tiles" extends="restrauntLayout">
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	</definition>
+	
+	
+	
+	<!-- macro -->
+	<definition name="/main/*/*" extends="mainLayout">
+		<put-attribute name="main" value="/WEB-INF/main/{1}/{2}.jsp"/>
+	</definition>
+	<definition name="/admin/*/*" extends="adminLayout">
+		<put-attribute name="main" value="/WEB-INF/admin/{1}/{2}.jsp"/>
+	</definition>
+	<definition name="/restraunt/*/*" extends="restrauntLayout">
+		<put-attribute name="main" value="/WEB-INF/restraunt/{1}/{2}.jsp"/>
+	</definition>
+
+
+</tiles-definitions>
