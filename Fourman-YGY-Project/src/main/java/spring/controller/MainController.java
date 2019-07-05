@@ -16,9 +16,9 @@ public class MainController {
 	{
 		return "admin.tiles";//tiles name 반환
 	}
-	@RequestMapping("/restraunt/restraunt.do")
-	public String restrauntGo()
-	{
-		return "restraunt.tiles";//tiles name 반환
-	}
+//	@RequestMapping("/restraunt/restraunt.do")
+//	public String restrauntGo()
+//	{
+//		return "restraunt.tiles";//tiles name 반환
+//	}
 }

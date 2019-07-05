@@ -3,7 +3,12 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="restraunt">
-	<select id="boardTotalCount" resultType="int">
-		select count(*) from springboard
-	</select>
+	<insert id="restrauntInsert" parameterType="rdto">
+		insert into restraunt (user_info_email, rest_name, rest_category, 
+			rest_phone, rest_addr, rest_start, rest_end, rest_state, 
+			rest_regdate) 
+			VALUES(#{user_info_email}, #{rest_name}, #{rest_category}, 
+				#{rest_phone}, #{rest_addr}, #{rest_start}, #{rest_end}, #{rest_state},
+				now());
+	</insert>
 </mapper>
