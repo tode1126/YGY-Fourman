@@ -26,7 +26,7 @@ $(function(){
 
 <script type="text/javascript">
 	$(function(){
-		$("#btn1").click(function(){
+		/* $("#btn1").click(function(){
 			var path = getContextPath();
 			console.log(path);
 			$.getJSON(path+"/json/FnQ/test.json", function(data) {
@@ -55,13 +55,34 @@ $(function(){
 				});
 				$("#disp").html(str);
 			});
+		}); */
+		
+		$("#All").click(function(){
+			
+			var path = getContextPath();
+			console.log(path);
+			
+			$.getJSON(path+"/json/FnQ/all.json", function(data) {
+				var all="";
+				$.each(data,function(index,entry){
+					all += entry.title;
+					all += "<a href='#' class='DetailAll'>"+entry.content+"</a>";					
+					all += "<hr>"
+					all += "<div >"+entry.detail
+				});
+				$("#disp").html(all);
+				
+				$("body").on( "click", "a.DetailAll", function() {
+					  $( this ).after(entry.content1)
+						 	          
+							 						 							  						  
+
+					});
+				
+			});
 		});
 		
-		$( ".li2" ).on({
-			  click: function() {
-			    $(this).html("gdgd");
-			  }
-			});
+		
 		
 	});
 	
@@ -78,12 +99,11 @@ $(function(){
 
 <a href="#" id="btn1">json 데이타 읽기</a>
 <hr>
-<div id="disp" style="color: blue;"></div>
 
 
 <div class="FnQ">
 
-		<a href="#" class="li1">전체</a>
+		<a href="#" id="All" class="li1">전체</a>
 		<a href="#" class="li1">식당 이용</a>
 		<a href="#" class="li1">회원</a>
 		<a href="#" class="li1">반품/교환/환불</a>
@@ -92,6 +112,10 @@ $(function(){
 		
 			
 </div>
+
+<br><br><br>
+
+<div id="disp" style="color: black;"></div>
 
 
 </body>

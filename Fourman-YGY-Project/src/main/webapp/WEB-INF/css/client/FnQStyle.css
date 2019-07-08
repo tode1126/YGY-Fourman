@@ -8,7 +8,7 @@ div.FnQ a.active{
     
 }
 
-div.FnQ a {
+div.FnQ a{
 	
     float: left;
     display: block;
@@ -22,16 +22,13 @@ div.FnQ a {
     box-sizing: border-box;
 }
 
-a {
-	
-    color: #666;
-    text-decoration: none;
-          
-}
-
- a.li2.test{
+/* a.li2.test{
 	
 	border: 1px solid #ac2f33;
 	background-color: #ac2f33;
+} */
+
+div#disp>a.DetailAll.test{
+	background-color: red;
 }
      
