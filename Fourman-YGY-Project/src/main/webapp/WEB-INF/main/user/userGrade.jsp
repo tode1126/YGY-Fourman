@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>" />
-<link rel="stylesheet" href="${root }/css/user/userGrade.css">
+<link rel="stylesheet" href="${root }/css/user/userGradeStyle.css">
 </head>
 <body>
 	<div class="user_area">

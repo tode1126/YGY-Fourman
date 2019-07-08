@@ -10,8 +10,8 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
-<script type="text/javascript" src="${root }/js/user/userform.js"></script>
-<link rel="stylesheet" href="${root }/css/user/userform.css">
+<script type="text/javascript" src="${root }/js/user/userformJs.js"></script>
+<link rel="stylesheet" href="${root }/css/user/userformStyle.css">
 </head>
 <body>
 	<div class="member" align="center">

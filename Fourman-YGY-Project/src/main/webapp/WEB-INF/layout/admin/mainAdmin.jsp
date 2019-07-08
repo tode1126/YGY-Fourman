@@ -8,19 +8,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
-<link rel="stylesheet" href="${root }/css/user/userMailCheckStyle.css">
+<script type="text/javascript" src="${root }/js/admin/adminRedirectJs.js"></script>
 </head>
 <body>
-	<div class="mailCheck">
-		<div>
-			<h2>${email}</h2>
-			<p>메일 인증이 필요합니다.</p>
-			<p>발송후 3~5분이 소요 될수 있습니다.</p>
-			<p>
-				<a href="${root }/main/user/userMailCheckAction.do?email=${email}">메일 전송</a>
-			</p>
-		</div>
-	</div>
+	<c:if test="${sessionScope.userLoginInfo.user_grade ne 3}">
+		<script type="text/javascript">
+			adminCheck();
+		</script>
+	</c:if>
+	관리자
 </body>
 </html>

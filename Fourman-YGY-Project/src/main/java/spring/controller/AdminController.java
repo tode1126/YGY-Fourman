@@ -86,12 +86,20 @@ public class AdminController {
 	public String userDisable(@RequestParam String targetEmail,HttpServletRequest request,@RequestParam(defaultValue = "1") String pageNum) {
 		HttpSession session =  request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
-		
-		System.out.println(dto.getUser_Email());
-		System.out.println(dto.getUser_Pass());
+
 		if(service.adminCheck(dto.getUser_Email(), dto.getUser_Pass())>0)
 			service.userDisable(targetEmail);
 		return "redirect:/admin/userManagement/allUserList.do?pageNum"+pageNum;
+	}
+	
+	@RequestMapping("/admin/userManagement/userEnable.do")
+	public String userEnable(@RequestParam String targetEmail,HttpServletRequest request,@RequestParam(defaultValue = "1") String pageNum) {
+		HttpSession session =  request.getSession();
+		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
+		
+		if(service.adminCheck(dto.getUser_Email(), dto.getUser_Pass())>0)
+			service.userEnable(targetEmail);
+		return "redirect:/admin/userManagement/leaveUserList.do?pageNum"+pageNum;
 	}
 	
 	@RequestMapping("/admin/userManagement/leaveUserList.do")

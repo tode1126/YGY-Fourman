@@ -10,7 +10,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
-<link rel="stylesheet" href="${root }/css/user/loginform.css">
+<link rel="stylesheet" href="${root }/css/user/loginformStyle.css">
 </head>
 <c:if test="${empty sessionScope.userLoginInfo}">
 	<body>
@@ -180,7 +180,7 @@
 			</div>
 		</form>
 		</div>
-		<script type="text/javascript" src="${root }/js/user/loginform.js"></script>
+		<script type="text/javascript" src="${root }/js/user/loginformJs.js"></script>
 		<c:if test="${not empty param.loginFalse }" >
 			<script type="text/javascript">
 				loginFalse();

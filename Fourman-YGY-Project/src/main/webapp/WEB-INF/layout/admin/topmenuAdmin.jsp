@@ -9,25 +9,30 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
-<link rel="stylesheet" href="${root }/css/layout/topmenuStyle.css"/>
+<link rel="stylesheet" href="${root }/css/layout/topmenuStyle.css" />
+<link rel="stylesheet" href="${root }/css/Ji_Button_Style.css" />
+<link rel="stylesheet" href="${root }/css/admin/topmenuAdminStyle.css" />
+<style type="text/css">
+	#topmenu {
+	background: url(${root}/image/Ji_menu.gif) 0 0 repeat-x;
+}
+</style>
 </head>
 <body>
-<div class="menu">
-	<ul class="menu">
-		<li><a href="${root }/admin/userManagement/allUserList.do">전체회원</a></li>
-		<li><a href="${root }/admin/userManagement/leaveUserList.do">탈퇴회원</a></li>
-		<li><a>진행</a></li>
-		<li><a>중</a></li>
-		<li><a>관리자</a></li>
-		<li><a>메뉴</a></li>
-		<c:if test="${empty sessionScope.userLoginInfo}">
-		<li><a href="${root }/main/user/loginform.do">로그인</a></li>
-		</c:if>
-		<c:if test="${not empty sessionScope.userLoginInfo}">
-			<li>이메일 : ${sessionScope.userLoginInfo.user_Email} 
-			<a href="${root }/user/logout.do">로그아웃</a></li>
-		</c:if>
-	</ul>
-</div>
+	<div class="menuLayer">
+		<ul class="menu">
+			<li><a href="${root }/admin/userManagement/allUserList.do"><span class="button">전체회원</span></a></li>
+			<li><a href="${root }/admin/userManagement/leaveUserList.do"><span class="button">탈퇴회원</span></a></li>
+			<li><a><span class="button">전체기업회원</span></a></li>
+			<li><a><span class="button">탈퇴기업회원</span></a></li>
+			<li><a><span class="button">전체식당</span></a></li>
+			<li><a><span class="button">탈퇴식당</span></a></li>
+			<li><a><span class="button">관리자관리</span></a></li>
+			<li><a><span class="button">일괄메일</span></a></li>
+			<li><a><span class="button">이벤트관리</span></a></li>
+			<li><a><span class="button">공지관리</span></a></li>
+			<li><a><span class="button">후기관리</span></a></li>
+		</ul>
+	</div>
 </body>
 </html>

@@ -9,8 +9,8 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
-<script type="text/javascript" src="${root }/js/user/userSearch.js"></script>
-<link rel="stylesheet" href="${root }/css/user/userSearch.css">
+<script type="text/javascript" src="${root }/js/user/userSearchJs.js"></script>
+<link rel="stylesheet" href="${root }/css/user/userSearchStyle.css">
 </head>
 <body>
 <div class="idfo">
