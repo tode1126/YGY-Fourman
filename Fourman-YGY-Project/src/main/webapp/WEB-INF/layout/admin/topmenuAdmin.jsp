@@ -12,22 +12,17 @@
 <link rel="stylesheet" href="${root }/css/layout/topmenuStyle.css" />
 <link rel="stylesheet" href="${root }/css/Ji_Button_Style.css" />
 <link rel="stylesheet" href="${root }/css/admin/topmenuAdminStyle.css" />
-<style type="text/css">
-	#topmenu {
-	background: url(${root}/image/Ji_menu.gif) 0 0 repeat-x;
-}
-</style>
 </head>
 <body>
 	<div class="menuLayer">
 		<ul class="menu">
 			<li><a href="${root }/admin/userManagement/allUserList.do"><span class="button">전체회원</span></a></li>
 			<li><a href="${root }/admin/userManagement/leaveUserList.do"><span class="button">탈퇴회원</span></a></li>
-			<li><a><span class="button">전체기업회원</span></a></li>
-			<li><a><span class="button">탈퇴기업회원</span></a></li>
+			<li><a href="${root }/admin/userManagement/allFoodUserList.do"><span class="button">전체기업회원</span></a></li>
+			<li><a href="${root }/admin/userManagement/leaveFoodUserList.do"><span class="button">탈퇴기업회원</span></a></li>
 			<li><a><span class="button">전체식당</span></a></li>
 			<li><a><span class="button">탈퇴식당</span></a></li>
-			<li><a><span class="button">관리자관리</span></a></li>
+			<li><a href="${root }/admin/adminManagement/adminList.do"><span class="button">관리자관리</span></a></li>
 			<li><a><span class="button">일괄메일</span></a></li>
 			<li><a><span class="button">이벤트관리</span></a></li>
 			<li><a><span class="button">공지관리</span></a></li>

@@ -17,7 +17,7 @@ public class UserService {
 	}
 	
 	public int userNickCount(String nickName) {
-		return dao.userSelectCount(nickName);
+		return dao.userNickCount(nickName);
 	}
 	
 	public UserDto userGradeCheck(String email,String pass) {

@@ -23,3 +23,7 @@
 	display: inline-block;
 	border: 1px solid #ddd;
 }
+
+.user_area button{
+	margin-bottom: 15pt;
+}

@@ -10,6 +10,7 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>" />
 <link rel="stylesheet" href="${root }/css/user/userGradeStyle.css">
+<link rel="stylesheet" href="${root }/css/Ji_Button_Style.css">
 </head>
 <body>
 	<div class="user_area">
@@ -27,7 +28,8 @@
 				</p>
 				<span> 
 					<a href="userform.do?grade=1"> 
-					<img src="${root}/image/Ji_btn_user.gif">
+					<%-- <img src="${root}/image/Ji_btn_user.gif"> --%>
+					<button class="blue button">가입하기</button>
 					</a>
 				</span>
 			</div>
@@ -38,7 +40,8 @@
 				</p>
 				<span> 
 					<a href="userform.do?grade=2"> 
-					<img src="${root}/image/Ji_btn_user-1.gif">
+					<%-- <img src="${root}/image/Ji_btn_user-1.gif"> --%>
+					<button class="red button">가입하기</button>
 					</a>
 				</span>
 			</div>

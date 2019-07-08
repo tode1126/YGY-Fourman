@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
+<link rel="stylesheet" href="${root }/css/admin/adminListStyle.css">
 <link rel="stylesheet" href="${root }/css/admin/allUserListStyle.css">
 <script type="text/javascript" src="${root }/js/admin/adminRedirectJs.js"></script>
 </head>
@@ -20,7 +21,13 @@
 	</c:if>
 <c:if test="${not empty sessionScope.userLoginInfo and sessionScope.userLoginInfo.user_grade eq '3'}">
 <div id="userListLayout">
-<h2>회원 목록</h2>
+<div id="addAdmin">
+	<form action="adminUpdate.do" method="post">
+	<input name="targetEmail" type="text" placeholder="관리자 추가 이메일" size="30">&nbsp;&nbsp;
+	<button class="blue button">관리자 추가</button>
+	</form>
+</div>
+<h2>관리자 목록</h2>
 <div class="page">
 		  <table id="userList">
  			 <tr>
@@ -29,7 +36,7 @@
   				<th width="150">닉네임</th>
   				<th width="150">휴대폰</th>
   				<th width="80">회원상태</th>
-			  	<th width="180">탈퇴일</th>
+			  	<th width="180">가입일</th>
 			  	<th width="80">회원등급</th>
   				<th width="80">비활성화</th>
 			</tr>
@@ -48,7 +55,7 @@
 				<c:if test="${dto.state eq 2 }">
 				<td align="center">탈퇴</td>
 				</c:if>
-				<fmt:formatDate var="date" value="${dto.dropday }" pattern="yyyy년 MM월 dd일"/>
+				<fmt:formatDate var="date" value="${dto.regday }" pattern="yyyy년 MM월 dd일"/>
 				<td align="center">${date }</td>
 				<c:if test="${dto.grade eq 1 }">
 				<td align="center">일반</td>
@@ -59,7 +66,7 @@
 				<c:if test="${dto.grade eq 3 }">
 				<td align="center">관리자</td>
 				</c:if>
-				<td align="center"><input type="button" value="활성화" class="green button" onclick="location.href='${root}/admin/userManagement/userEnable.do?targetEmail=${dto.email }'"></td>
+				<td align="center"><input type="button" value="일반회원전환" class="red button" onclick="location.href='${root}/admin/userManagement/userDisable.do?targetEmail=${dto.email }'"></td>
 			</tr>
 		</c:forEach>
 	</table>

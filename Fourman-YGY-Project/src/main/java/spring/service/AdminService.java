@@ -20,13 +20,31 @@ public class AdminService {
 	public List<UserDto> leaveUserList(int perPage,int no){
 		return dao.leaveUserList(perPage, no);
 	}
-	
+	public List<UserDto> allFoodUserList(int perPage,int no){
+		return dao.allFoodUserList(perPage,no);
+	}
+	public List<UserDto> leaveFoodUserList(int perPage,int no){
+		return dao.leaveFoodUserList(perPage, no);
+	}
+	public List<UserDto> adminList(int perPage,int no){
+		return dao.adminList(perPage, no);
+	}
 	public int allUserTotalCount() {
 		return dao.allUserTotalCount();
 	}
 	
 	public int leaveUserTotalCount() {
 		return dao.leaveUserTotalCount();
+	}
+	public int allFoodUserTotalCount() {
+		return dao.allFoodUserTotalCount();
+	}
+	
+	public int leaveFoodUserTotalCount() {
+		return dao.leaveFoodUserTotalCount();
+	}
+	public int adminListTotalCount() {
+		return dao.adminListTotalCount();
 	}
 	public void userEnable(String email) {
 		dao.userEnable(email);
@@ -40,5 +58,15 @@ public class AdminService {
 	
 	public int adminCheck(String email,String pass) {
 		return dao.adminCheck(email, pass);
+	}
+	
+	public void userUpdate(String email) {
+		dao.userUpdate(email);
+		return;
+	}
+	
+	public void adminUpdate(String email) {
+		dao.adminUpdate(email);
+		return;
 	}
 }
