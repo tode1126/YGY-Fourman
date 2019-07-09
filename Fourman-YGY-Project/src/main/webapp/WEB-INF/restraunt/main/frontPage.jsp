@@ -8,6 +8,6 @@
 </head>
 <body>
 <a href="./signupForm.do">식당 추가하기</a><br>
-
+<a href="./menuFront.do">메뉴 화면 가기</a><br>
 </body>
 </html>

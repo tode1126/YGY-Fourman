@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org// DTD Config 3.0//EN"
 	<typeAliases>
 		<typeAlias type="spring.data.BoardDto" alias="bdto"/>
 		<typeAlias type="spring.data.restraunt.RestrauntDto" alias="rdto"/>
+		<typeAlias type="spring.data.restraunt.RestrauntMenuDto" alias="rmdto"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/sql/BoardSql.xml"/>

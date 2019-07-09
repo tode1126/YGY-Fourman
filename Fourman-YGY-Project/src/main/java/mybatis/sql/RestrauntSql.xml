@@ -11,4 +11,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{rest_phone}, #{rest_addr}, #{rest_start}, #{rest_end}, #{rest_state},
 				now());
 	</insert>
+	<select id="restraunt_pkByEmailSelect" parameterType="String" resultType="int">
+		select rest_pk from restraunt where user_info_email = #{email}
+	</select>
+	<insert id="restraunt_menuInsert" parameterType="rmdto">
+		INSERT INTO restraunt_menu (restraunt_rest_pk, menu_category, 
+			menu_name, menu_price, menu_desc, menu_imagefile) 
+			VALUES (#{restraunt_rest_pk}, #{menu_category}, 
+				#{menu_name}, #{menu_price}, #{menu_desc}, #{menu_imagefile})
+	</insert>
 </mapper>
