@@ -11,7 +11,6 @@
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" href="${root }/css/layout/topStyle.css"/>
 </head>
-
 <body>
 <a style="text-decoration: none;" href="${root}/main.do">
 <img src="${root}/image/LOGO.png" align="middle" class="logo">
