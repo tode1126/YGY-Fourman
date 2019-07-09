@@ -138,18 +138,17 @@ public class UserController {
 	}
 
 	@RequestMapping("/main/user/userMailCheckAction.do")
-	public String usermailcheck(HttpServletRequest request, @RequestParam String email, Model model) {
-		//String root = request.getContextPath();
-		
+	public String usermailcheck(@RequestParam String email, Model model) {
+
 		model.addAttribute("email", email);
 	
-		 MimeMessage message=mailSender.createMimeMessage();
+		MimeMessage message=mailSender.createMimeMessage();
 		 
 		 try{ 
 			 MimeMessageHelper messageHelper = new MimeMessageHelper(message, true,"UTF-8"); 
 			 messageHelper.setSubject("이메일 인증");//메일 제목 
-			 //messageHelper.setText("<html><body><h1>아래 링크를 누르시면 인증이 완료됩니다</h1><br><a href='"+root+"/user/userratingupdate.do?email="+email+"'>인증</a></body></html>",true);//메일내용
-			 messageHelper.setText("<html><body><h1>아래 링크를 누르시면 인증이 완료됩니다</h1><br><a href='http://localhost:9000/YGY-Project/main/user/userStateUpdate.do?email="+email+"'>인증</a></body></html>",true);//메일 내용
+			 messageHelper.setText("<html><body><h1>아래 링크를 누르시면 인증이 완료됩니다</h1><br><a href='http://tjdrn4765.cafe24.com/main/user/userStateUpdate.do?email="+email+"'>인증</a></body></html>",true);//메일내용
+			 //messageHelper.setText("<html><body><h1>아래 링크를 누르시면 인증이 완료됩니다</h1><br><a href='http://localhost:9000/YGY-Project/main/user/userStateUpdate.do?email="+email+"'>인증</a></body></html>",true);//메일 내용
 			 message.setRecipients(MimeMessage.RecipientType.TO,InternetAddress.parse(email)); mailSender.send(message);
 		  }catch (Exception e) {
 		  System.out.println("메일 보내기 오류:"+e.getMessage()); 
@@ -160,9 +159,11 @@ public class UserController {
 	@RequestMapping("/main/user/userStateUpdate.do")
 	public String userStateUpdate(HttpServletRequest request,@RequestParam String email) {
 		String path = request.getContextPath();
-		String go = "redirect: " + path + "/main.do?gaip=true";
-		
-		service.userStateUpdate(email);	
+		String go = "redirect: " + path + "/main.do";
+		if(service.userSelectCount(email)>0) {
+			service.userStateUpdate(email);	
+			go = "redirect: " + path + "/main.do?gaip=true";
+		}
 		return go;
 	}
 	

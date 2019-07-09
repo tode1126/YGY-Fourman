@@ -17,12 +17,12 @@
 		<form action="userSearchAction.do" method="post" onsubmit="return check(this)">
 		 	<h2>pw 찾기</h2>
 			<p>
-			<label for="email" class="floatLabel">Email</label>
-			<input type="text" name="email" required="required" autofocus="autofocus">
-			<span>가입시 입력하신 이메일로 메일이 발송됩니다</span>
+				<label for="email" class="floatLabel">Email</label>
+				<input type="text" name="email" required="required" autofocus="autofocus">
+				<span>가입시 입력하신 이메일로 메일이 발송됩니다</span>
 			</p>
 			<p>
-			<input type="submit" value="Email Send" id="idck">
+				<input type="submit" value="Email Send" id="idck">
 			</p>
 		</form>
 	</div>

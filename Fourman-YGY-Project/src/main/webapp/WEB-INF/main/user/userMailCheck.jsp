@@ -10,16 +10,20 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <link rel="stylesheet" href="${root }/css/user/userMailCheckStyle.css">
+<link rel="stylesheet" href="${root }/css/Ji_Button_Style.css">
 </head>
 <body>
 	<div class="mailCheck">
-		<div>
+		<div class="mailCheckform">
+			<form action="userMailCheckAction.do" method="post" >
 			<h2>${email}</h2>
 			<p>메일 인증이 필요합니다.</p>
 			<p>발송후 3~5분이 소요 될수 있습니다.</p>
-			<p>
-				<a href="${root }/main/user/userMailCheckAction.do?email=${email}">메일 전송</a>
-			</p>
+				<input type="hidden" name="email" value="${email }">
+				<div>
+				<input type="submit" class="blue button" value="Email Send">
+				</div>
+			</form>
 		</div>
 	</div>
 </body>

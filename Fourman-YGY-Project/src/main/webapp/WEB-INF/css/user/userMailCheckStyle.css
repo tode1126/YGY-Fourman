@@ -5,7 +5,7 @@ div.mailCheck {
   font-size: 15px;
 }
 
-div.mailCheck div {
+div.mailCheckform {
   background: #fff;
   padding: 4em 4em 2em;
   max-width: 400px;
@@ -14,7 +14,7 @@ div.mailCheck div {
   box-shadow: 0 0 1em #222;
   border-radius: 2px;
 }
-div.mailCheck div h2 {
+div.mailCheckform h2 {
   margin: 0 0 50px 0;
   padding: 10px;
   text-align: center;
@@ -22,7 +22,12 @@ div.mailCheck div h2 {
   color: #666666;
   border-bottom: solid 1px #e5e5e5;
 }
-div.mailCheck div p {
+div.mailCheckform p {
   margin: 0 0 3em 0;
   position: relative;
 }
+
+div.mailCheckform div{
+	text-align: center;
+}
+
