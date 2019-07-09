@@ -11,6 +11,7 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <script type="text/javascript" src="${root }/js/admin/adminRedirectJs.js"></script>
+<link rel="stylesheet" href="${root }/css/admin/mainAdminStyle.css"/>
 </head>
 <body>
 	<c:if test="${sessionScope.userLoginInfo.user_grade ne 3}">
