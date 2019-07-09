@@ -8,19 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<c:set var="root" value="<%=request.getContextPath()%>"></c:set>
-<script type="text/javascript" src="${root }/js/mainJs.js"></script>
 </head>
 <body>
-main<br>
-master<br>
-add Hello dev(hotfix) aaaaa
-add Ji Branch
-<c:if test="${not empty param.gaip}">
-	<script type="text/javascript">
-	gaiptrue();
-	</script>
-</c:if>
+<div class="aboutus">회사소개 </div>
+<div class="term">이용약관 </div>
+<div class="notice">공지사항 </div>
+<div class="policy">개인정보처리방침 </div>
 </body>
 </html>
