@@ -11,6 +11,7 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <link rel="stylesheet" href="${root }/css/user/loginformStyle.css">
+<script type="text/javascript" src="${root }/js/user/sha-256.js"></script>
 </head>
 <c:if test="${empty sessionScope.userLoginInfo}">
 	<body>
@@ -172,6 +173,7 @@
 					id="password" name="password" class="password" />
 			</div>
 			<div class="inputGroup inputGroup3">
+				<input type="hidden" name="hiddenPassword" id="hiddenPassword" value="">
 				<button id="login">Log in</button>
 			</div>
 			<div>

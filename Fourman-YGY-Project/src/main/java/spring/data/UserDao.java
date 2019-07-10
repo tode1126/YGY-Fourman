@@ -3,6 +3,7 @@ package spring.data;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Update;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
@@ -36,5 +37,20 @@ public class UserDao extends SqlSessionDaoSupport {
 		map.put("email",email);
 		map.put("pass",pass);
 		return getSqlSession().selectOne("user.userLoginCheck", map);
+	}
+	public void userMailPassSet(String email,String pass) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email",email);
+		map.put("pass",pass);
+		getSqlSession().update("user.userMailPassSet",map);
+		return ;				
+	}
+	public UserDto userUpdateDataGet(String email) {
+		UserDto dto = getSqlSession().selectOne("user.userUpdateDataGet", email);
+		return dto;
+	}
+	public void userUpdate(UserDto dto) {
+		getSqlSession().update("user.userUpdate",dto);
+		return;
 	}
 }

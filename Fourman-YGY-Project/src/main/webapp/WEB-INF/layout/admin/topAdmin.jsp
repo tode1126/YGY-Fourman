@@ -23,6 +23,7 @@
 			<p class="f-right">
 				Administrator: <strong>${sessionScope.userLoginInfo.user_Email}</strong>
 				<a href="${root }/user/logout.do">로그아웃</a>
+				<a href="${root }/admin/user/userCheck.do"><span class="button">회원정보</span></a>
 			</p>
 		</c:if>
 		<c:if test="${empty sessionScope.userLoginInfo}">

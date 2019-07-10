@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
-div.idfo {
+div.pwfo {
   font-family: sans-serif;
   font-size: 10px;
 }
 
-div.idfo form {
+div.pwfo form {
   background: #fff;
   padding: 4em 4em 2em;
   max-width: 400px;
@@ -14,7 +14,7 @@ div.idfo form {
   box-shadow: 0 0 1em #222;
   border-radius: 2px;
 }
-div.idfo form h2 {
+div.pwfo form h2 {
   margin: 0 0 50px 0;
   padding: 10px;
   text-align: center;
@@ -22,18 +22,18 @@ div.idfo form h2 {
   color: #666666;
   border-bottom: solid 1px #e5e5e5;
 }
-div.idfo form p {
+div.pwfo form p {
   margin: 0 0 3em 0;
   position: relative;
 }
-div.idfo form input {
+div.pwfo form input {
   display: block;
   box-sizing: border-box;
   width: 100%;
   outline: none;
   margin: 0;
 }
-div.idfo form input[type="submit"] {
+div.pwfo form input[type="submit"] {
   background: #4eb8dd;
   box-shadow: 0 3px 0 0 #ddf1fa;
   border-radius: 2px;
@@ -48,12 +48,12 @@ div.idfo form input[type="submit"] {
   padding: .8em 0;
   text-shadow: 0 1px #ddf1fa;
 }
-div.idfo form input[type="submit"]:hover {
+div.pwfo form input[type="submit"]:hover {
   background: #ddf1fa;
   text-shadow: 0 1px 3px rgba(70, 93, 41, 0.7);
 }
 
-div.idfo form input[type="text"] {
+div.pwfo form input[type="password"] {
   background: #fff;
   border: 1px solid #dbdbdb;
   font-size: 1.6em;
@@ -61,10 +61,10 @@ div.idfo form input[type="text"] {
   border-radius: 2px;
 }
 
-div.idfo form input[type="text"]:focus {
+div.pwfo form input[type="password"]:focus {
   background: #fff;
 }
-div.idfo form label {
+div.pwfo form label {
   position: absolute;
   left: 8px;
   top: 12px;
@@ -79,7 +79,7 @@ div.idfo form label {
   -webkit-transition: color 0.3s, top 0.3s, background-color 0.8s;
   transition: color 0.3s, top 0.3s, background-color 0.8s;
 }
-div.idfo form label.floatLabel {
+div.pwfo form label.floatLabel {
   top: -11px;
   background-color: rgba(255, 255, 255, 0.8);
   font-size: 14px;
