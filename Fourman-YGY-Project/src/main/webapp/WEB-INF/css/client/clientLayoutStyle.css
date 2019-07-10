@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
     div.Layout{
-		border: 1px solid black;	
+		border: 0px solid black;	
 		position: relative;
 		
 		
@@ -49,6 +49,7 @@
 		border: 1px solid black;
 		left: 50%;
 		margin-left: -550px;
+		text-decoration: none;
 	}
 	
 	/* #ClientLeftmenu{
@@ -89,35 +90,47 @@
 	}
 	
 	 #ClientMain{
-       border-right:1px solid gray;
-       width: 900px;
+       border-right:0px solid gray;
+       width: 850px;
      }
         
      #ClientLeftmenu{
-        border-left:1px solid gray; 
-        width: 200px;
+        border-left:0px solid gray; 
+        width: 250px;
 	 }
 	
 	
 	
 	
-	#Top_1 d{	   
+	#Top_2 d{	   
 	   font-size: 24px;
-	   display: inline-block;	   
+	   display: inline-block;
+	   padding-bottom: 40px;
+	   
+	}
+	
+	#Top_2 a{
+	 text-decoration: none;
+	 color: black;
 	}
 	
 	#ClientTop3 ul li{
-		list-style:none;		
+				
 		text-align: left;
-		/* margin-left: 40px; */
+		margin-left: 40px;
 		display: inline-block;
-		/* margin-top: 15px; */
+		margin-top: 15px;
+		
 	}
 	
 	div#Top3Detail{
 	    font-size: 24px;
 	    width : 320px;
 	} 
+	
+	li.Top3TextList{
+	  padding-left: 70px;
+	}
 	
 	
 	
