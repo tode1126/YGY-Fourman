@@ -13,6 +13,6 @@
 main<br>
 master<br>
 add Hello dev(hotfix) aaaaa
-add Seo branch run check
+add Seo branch check
 </body>
 </html>
