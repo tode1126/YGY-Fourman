@@ -15,7 +15,7 @@
 <body>
 main<br>
 master<br>
-add Hello dev(hotfix)
+add Hello dev(hotfix) check
 <c:if test="${not empty param.gaip}">
 	<script type="text/javascript">
 	gaiptrue();
