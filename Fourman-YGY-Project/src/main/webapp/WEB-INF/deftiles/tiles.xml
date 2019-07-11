@@ -47,7 +47,6 @@
 	<definition name="/restraunt/*/*" extends="restrauntLayout">
 		<put-attribute name="main" value="/WEB-INF/restraunt/{1}/{2}.jsp"/>
 	</definition>
-	
-	
+
 
 </tiles-definitions>

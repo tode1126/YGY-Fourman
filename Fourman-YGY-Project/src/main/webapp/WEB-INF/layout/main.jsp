@@ -10,6 +10,9 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
-<c:redirect url="main.tiles"/>
+main<br>
+master<br>
+add Hello dev(hotfix) aaaaa
+add Seo branch check
 </body>
 </html>
