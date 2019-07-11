@@ -8,6 +8,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<c:set var="root" value="<%=request.getContextPath()%>"></c:set>
+<script type="text/javascript" src="${root }/js/mainJs.js"></script>
 </head>
 <body>
 main<br>
@@ -16,5 +19,10 @@ add Hello dev(hotfix) aaaaa
 add Hong Branch<br>
 <a href="./restraunt/main.do">식당 관리자 backdoor</a>
 aa
+<c:if test="${not empty param.gaip}">
+	<script type="text/javascript">
+	gaiptrue();
+	</script>
+</c:if>
 </body>
 </html>

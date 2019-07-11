@@ -1,4 +1,5 @@
 @charset "UTF-8";
+<<<<<<< HEAD
 
 div.menu{
 	position: absolute;
@@ -21,3 +22,21 @@ ul.menu li a{
 ul.menu li a:hover{
 	color: red; 
 }
+=======
+div.menu{
+	position: absolute;
+	left: 50%;
+	margin-left: -590px;
+}
+
+ul.menu li {
+	list-style: none;
+	display: inline;
+	cursor: pointer;
+}
+
+ul.menu li a {
+	text-decoration: none; 
+}
+
+>>>>>>> refs/heads/dev(hotfix)

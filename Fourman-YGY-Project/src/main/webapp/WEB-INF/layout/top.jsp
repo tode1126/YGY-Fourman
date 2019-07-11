@@ -11,6 +11,7 @@
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" href="${root }/css/layout/topStyle.css"/>
 </head>
+<<<<<<< HEAD
 
 <body>
 <a style="text-decoration: none;" href="${root}/main.do">
@@ -18,6 +19,14 @@
 </a>
 <div class="etc">
 	1200px 이상에서 사용할 것 권장
+=======
+<body>
+<a style="text-decoration: none;" href="${root}/main.do">
+<img src="${root}/image/LOGO.png" align="middle" class="logo">
+</a>
+<div class="etc">
+	여기요
+>>>>>>> refs/heads/dev(hotfix)
 </div>
 </body>
 </html>
