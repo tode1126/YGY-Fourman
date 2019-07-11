@@ -20,7 +20,7 @@
 		<li><a>중식</a></li>
 		<li><a>일식</a></li>
 		<li><a>남미음식</a></li>
-		<li><a>후기게시판</a></li>
+		<li><a href="${root }/reboard/reboardlist.do">후기게시판</a></li>
 		<li><a href="${root }/user/loginform.do">로그인</a></li>
 	</ul>
 </div>

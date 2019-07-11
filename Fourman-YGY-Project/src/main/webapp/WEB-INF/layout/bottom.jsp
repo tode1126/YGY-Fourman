@@ -17,16 +17,16 @@
 	<div class="Footer-Menu"> 
 		<ul>
 			<li>
-				<a href="">회사소개</a>
+				<a href="${root }/company/companyIntro.do">회사소개</a>
 			</li>
 			<li>
-				<a href="">이용약관</a>
+				<a href="${root }/company/terms.do">이용약관</a>
 			</li>
 			<li>
-				<a href="">개인정보처리방침</a>
+				<a href="${root }/company/privacy.do">개인정보처리방침</a>
 			</li>
 			<li>
-				<a href="">공지사항</a>
+				<a href="${root }/company/notice.do">공지사항</a>
 			</li>		
 		</ul>
 	</div>
