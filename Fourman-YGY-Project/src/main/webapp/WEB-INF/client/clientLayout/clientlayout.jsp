@@ -11,6 +11,7 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <link rel="stylesheet" href="${root }/css/client/clientLayoutStyle.css"/>
+
 </head>
 <body>
 <!-- 고정 메인화면  -->
@@ -28,12 +29,19 @@
 <div id="ClientTop3" class="Layout">
    <tiles:insertAttribute name="top3"/>
 </div>
-<div id="ClientLeftmenu" class="Layout">
+
+<div class="MainLayout">
+
+<div id="ClientLeftmenu" class="Layout MainLeft">
 	<tiles:insertAttribute name="leftmenu"/>
 </div>
-<div id="ClientMain" class="Layout">
+
+<div id="ClientMain" class="Layout Mainright">
 	<tiles:insertAttribute name="clientMain"/>
 </div>
+
+</div>
+
 
 
 <div id="Bottom" class="Layout">

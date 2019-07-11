@@ -16,36 +16,36 @@
 <body>
 
     <br>
-	<div id="Top_1">
+	<div id="Top_2">
 	
 	<table>
 	
-	<td width="700px;">
+	<td width="500px;">
 	
 	<d><b>여기요</b>를 이용하시는 고객님을 위해<br> 최고의 서비스를 약속합니다. </d>
 	
 	</td>	
 		
-		  <td>
+		  <td class="Top2Image">
 
 			<a href="${root}/client/service.do"> <img src="${root}/image/client/K_ask.png"
-				width="50">
+				width="40">
 				<b>1:1문의</b>
 				
 			</a> 
 			&nbsp;&nbsp;&nbsp;
 			<a href="${root}/client/service.do"> <img src="${root}/image/client/K_F&Q.png"
-				width="50" >
+				width="40" >
 				<b>자주 묻는 질문</b>
 			</a> 
 			&nbsp;&nbsp;&nbsp;
 			<a href="${root}/client/service.do"> <img src="${root}/image/client/K_notice.png"
-				width="50">
+				width="40">
 				<b>공지사항</b>
 			</a> 
 			&nbsp;&nbsp;&nbsp;
 			<a href="${root}/client/service.do"> <img src="${root}/image/client/K_service.png"
-				width="50" >
+				width="40" >
 				<b>이용안내</b>
 			</a> 
 			&nbsp;&nbsp;&nbsp;
