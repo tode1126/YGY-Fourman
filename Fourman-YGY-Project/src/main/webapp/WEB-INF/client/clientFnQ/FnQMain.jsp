@@ -41,7 +41,7 @@ $(function(){
 
 <br><br><br>
 
-
+<!-- <b>자주묻는 질문 TOP 10</b> <br><br> -->
 
 <div id="Disp" class="FAQSelect">
 

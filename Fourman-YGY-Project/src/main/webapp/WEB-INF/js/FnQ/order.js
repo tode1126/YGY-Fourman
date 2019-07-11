@@ -1,5 +1,6 @@
 $(function(){
-	var Order = `<dl>
+	var Order = `&nbsp;<b>주문/결제</b> <br><br>
+	<dl>
 	<dt class="FAQTitle">
 	<b class="Category">주문/결제</b>
 	<a href="javascript:void(0)" class="Subject">주문취소는 어떻게 할수 있나요?</a>

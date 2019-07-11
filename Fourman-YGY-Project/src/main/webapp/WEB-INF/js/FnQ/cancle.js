@@ -1,5 +1,6 @@
 $(function(){
-	var Cancle = `<dl>
+	var Cancle = `&nbsp;<b>취소</b> <br><br>
+	<dl>
 	<dt class="FAQTitle">
 	<b class="Category">반품/교환/환불</b>
 	<a href="javascript:void(0)" class="Subject">교환이나 반품 시 배송비는 누가 부담하는건가요?</a>
@@ -84,9 +85,9 @@ $("#Cancle").click(function(){
 	document.getElementById("Disp").innerHTML = Cancle;
 	$("#Disp").show();
 	$("div.FAQAnswer").hide();
-	
-	
+		
 });
+
 
 
 

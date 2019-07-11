@@ -1,6 +1,7 @@
 $(function(){
 	
-	var goods = `<dl>
+	var goods = `&nbsp;<b>상품</b> <br><br>
+	<dl>
 		<dt class="FAQTitle">
 	<b class="Category">상품</b>
 	<a href="javascript:void(0)" class="Subject">상품에 대한 문의는 어떻게 하나요?</a>

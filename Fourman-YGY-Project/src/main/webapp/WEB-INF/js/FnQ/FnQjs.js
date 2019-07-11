@@ -6,7 +6,8 @@ $(function(){
 
 	});
 	
-	var All = `<div id="Disp" class="FAQSelect">
+	var All = `&nbsp;<b>자주묻는 질문 TOP 10</b> <br><br>
+	<div id="Disp" class="FAQSelect">
 
 	<dl>
 	  <dt class="FAQTitle">
@@ -154,8 +155,12 @@ $(function(){
 		$("div.FAQAnswer").hide();
 	});
 
-	$("a.Subject").click(function() {		
-		$(this).next.show();
+	$(document).on("click","a.Subject",function(){
+		$("div.FAQAnswer").not($(this).closest(".FAQTitle").next().children("div.FAQAnswer")).hide();
+		$(this).closest(".FAQTitle").next().children("div.FAQAnswer").toggle();
 	});
+
+	
+	
 
 });
