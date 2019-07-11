@@ -19,7 +19,7 @@
 <ul class="ClientMenu">
 
 	<li>
-		<a href="${root}/client/service.do" class=""><b>이용 안내</b></a><br>
+		<a href="${root}/client/service.do"><b>이용 안내</b></a><br>
 		
 		&nbsp;<a href="${root}/client/cancle.do" class="ServiceDetail">- 취소</a><br>
 	
@@ -27,15 +27,15 @@
 	</li>
 	
 	<li>
-		<a href="${root}/answer/main.do" class=""><b>자주묻는 질문</b></a>
+		<a href="${root}/answer/main.do"><b>자주묻는 질문</b></a>
 	</li>
 	
 	<li>
-		<a href="${root}/member/form.do" class=""><b>Q&A</b></a>
+		<a href="${root}/member/form.do"><b>Q&A</b></a>
 	</li>
 	
 	<li>
-		<a href="${root}/board/list.do" class=""><b>공지사항</b></a>
+		<a href="${root}/board/list.do"><b>공지사항</b></a>
 	</li>	
 
 

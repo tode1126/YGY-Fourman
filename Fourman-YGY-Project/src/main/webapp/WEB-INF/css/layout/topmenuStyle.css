@@ -5,12 +5,12 @@ div.menu{
 	margin-left: -590px;
 }
 
-ul.menu li{
+ul.menu li {
 	list-style: none;
 	display: inline;
 	cursor: pointer;
 }
 
-ul.menu li a{
+ul.menu li a {
 	text-decoration: none; 
 }

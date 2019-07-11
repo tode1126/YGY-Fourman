@@ -18,7 +18,6 @@ public class Service {
 	public String form2(Model model)
 	{
 		model.addAttribute("menu", "취소");
-
 		return "/client/clientService/clientcancle";
 	}
 	
