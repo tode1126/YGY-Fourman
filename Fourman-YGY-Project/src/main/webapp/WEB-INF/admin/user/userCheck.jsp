@@ -27,7 +27,7 @@
 <c:if test="${not empty sessionScope.userLoginInfo}">
 <div class="pwfo">
 		<form action="userProfile.do" method="post" onsubmit="return check(this)">
-		 	<h2>회원 정보 수정</h2>
+		 	<h2>회원 정보수정</h2>
 			<p>
 				<label for="password" class="floatLabel">pass</label>
 				<input type="password" name="password" required="required" autofocus="autofocus">
