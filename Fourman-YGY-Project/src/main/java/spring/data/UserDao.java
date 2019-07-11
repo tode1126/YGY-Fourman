@@ -3,7 +3,6 @@ package spring.data;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Update;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
@@ -52,5 +51,8 @@ public class UserDao extends SqlSessionDaoSupport {
 	public void userUpdate(UserDto dto) {
 		getSqlSession().update("user.userUpdate",dto);
 		return;
+	}
+	public void userLeave(String email) {
+		getSqlSession().update("user.userLeave", email);
 	}
 }

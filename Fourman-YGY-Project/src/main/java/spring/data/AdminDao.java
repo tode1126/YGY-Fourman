@@ -73,11 +73,8 @@ public class AdminDao extends SqlSessionDaoSupport {
 		return;
 	}
 
-	public int adminCheck(String email, String pass) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("email", email);
-		map.put("pass", pass);
-		return getSqlSession().selectOne("admin.adminCheck", map);
+	public int adminCheck(String email) {
+		return getSqlSession().selectOne("admin.adminCheck", email);
 	}
 	
 	public void userUpdate(String email) {

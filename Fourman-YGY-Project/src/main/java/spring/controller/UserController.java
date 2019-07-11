@@ -45,8 +45,35 @@ public class UserController {
 	}
 
 	@RequestMapping("/{layout}/user/userCheck.do")
-	public String userCheck(HttpServletRequest request, @PathVariable("layout") String layout) {
+	public String userCheck(@PathVariable("layout") String layout) {
 		return "/" + layout + "/user/userCheck";
+	}
+
+	@RequestMapping("/{layout}/user/userLeave.do")
+	public String userLeave(@PathVariable("layout") String layout) {
+		return "/" + layout + "/user/userLeave";
+	}
+
+	@RequestMapping("/{layout}/user/userleaveAction.do")
+	public ModelAndView userleaveAction(HttpServletRequest request, @PathVariable("layout") String layout,
+			@RequestParam String pass) {
+		ModelAndView model = new ModelAndView();
+		HttpSession session = request.getSession();
+		
+		String go = "main.tiles";
+
+		if (session.getAttribute("userLoginInfo") != null) {
+			LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
+			if (service.userLoginCheck(ldto.getUser_Email(), pass) == 1) {
+				service.userLeave(ldto.getUser_Email());
+				session.removeAttribute("userLoginInfo");
+			} else {
+				go = "redirect:/" + layout + "/user/userLeave.do?profalse=true";
+			}
+		}
+
+		model.setViewName(go);
+		return model;
 	}
 
 	@RequestMapping("/{layout}/user/userProfile.do")
@@ -54,7 +81,8 @@ public class UserController {
 			@RequestParam String pass) {
 		ModelAndView model = new ModelAndView();
 		HttpSession session = request.getSession();
-		String go = "main.tiles";
+		String path = request.getContextPath();
+		String go = "redirect:"+path+"/main.do";
 
 		if (session.getAttribute("userLoginInfo") != null) {
 			LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
@@ -85,7 +113,7 @@ public class UserController {
 		String fullHp = dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3();
 		dto.setHp(fullHp);
 
-		if (service.userLoginCheck(ldto.getUser_Email(), ldto.getUser_Pass()) == 1) {
+		if (service.userSelectCount(ldto.getUser_Email()) == 1) {
 			service.userUpdate(dto);
 		}
 		session.removeAttribute("userLoginInfo");
@@ -108,12 +136,11 @@ public class UserController {
 
 		String go = "main.tiles";
 
-		if (service.userLoginCheck(email, pass) == 1) {
+		if (service.userLoginCheck(email,pass) == 1) {
 			UserDto udto = service.userGradeCheck(email, pass);
 			if (udto.getState() == 1) {
 				LoginDto dto = new LoginDto();
 				dto.setUser_Email(email);
-				dto.setUser_Pass(pass);
 				dto.setUser_grade(udto.getGrade());
 				session.setAttribute("userLoginInfo", dto);
 				if (udto.getGrade() == 1)
@@ -125,6 +152,8 @@ public class UserController {
 			} else if (udto.getState() == 0) {
 				model.addAttribute("email", email);
 				go = "/main/user/userMailCheck";
+			} else if (udto.getState() == 2) {
+				go = "redirect:/main.do?userLeave=true";
 			}
 		} else {
 			go = "redirect:/main/user/loginform.do?loginFalse=true";
@@ -171,7 +200,7 @@ public class UserController {
 	}
 
 	@RequestMapping("/main/user/userAction.do")
-	public ModelAndView userAction(@ModelAttribute UserDto dto) {
+	public ModelAndView userAction(@ModelAttribute UserDto dto,HttpServletRequest request) {
 		ModelAndView model = new ModelAndView();
 		String go = "main.tiles";
 
@@ -196,10 +225,7 @@ public class UserController {
 		try {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 			messageHelper.setSubject("이메일 인증");// 메일 제목
-			messageHelper.setText(
-					"<html><body><h1>아래 링크를 누르시면 인증이 완료됩니다</h1><br><a href='http://tjdrn4765.cafe24.com/main/user/userStateUpdate.do?email="
-							+ email + "'>인증</a></body></html>",
-					true);// 메일내용
+			messageHelper.setText("<html><body><h1>아래 링크를 누르시면 인증이 완료됩니다</h1><br><a href='http://tjdrn4765.cafe24.com/main/user/userStateUpdate.do?email="+ email + "'>인증</a></body></html>",true);// 메일내용
 			// messageHelper.setText("<html><body><h1>아래 링크를 누르시면 인증이 완료됩니다</h1><br><a
 			// href='http://localhost:9000/YGY-Project/main/user/userStateUpdate.do?email="+email+"'>인증</a></body></html>",true);//메일
 			// 내용
@@ -214,10 +240,10 @@ public class UserController {
 	@RequestMapping("/main/user/userStateUpdate.do")
 	public String userStateUpdate(HttpServletRequest request, @RequestParam String email) {
 		String path = request.getContextPath();
-		String go = "redirect: " + path + "/main.do";
+		String go = "redirect:" + path +"/main.do";
 		if (service.userSelectCount(email) > 0) {
 			service.userStateUpdate(email);
-			go = "redirect: " + path + "/main.do?gaip=true";
+			go = "redirect:" + path + "/main.do?gaip=true";
 		}
 		return go;
 	}

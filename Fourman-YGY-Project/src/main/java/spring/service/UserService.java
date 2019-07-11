@@ -47,4 +47,8 @@ public class UserService {
 		dao.userUpdate(dto);
 		return;
 	}
+	public void userLeave(String email) {
+		dao.userLeave(email);
+		return;
+	}
 }
