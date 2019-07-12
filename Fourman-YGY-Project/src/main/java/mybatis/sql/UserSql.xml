@@ -21,4 +21,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="userStateUpdate" parameterType="String">
 		update user_info set state= 1 where email = #{email} and state = 0
 	</select>
+	<update id="userMailPassSet" parameterType="map">
+		update user_info set pass= password(#{pass}) where email = #{email}
+	</update>
+	<select id="userUpdateDataGet" parameterType="String" resultType="userDto">
+		select email,hp,nickname from user_info where email = #{email}
+	</select>
+	<update id="userUpdate" parameterType="userDto">
+		update user_info set pass = password(#{pass}),hp = #{hp}, nickname = #{nickName} where email = #{email}
+	</update>
+	<update id="userLeave" parameterType="String">
+		update user_info set state = 2 , dropday = now() where email = #{email} and state = 1	
+	</update>
 </mapper>

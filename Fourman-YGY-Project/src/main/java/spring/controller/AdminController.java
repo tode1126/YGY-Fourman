@@ -30,7 +30,7 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
 
-		if (service.adminCheck(dto.getUser_Email(), dto.getUser_Pass()) > 0)
+		if (service.adminCheck(dto.getUser_Email()) > 0)
 			service.userDisable(targetEmail);
 		return "redirect:/admin/userManagement/allUserList.do?pageNum" + pageNum;
 	}
@@ -41,7 +41,7 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
 
-		if (service.adminCheck(dto.getUser_Email(), dto.getUser_Pass()) > 0)
+		if (service.adminCheck(dto.getUser_Email()) > 0)
 			service.userEnable(targetEmail);
 		return "redirect:/admin/userManagement/leaveUserList.do?pageNum" + pageNum;
 	}
@@ -342,7 +342,7 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
 
-		if (service.adminCheck(dto.getUser_Email(), dto.getUser_Pass()) > 0)
+		if (service.adminCheck(dto.getUser_Email()) > 0)
 			service.adminUpdate(targetEmail);
 		
 		return "redirect:/admin/adminManagement/adminList.do?pageNum" + pageNum;
@@ -354,7 +354,7 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
 
-		if (service.adminCheck(dto.getUser_Email(), dto.getUser_Pass()) > 0)
+		if (service.adminCheck(dto.getUser_Email()) > 0)
 			service.userUpdate(targetEmail);
 		
 		return "redirect:/admin/adminManagement/adminList.do?pageNum" + pageNum;

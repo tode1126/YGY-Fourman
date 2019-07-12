@@ -26,6 +26,8 @@
 		<c:if test="${not empty sessionScope.userLoginInfo}">
 			<li>이메일 : ${sessionScope.userLoginInfo.user_Email} 
 			<a href="${root }/user/logout.do">로그아웃</a></li>
+			<li><a href="${root }/main/user/userCheck.do">회원정보</a></li>
+			<li><a href="${root }/main/user/userLeave.do">회원탈퇴</a></li>
 		</c:if>
 	</ul>
 </div>

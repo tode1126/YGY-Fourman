@@ -1,5 +1,17 @@
-var emailCk = 0;
-var nickCk = 0;
+var nickCk = 1;
+
+function userCheck() {
+	var path = '';
+	path = getContextPath();
+	window.location.href = path + '/main.do';
+
+}
+
+function getContextPath() {
+	var hostIndex = location.href.indexOf(location.host) + location.host.length;
+	return location.href.substring(hostIndex, location.href.indexOf('/',
+			hostIndex + 1));
+}
 
 $(function() {
 	$("#hp1").keyup(function() {
@@ -17,36 +29,6 @@ $(function() {
 		$(this).val($(this).val().replace(/[^0-9]/g, ""));
 	});
 
-	$("#email").focusout(function() {
-		var email = $('input[name=email]').val();
-
-		if (email.length > 0) {
-			$.ajax({
-				async : true,
-				type : 'POST',
-				data : email,
-				url : "emailCheck.do",
-				dataType : "json",
-				contentType : "application/json; charset=UTF-8",
-				success : function(data) {
-					if (data.cnt > 0) {
-						swal("Oops", "사용 불가능한 이메일 입니다. \n 다시작성해주세요", "error");
-						$('input[name=email]').val('');
-						emailCk = 0;
-						$("#email").focus();
-					} else {
-						// 아이디가 중복하지 않으면 idck = 1
-						emailCk = 1;
-
-					}
-				},
-				error : function(error) {
-					alert("error : " + error);
-				}
-			});
-		}
-	});
-
 	$('input[name=nickName]').keyup(function() {
 		var nickName = $('input[name=nickName]').val();
 		if (nickName.length > 0) {
@@ -59,9 +41,11 @@ $(function() {
 				contentType : "application/json; charset=UTF-8",
 				success : function(data) {
 					if (data.cnt > 0) {
+						console.log("0");
 						nickCk = 0;
 					} else {
 						// 닉네임이 중복하지 않으면 nickCk = 1 
+						console.log("1");
 						nickCk = 1;
 					}
 				},
@@ -75,12 +59,6 @@ $(function() {
 });
 
 function check(f) {
-	var emailRules = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-	if (!emailRules.test(f.email.value)) {
-		f.email.value = '';
-		swal("Oops", "사용 불가능한 이메일 입니다. \n 다시작성해주세요", "error");
-		return false
-	}
 
 	var passwordRules = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,20}$/;
 	if (!passwordRules.test(f.password.value)) {
@@ -107,11 +85,6 @@ function check(f) {
 
 	if (nickCk == 0) {
 		swal("Oops", "사용 불가능한 닉네임 입니다. \n 다시작성해주세요", "error");
-		return false;
-	}
-
-	if (emailCk == 0) {
-		swal("Oops", "사용 불가능한 이메일 입니다. \n 다시작성해주세요", "error");
 		return false;
 	}
 

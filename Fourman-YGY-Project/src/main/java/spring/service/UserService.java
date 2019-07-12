@@ -35,4 +35,20 @@ public class UserService {
 	public int userLoginCheck(String email,String pass) {
 		return dao.userLoginCheck(email, pass);
 	}
+	public void userMailPassSet(String email,String pass) {
+		dao.userMailPassSet(email, pass);
+		return;
+	}
+	public UserDto userUpdateDataGet(String email) {
+		UserDto dto = dao.userUpdateDataGet(email);
+		return dto;
+	}
+	public void userUpdate(UserDto dto) {
+		dao.userUpdate(dto);
+		return;
+	}
+	public void userLeave(String email) {
+		dao.userLeave(email);
+		return;
+	}
 }

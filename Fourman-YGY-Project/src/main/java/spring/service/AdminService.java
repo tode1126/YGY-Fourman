@@ -56,8 +56,8 @@ public class AdminService {
 		return;
 	}
 	
-	public int adminCheck(String email,String pass) {
-		return dao.adminCheck(email, pass);
+	public int adminCheck(String email) {
+		return dao.adminCheck(email);
 	}
 	
 	public void userUpdate(String email) {

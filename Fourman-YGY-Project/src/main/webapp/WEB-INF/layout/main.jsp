@@ -21,5 +21,10 @@ add Hello dev(hotfix) check
 	gaiptrue();
 	</script>
 </c:if>
+<c:if test="${not empty param.userLeave }">
+	<script type="text/javascript">
+	userLeave();
+	</script>
+</c:if>
 </body>
 </html>
