@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,31 +15,31 @@
 <script type="text/javascript" src="${root }/js/user/userCheckJs.js"></script>
 </head>
 <body>
-<c:if test="${not empty param.profalse}">
-	<script type="text/javascript">
-	passError();
-	</script>
-</c:if>
-<c:if test="${empty sessionScope.userLoginInfo}">
-	<script type="text/javascript">
-	userCheck();
-	</script>
-</c:if>
-<c:if test="${not empty sessionScope.userLoginInfo}">
-<div class="pwfo">
-		<form action="userProfile.do" method="post" onsubmit="return check(this)">
-		 	<h2>회원 정보 수정</h2>
-			<p>
-				<label for="password" class="floatLabel">pass</label>
-				<input type="password" name="password" required="required" autofocus="autofocus">
-				<span>패스워드를 한번더 입력해주세요</span>
-			</p>
-			<p>
-				<input type="hidden" value="" name="pass">
-				<input type="submit" value="user Profile" id="idck">
-			</p>
-		</form>
-	</div>
-</c:if>
+	<c:if test="${not empty param.profalse}">
+		<script type="text/javascript">
+			passError();
+		</script>
+	</c:if>
+	<c:if test="${empty sessionScope.userLoginInfo}">
+		<script type="text/javascript">
+			userCheck();
+		</script>
+	</c:if>
+	<c:if test="${not empty sessionScope.userLoginInfo}">
+		<div class="pwfo">
+			<form action="userProfile.do" method="post"
+				onsubmit="return check(this)">
+				<h2>회원 정보 수정</h2>
+				<p>
+					<label for="password" class="floatLabel">pass</label> 
+					<input type="password" name="password" required="required" autofocus="autofocus"> <span>패스워드를 한번더 입력해주세요</span>
+				</p>
+				<p>
+					<input type="hidden" value="" name="pass"> 
+					<input type="submit" value="user Profile" id="idck">
+				</p>
+			</form>
+		</div>
+	</c:if>
 </body>
 </html>

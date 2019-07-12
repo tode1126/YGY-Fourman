@@ -11,8 +11,12 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <link rel="stylesheet" href="${root }/css/user/loginformStyle.css">
+<script type="text/javascript" src="${root }/js/user/userCheckJs.js"></script>
 <script type="text/javascript" src="${root }/js/user/sha-256.js"></script>
 </head>
+<c:if test="${not empty sessionScope.userLoginInfo}">
+	userCheck();
+</c:if>
 <c:if test="${empty sessionScope.userLoginInfo}">
 	<body>
 	<div class="login">

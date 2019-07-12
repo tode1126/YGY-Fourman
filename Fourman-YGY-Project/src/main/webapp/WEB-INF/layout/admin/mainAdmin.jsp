@@ -19,6 +19,8 @@
 			adminCheck();
 		</script>
 	</c:if>
+	<c:if test="${not empty sessionScope.userLoginInfo and sessionScope.userLoginInfo.user_grade eq '3'}">
 	<h2 style="color: white;">관리자 페이지</h2>
+	</c:if>
 </body>
 </html>

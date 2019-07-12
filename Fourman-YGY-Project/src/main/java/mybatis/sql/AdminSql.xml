@@ -22,6 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="adminList" resultType="userDto" parameterType="map">
 		select user.* from user_info user where grade=3 order by regday desc limit #{perPage} offset #{no}
 	</select>
+	<select id="mailGetList" resultType="userDto" parameterType="int">
+		select email from user_info where grade = #{target} and state = 1 order by regday desc
+	</select>
 
 	<select id="allUserTotalCount" resultType="int">
 		select count(*) from user_info where state != 2
@@ -51,7 +54,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="adminUpdate" parameterType="String">
 		update user_info set grade = 3 where email = #{email}
 	</update>
-
-
 
 </mapper>

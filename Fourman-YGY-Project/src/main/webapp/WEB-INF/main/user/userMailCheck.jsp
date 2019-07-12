@@ -19,10 +19,10 @@
 			<h2>${email}</h2>
 			<p>메일 인증이 필요합니다.</p>
 			<p>발송후 3~5분이 소요 될수 있습니다.</p>
+			<p>
 				<input type="hidden" name="email" value="${email }">
-				<div>
 				<input type="submit" class="blue button" value="Email Send">
-				</div>
+			</p>
 			</form>
 		</div>
 	</div>

@@ -36,6 +36,7 @@ public class AdminDao extends SqlSessionDaoSupport {
 		map.put("no", no);
 		return getSqlSession().selectList("admin.leaveFoodUserList", map);
 	}
+
 	public List<UserDto> adminList(int perPage, int no) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("perPage", perPage);
@@ -50,7 +51,7 @@ public class AdminDao extends SqlSessionDaoSupport {
 	public int leaveUserTotalCount() {
 		return getSqlSession().selectOne("admin.leaveUserTotalCount");
 	}
-	
+
 	public int allFoodUserTotalCount() {
 		return getSqlSession().selectOne("admin.allFoodUserTotalCount");
 	}
@@ -58,7 +59,7 @@ public class AdminDao extends SqlSessionDaoSupport {
 	public int leaveFoodUserTotalCount() {
 		return getSqlSession().selectOne("admin.leaveFoodUserTotalCount");
 	}
-	
+
 	public int adminListTotalCount() {
 		return getSqlSession().selectOne("admin.adminListTotalCount");
 	}
@@ -76,14 +77,18 @@ public class AdminDao extends SqlSessionDaoSupport {
 	public int adminCheck(String email) {
 		return getSqlSession().selectOne("admin.adminCheck", email);
 	}
-	
+
 	public void userUpdate(String email) {
-		getSqlSession().update("admin.userUpdate",email);
+		getSqlSession().update("admin.userUpdate", email);
 		return;
 	}
-	
+
 	public void adminUpdate(String email) {
-		getSqlSession().update("admin.adminUpdate",email);
+		getSqlSession().update("admin.adminUpdate", email);
 		return;
+	}
+
+	public List<UserDto> mailGetList(int target) {
+		return getSqlSession().selectList("admin.mailGetList", target);
 	}
 }

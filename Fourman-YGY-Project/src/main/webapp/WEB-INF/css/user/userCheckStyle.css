@@ -11,6 +11,7 @@ div.pwfo form {
   max-width: 400px;
   max-height 400px;
   margin: 150px auto 0;
+  margin-bottom: 150px;
   box-shadow: 0 0 1em #222;
   border-radius: 2px;
 }

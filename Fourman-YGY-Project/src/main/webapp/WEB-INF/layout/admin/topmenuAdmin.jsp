@@ -23,7 +23,7 @@
 			<li><a><span class="button">전체식당</span></a></li>
 			<li><a><span class="button">탈퇴식당</span></a></li>
 			<li><a href="${root }/admin/adminManagement/adminList.do"><span class="button">관리자관리</span></a></li>
-			<li><a><span class="button">일괄메일</span></a></li>
+			<li><a href="${root }/admin/mailService/allMailSend.do"><span class="button">일괄메일</span></a></li>
 			<li><a><span class="button">이벤트관리</span></a></li>
 			<li><a><span class="button">공지관리</span></a></li>
 			<li><a><span class="button">후기관리</span></a></li>

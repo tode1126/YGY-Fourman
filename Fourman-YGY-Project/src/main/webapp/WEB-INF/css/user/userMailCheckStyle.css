@@ -11,6 +11,7 @@ div.mailCheckform {
   max-width: 400px;
   max-height 400px;
   margin: 150px auto 0;
+  margin-bottom: 150px;
   box-shadow: 0 0 1em #222;
   border-radius: 2px;
 }
@@ -27,7 +28,50 @@ div.mailCheckform p {
   position: relative;
 }
 
-div.mailCheckform div{
-	text-align: center;
+div.mailCheckform form input[type="submit"] {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  margin: 0;
+}
+div.mailCheckform form input[type="submit"] {
+  background: #4eb8dd;
+  box-shadow: 0 3px 0 0 #ddf1fa;
+  border-radius: 2px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  margin: 2em 0 0;
+  outline: none;
+  padding: .8em 0;
+  text-shadow: 0 1px #ddf1fa;
+}
+div.mailCheckform form input[type="submit"]:hover {
+  background: #ddf1fa;
+  text-shadow: 0 1px 3px rgba(70, 93, 41, 0.7);
 }
 
+div.mailCheckform form label {
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  color: #999;
+  font-size: 16px;
+  display: inline-block;
+  padding: 4px 10px;
+  font-weight: 400;
+  background-color: rgba(255, 255, 255, 0);
+  -moz-transition: color 0.3s, top 0.3s, background-color 0.8s;
+  -o-transition: color 0.3s, top 0.3s, background-color 0.8s;
+  -webkit-transition: color 0.3s, top 0.3s, background-color 0.8s;
+  transition: color 0.3s, top 0.3s, background-color 0.8s;
+}
+div.mailCheckform form label.floatLabel {
+  top: -11px;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+}

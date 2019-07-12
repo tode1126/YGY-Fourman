@@ -3,6 +3,7 @@
 .user_area {
 	max-width: 600px;
     margin: 150px auto 0;
+    margin-bottom: 150px;
     padding: 20px;
     border: 1px solid #ddd;
     box-shadow: 0 0 1em #222;

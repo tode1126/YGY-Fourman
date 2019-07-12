@@ -35,7 +35,7 @@
 			</p>
 			<p>
 				<input type="hidden" value="" name="pass">
-				<input type="submit" value="user Profile" id="idck">
+				<input type="submit" value="user Leave" id="idck">
 			</p>
 		</form>
 	</div>

@@ -2,11 +2,15 @@ package spring.controller;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -161,7 +165,7 @@ public class AdminController {
 		model.setViewName("/admin/userManagement/leaveUserList");
 		return model;
 	}
-	
+
 	@RequestMapping("/admin/userManagement/allFoodUserList.do")
 	public ModelAndView allFoodUserList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
 		ModelAndView model = new ModelAndView();
@@ -277,7 +281,7 @@ public class AdminController {
 		model.setViewName("/admin/userManagement/leaveFoodUserList");
 		return model;
 	}
-	
+
 	@RequestMapping("/admin/adminManagement/adminList.do")
 	public ModelAndView adminList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
 		ModelAndView model = new ModelAndView();
@@ -344,10 +348,10 @@ public class AdminController {
 
 		if (service.adminCheck(dto.getUser_Email()) > 0)
 			service.adminUpdate(targetEmail);
-		
+
 		return "redirect:/admin/adminManagement/adminList.do?pageNum" + pageNum;
 	}
-	
+
 	@RequestMapping("/admin/adminManagement/userUpdate.do")
 	public String userUpdate(@RequestParam String targetEmail, HttpServletRequest request,
 			@RequestParam(defaultValue = "1") String pageNum) {
@@ -356,8 +360,39 @@ public class AdminController {
 
 		if (service.adminCheck(dto.getUser_Email()) > 0)
 			service.userUpdate(targetEmail);
-		
+
 		return "redirect:/admin/adminManagement/adminList.do?pageNum" + pageNum;
 	}
 
+	@RequestMapping("/admin/mailService/allMailSend.do")
+	public String allMailSend() {
+		return "/admin/mailService/allMailSend";
+	}
+
+	@RequestMapping("/admin/mailService/allMailSendAction.do")
+	public String userSearchAction(@RequestParam int target,@RequestParam String content, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
+		String go = "redirect:/admin/mailService/allMailSend.do?sendFalse=true";
+
+		if (service.adminCheck(dto.getUser_Email()) > 0) {
+			List<UserDto> list = service.mailGetList(target);
+			for (UserDto udto : list) {
+				MimeMessage message = mailSender.createMimeMessage();
+
+				try {
+					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+					messageHelper.setSubject("여기요 서비스 입니다");// 메일 제목
+					messageHelper.setText("<html><body><pre>"+content+"</pre></body></html>",true);// 메일내용
+					message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(udto.getEmail()));
+					mailSender.send(message);
+				} catch (Exception e) {
+					System.out.println("메일 보내기 오류:" + e.getMessage());
+				}
+
+			}
+			go = "redirect:/admin/mailService/allMailSend.do?send=true";
+		}
+		return go;
+	}
 }
