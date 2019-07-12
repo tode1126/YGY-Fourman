@@ -70,7 +70,7 @@
 								<td align="center">관리자</td>
 							</c:if>
 							<td align="center">
-							<input type="button" value="일반회원전환" class="red button" onclick="location.href='${root}/admin/userManagement/userDisable.do?targetEmail=${dto.email }'">
+							<input type="button" value="일반회원전환" class="red button" onclick="location.href='${root}/admin/adminManagement/userUpdate.do?targetEmail=${dto.email }'">
 							</td>
 						</tr>
 					</c:forEach>
@@ -79,27 +79,27 @@
 			<div class="pageNum">
 				<c:if test="${startPage > 1 }">
 					<div>
-						<a href="allUserList.do?pageNum=${startPage-1 }">◀</a>
+						<a href="adminList.do?pageNum=${startPage-1 }">◀</a>
 					</div>
 				</c:if>
 
 				<c:forEach var="pp" begin="${startPage }" end="${endPage }">
 					<c:if test="${pp eq currentPage }">
 						<div>
-							<a href="allUserList.do?pageNum=${pp }"
+							<a href="adminList.do?pageNum=${pp }"
 								style="color: red; font-size: bold;">${pp }</a>
 						</div>
 					</c:if>
 					<c:if test="${pp ne currentPage }">
 						<div>
-							<a href="allUserList.do?pageNum=${pp }" style="color: black;">${pp }</a>
+							<a href="adminList.do?pageNum=${pp }" style="color: black;">${pp }</a>
 						</div>
 					</c:if>
 				</c:forEach>
 
 				<c:if test="${endPage<totalPage }">
 					<div>
-						<a href="allUserList.do?pageNum=${endPage+1 }">▶</a>
+						<a href="adminList.do?pageNum=${endPage+1 }">▶</a>
 					</div>
 				</c:if>
 			</div>

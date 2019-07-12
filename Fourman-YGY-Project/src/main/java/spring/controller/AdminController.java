@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,26 +28,26 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 
-	@RequestMapping("/admin/userManagement/userDisable.do")
+	@RequestMapping("/admin/userManagement/{pageName}/userDisable.do")
 	public String userDisable(@RequestParam String targetEmail, HttpServletRequest request,
-			@RequestParam(defaultValue = "1") String pageNum) {
+			@RequestParam(defaultValue = "1") String pageNum , @PathVariable("pageName") String pageName) {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
 
 		if (service.adminCheck(dto.getUser_Email()) > 0)
 			service.userDisable(targetEmail);
-		return "redirect:/admin/userManagement/allUserList.do?pageNum=" + pageNum;
+		return "redirect:/admin/userManagement/"+pageName+".do?pageNum=" + pageNum;
 	}
 
-	@RequestMapping("/admin/userManagement/userEnable.do")
+	@RequestMapping("/admin/userManagement/{pageName}/userEnable.do")
 	public String userEnable(@RequestParam String targetEmail, HttpServletRequest request,
-			@RequestParam(defaultValue = "1") String pageNum) {
+			@RequestParam(defaultValue = "1") String pageNum, @PathVariable("pageName") String pageName) {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
 
 		if (service.adminCheck(dto.getUser_Email()) > 0)
 			service.userEnable(targetEmail);
-		return "redirect:/admin/userManagement/leaveUserList.do?pageNum=" + pageNum;
+		return "redirect:/admin/userManagement/"+pageName+".do?pageNum=" + pageNum;
 	}
 
 	@RequestMapping("/admin/userManagement/allUserList.do")
@@ -351,7 +352,7 @@ public class AdminController {
 
 		return "redirect:/admin/adminManagement/adminList.do?pageNum=" + pageNum;
 	}
-
+	
 	@RequestMapping("/admin/adminManagement/userUpdate.do")
 	public String userUpdate(@RequestParam String targetEmail, HttpServletRequest request,
 			@RequestParam(defaultValue = "1") String pageNum) {

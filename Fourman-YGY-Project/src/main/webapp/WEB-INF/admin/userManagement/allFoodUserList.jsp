@@ -59,27 +59,27 @@
 				<c:if test="${dto.grade eq 3 }">
 				<td align="center">관리자</td>
 				</c:if>
-				<td align="center"><input type="button" value="비활성화" class="red button" onclick="location.href='${root}/admin/userManagement/userDisable.do?targetEmail=${dto.email }'"></td>
+				<td align="center"><input type="button" value="비활성화" class="red button" onclick="location.href='${root}/admin/userManagement/allFoodUserList/userDisable.do?targetEmail=${dto.email }'"></td>
 			</tr>
 		</c:forEach>
 	</table>
 </div> 
 	<div class="pageNum">
 			<c:if test="${startPage > 1 }">
-				<div><a href="allUserList.do?pageNum=${startPage-1 }">◀</a></div>
+				<div><a href="allFoodUserList.do?pageNum=${startPage-1 }">◀</a></div>
 			</c:if>
 			
 			<c:forEach var="pp" begin="${startPage }" end="${endPage }">
 				<c:if test="${pp eq currentPage }">
-					<div><a href="allUserList.do?pageNum=${pp }" style="color: red;font-size: bold;">${pp }</a></div>
+					<div><a href="allFoodUserList.do?pageNum=${pp }" style="color: red;font-size: bold;">${pp }</a></div>
 				</c:if>
 				<c:if test="${pp ne currentPage }">
-					<div><a href="allUserList.do?pageNum=${pp }" style="color: black;">${pp }</a></div>
+					<div><a href="allFoodUserList.do?pageNum=${pp }" style="color: black;">${pp }</a></div>
 				</c:if>
 			</c:forEach>
 			
 			<c:if test="${endPage<totalPage }">
-				<div><a href="allUserList.do?pageNum=${endPage+1 }">▶</a></div>
+				<div><a href="allFoodUserList.do?pageNum=${endPage+1 }">▶</a></div>
 			</c:if>
 	</div>
 </div>

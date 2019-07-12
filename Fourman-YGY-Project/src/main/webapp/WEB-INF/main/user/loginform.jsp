@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <link rel="stylesheet" href="${root }/css/user/loginformStyle.css">
@@ -15,7 +15,9 @@
 <script type="text/javascript" src="${root }/js/user/sha-256.js"></script>
 </head>
 <c:if test="${not empty sessionScope.userLoginInfo}">
+<script type="text/javascript">
 	userCheck();
+</script>
 </c:if>
 <c:if test="${empty sessionScope.userLoginInfo}">
 	<body>

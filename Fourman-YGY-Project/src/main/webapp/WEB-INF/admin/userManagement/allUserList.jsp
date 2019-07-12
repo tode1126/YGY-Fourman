@@ -59,7 +59,7 @@
 				<c:if test="${dto.grade eq 3 }">
 				<td align="center">관리자</td>
 				</c:if>
-				<td align="center"><input type="button" value="비활성화" class="red button" onclick="location.href='${root}/admin/userManagement/userDisable.do?targetEmail=${dto.email }'"></td>
+				<td align="center"><input type="button" value="비활성화" class="red button" onclick="location.href='${root}/admin/userManagement/allUserList/userDisable.do?targetEmail=${dto.email }'"></td>
 			</tr>
 		</c:forEach>
 	</table>
