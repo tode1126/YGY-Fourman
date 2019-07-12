@@ -13,12 +13,12 @@
 <script type="text/javascript" src="${root }/js/admin/adminRedirectJs.js"></script>
 </head>
 <body>
-	<c:if test="${sessionScope.userLoginInfo.user_grade ne 3}">
+	<c:if test="${sessionScope.userLoginInfo.user_grade ne 3 and empty list}">
 		<script type="text/javascript">
 			adminCheck();
 		</script>
 	</c:if>
-<c:if test="${not empty sessionScope.userLoginInfo and sessionScope.userLoginInfo.user_grade eq '3'}">
+<c:if test="${not empty sessionScope.userLoginInfo and sessionScope.userLoginInfo.user_grade eq '3' and not empty list }">
 <div id="userListLayout">
 <h2>회원 목록</h2>
 <div class="page">

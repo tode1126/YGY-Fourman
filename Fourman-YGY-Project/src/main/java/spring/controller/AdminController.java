@@ -2,7 +2,6 @@ package spring.controller;
 
 import java.util.List;
 
-import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +35,7 @@ public class AdminController {
 
 		if (service.adminCheck(dto.getUser_Email()) > 0)
 			service.userDisable(targetEmail);
-		return "redirect:/admin/userManagement/allUserList.do?pageNum" + pageNum;
+		return "redirect:/admin/userManagement/allUserList.do?pageNum=" + pageNum;
 	}
 
 	@RequestMapping("/admin/userManagement/userEnable.do")
@@ -47,13 +46,14 @@ public class AdminController {
 
 		if (service.adminCheck(dto.getUser_Email()) > 0)
 			service.userEnable(targetEmail);
-		return "redirect:/admin/userManagement/leaveUserList.do?pageNum" + pageNum;
+		return "redirect:/admin/userManagement/leaveUserList.do?pageNum=" + pageNum;
 	}
 
 	@RequestMapping("/admin/userManagement/allUserList.do")
 	public ModelAndView allUserList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
 		ModelAndView model = new ModelAndView();
-
+		
+		if(service.allUserTotalCount()>0) {
 		int totalCount;// 전체갯수
 
 		int totalPage; // 총페이지
@@ -103,7 +103,7 @@ public class AdminController {
 		model.addObject("endPage", endPage);
 		model.addObject("no", no);
 		model.addObject("totalPage", totalPage);
-
+		}
 		model.setViewName("/admin/userManagement/allUserList");
 		return model;
 	}
@@ -111,7 +111,7 @@ public class AdminController {
 	@RequestMapping("/admin/userManagement/leaveUserList.do")
 	public ModelAndView leaveUserList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
 		ModelAndView model = new ModelAndView();
-
+		if(service.leaveUserTotalCount()>0) {
 		int totalCount;// 전체갯수
 
 		int totalPage; // 총페이지
@@ -161,7 +161,7 @@ public class AdminController {
 		model.addObject("endPage", endPage);
 		model.addObject("no", no);
 		model.addObject("totalPage", totalPage);
-
+		}
 		model.setViewName("/admin/userManagement/leaveUserList");
 		return model;
 	}
@@ -169,7 +169,7 @@ public class AdminController {
 	@RequestMapping("/admin/userManagement/allFoodUserList.do")
 	public ModelAndView allFoodUserList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
 		ModelAndView model = new ModelAndView();
-
+		if(service.allFoodUserTotalCount()>0) {
 		int totalCount;// 전체갯수
 
 		int totalPage; // 총페이지
@@ -219,7 +219,7 @@ public class AdminController {
 		model.addObject("endPage", endPage);
 		model.addObject("no", no);
 		model.addObject("totalPage", totalPage);
-
+		}
 		model.setViewName("/admin/userManagement/allFoodUserList");
 		return model;
 	}
@@ -227,7 +227,7 @@ public class AdminController {
 	@RequestMapping("/admin/userManagement/leaveFoodUserList.do")
 	public ModelAndView leaveFoodUserList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
 		ModelAndView model = new ModelAndView();
-
+		if(service.leaveFoodUserTotalCount()>0) {
 		int totalCount;// 전체갯수
 
 		int totalPage; // 총페이지
@@ -277,7 +277,7 @@ public class AdminController {
 		model.addObject("endPage", endPage);
 		model.addObject("no", no);
 		model.addObject("totalPage", totalPage);
-
+		}
 		model.setViewName("/admin/userManagement/leaveFoodUserList");
 		return model;
 	}
@@ -285,7 +285,7 @@ public class AdminController {
 	@RequestMapping("/admin/adminManagement/adminList.do")
 	public ModelAndView adminList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
 		ModelAndView model = new ModelAndView();
-
+		if(service.adminListTotalCount()>0) {
 		int totalCount;// 전체갯수
 
 		int totalPage; // 총페이지
@@ -335,7 +335,7 @@ public class AdminController {
 		model.addObject("endPage", endPage);
 		model.addObject("no", no);
 		model.addObject("totalPage", totalPage);
-
+		}
 		model.setViewName("/admin/adminManagement/adminList");
 		return model;
 	}
@@ -349,7 +349,7 @@ public class AdminController {
 		if (service.adminCheck(dto.getUser_Email()) > 0)
 			service.adminUpdate(targetEmail);
 
-		return "redirect:/admin/adminManagement/adminList.do?pageNum" + pageNum;
+		return "redirect:/admin/adminManagement/adminList.do?pageNum=" + pageNum;
 	}
 
 	@RequestMapping("/admin/adminManagement/userUpdate.do")
@@ -361,7 +361,7 @@ public class AdminController {
 		if (service.adminCheck(dto.getUser_Email()) > 0)
 			service.userUpdate(targetEmail);
 
-		return "redirect:/admin/adminManagement/adminList.do?pageNum" + pageNum;
+		return "redirect:/admin/adminManagement/adminList.do?pageNum=" + pageNum;
 	}
 
 	@RequestMapping("/admin/mailService/allMailSend.do")
