@@ -1,5 +1,8 @@
 package spring.controller.restraunt;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import spring.data.LoginDto;
 import spring.data.restraunt.RestrauntDto;
 import spring.data.restraunt.RestrauntMenuDto;
 import spring.service.restraunt.RestrauntService;
@@ -40,20 +44,41 @@ public class RestrauntController {
 	
 
 	@RequestMapping("/restraunt/menuFront.do")
-	public String menuFront(HttpSession session)
-	{
-		return "/restraunt/menu/menuList";
+	public ModelAndView menuFront(HttpServletRequest request) {
+		ModelAndView model = new ModelAndView();
+		List<RestrauntMenuDto> list = null;
+		HttpSession session = request.getSession();
+		boolean isLoginDto = (session.getAttribute("userLoginInfo")!=null) ? true : false;
+		System.out.println(isLoginDto);
+		if(isLoginDto) {
+			LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
+			String email = ldto.getUser_Email();
+			int restraunt_rest_pk = service.selectRestPkByEmail(email);
+			System.out.println(restraunt_rest_pk);
+			//테스트 위해 테스트값 주기 - 실제때 수정
+			//model.addObject("restraunt_rest_pk", 4);
+			if(service.selectCountRestrauntMenu(restraunt_rest_pk)>0)
+				list = service.selectRestrauntMenu(restraunt_rest_pk);
+			model.addObject("list", list);
+		}
+		model.setViewName("/restraunt/menu/menuList");
+		return model;
 	}
 	
 	@RequestMapping("/restraunt/menuAddForm.do")
-	public ModelAndView menuAddForm(HttpSession session)
+	public ModelAndView menuAddForm(HttpServletRequest request)
 	{
+		HttpSession session = request.getSession();
 		ModelAndView model = new ModelAndView();
-		//String email = (String) session.getAttribute("userLoginInfo");
-		//int restraunt_rest_pk = service.selectRestPkByEmail(email);
-		//테스트 위해 테스트값 주기 - 실제때 수정
-		model.addObject("restraunt_rest_pk", 4);
-		//model.addObject("restraunt_rest_pk", restraunt_rest_pk);
+		boolean isLoginDto = (session.getAttribute("userLoginInfo")!=null) ? true : false;
+		if(isLoginDto) {
+			LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
+			String email = ldto.getUser_Email();
+			int restraunt_rest_pk = service.selectRestPkByEmail(email);
+			//테스트 위해 테스트값 주기 - 실제때 수정
+			//model.addObject("restraunt_rest_pk", 4);
+			model.addObject("restraunt_rest_pk", restraunt_rest_pk);
+		}
 		model.setViewName("/restraunt/menu/menu-insert-form");
 		return model;
 	}

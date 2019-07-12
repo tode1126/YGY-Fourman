@@ -19,7 +19,7 @@
 		<li><a>개발</a></li>
 		<li><a>진행</a></li>
 		<li><a>중</a></li>
-		<li><a>식당 관리자</a></li>
+		<li><a href="${root }/restraunt/main.do">식당 관리자</a></li>
 		<li><a>메뉴</a></li>
 		<c:if test="${empty sessionScope.userLoginInfo}">
 		<li><a href="${root }/main/user/loginform.do">로그인</a></li>

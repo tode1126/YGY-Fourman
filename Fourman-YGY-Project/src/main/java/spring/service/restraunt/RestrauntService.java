@@ -1,5 +1,7 @@
 package spring.service.restraunt;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +26,11 @@ public class RestrauntService {
 	}
 	public void insertRestrauntMenu(RestrauntMenuDto rmdto) {
 		rmdao.insertRestrauntMenu(rmdto);
+	}
+	public int selectCountRestrauntMenu(int restraunt_rest_pk) {
+		return rmdao.selectCountRestrauntMenu(restraunt_rest_pk);
+	}
+	public List<RestrauntMenuDto> selectRestrauntMenu(int restraunt_rest_pk) {
+		return rmdao.selectRestrauntMenu(restraunt_rest_pk);
 	}
 }

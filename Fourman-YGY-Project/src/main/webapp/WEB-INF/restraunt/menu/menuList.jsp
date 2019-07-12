@@ -12,6 +12,10 @@
 <body>
 <a href="./menuAddForm.do">메뉴 추가하기</a>
 <br>
+<button>전체</button>
+<button>요리</button>
+<button>음료</button>
+<button>사이드</button><br>
 <table>
 	<tr>
 		<th width="100">카테고리</th>
@@ -20,6 +24,22 @@
 		<th width="200">설명</th>
 		<th width="100">관리</th>
 	<tr>
+	<c:forEach var="dto" items="${list }">
+		<tr>
+			<%-- <td align="center">${no }</td>
+				<c:set var="no" value="${no-1 }"/> --%>
+			<td align="center">
+				${dto.menu_category }
+			</td>
+			<td align="center"> ${dto.menu_name } </td>
+			<td align="center">${dto.menu_price }</td>
+			<td align="center">${dto.menu_desc }</td>
+			<td align="center">
+				<button>수정</button>&nbsp;&nbsp;
+				<button>삭제</button>
+			</td>
+		</tr>
+	</c:forEach>
 </table>
 </body>
 </html>

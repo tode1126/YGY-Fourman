@@ -20,4 +20,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			VALUES (#{restraunt_rest_pk}, #{menu_category}, 
 				#{menu_name}, #{menu_price}, #{menu_desc}, #{menu_imagefile})
 	</insert>
+	<select id="restraunt_menuCountSelect" parameterType="int" resultType="int">
+		select count(*) from restraunt_menu where restraunt_rest_pk = #{restraunt_rest_pk}
+	</select>
+	<select id="restraunt_menuSelect" parameterType="int" resultType="rmdto">
+		select * from restraunt_menu where restraunt_rest_pk = #{restraunt_rest_pk} order by menu_pk asc
+	</select>
+	
 </mapper>
