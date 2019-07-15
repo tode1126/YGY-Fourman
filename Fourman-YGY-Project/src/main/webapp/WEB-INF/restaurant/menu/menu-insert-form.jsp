@@ -46,7 +46,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<input type="hidden" name="restraunt_rest_pk" value="${restraunt_rest_pk }">
+				<input type="text" name="restaurant_rest_pk" value="${restaurant_rest_pk }">
 				<button style="width: 100px;" type="submit">
 					저장하기
 				</button>

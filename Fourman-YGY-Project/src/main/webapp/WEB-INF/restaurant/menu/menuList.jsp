@@ -16,13 +16,13 @@
 <button>요리</button>
 <button>음료</button>
 <button>사이드</button><br>
-<table>
+<table border="1">
 	<tr>
 		<th width="100">카테고리</th>
 		<th width="200">메뉴명</th>
 		<th width="100">가격</th>
 		<th width="200">설명</th>
-		<th width="100">관리</th>
+		<th width="150">관리</th>
 	<tr>
 	<c:forEach var="dto" items="${list }">
 		<tr>

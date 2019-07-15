@@ -4,13 +4,13 @@ PUBLIC "-//mybatis.org// DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="spring.data.restraunt.RestrauntDto" alias="rdto"/>
-		<typeAlias type="spring.data.restraunt.RestrauntMenuDto" alias="rmdto"/>
+		<typeAlias type="spring.data.restaurant.RestaurantDto" alias="rdto"/>
+		<typeAlias type="spring.data.restaurant.RestaurantMenuDto" alias="rmdto"/>
 		<typeAlias type="spring.data.UserDto" alias="userDto"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/sql/UserSql.xml"/>
 		<mapper resource="mybatis/sql/AdminSql.xml"/>
-		<mapper resource="mybatis/sql/RestrauntSql.xml"/>
+		<mapper resource="mybatis/sql/RestaurantSql.xml"/>
 	</mappers>
 </configuration>

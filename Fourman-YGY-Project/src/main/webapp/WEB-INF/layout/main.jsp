@@ -17,7 +17,7 @@ main<br>
 master<br>
 add Hello dev(hotfix) aaaaa
 add Hong Branch<br>
-<a href="./restraunt/main.do">식당 관리자 backdoor</a>
+<a href="./restaurant/main.do">식당 관리자 backdoor</a>
 aa
 <c:if test="${not empty param.gaip}">
 	<script type="text/javascript">

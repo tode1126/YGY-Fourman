@@ -1,12 +1,12 @@
-package spring.data.restraunt;
+package spring.data.restaurant;
 
 import java.util.ArrayList;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class RestrauntMenuDto {
+public class RestaurantMenuDto {
 	private int menu_pk;
-	private int restraunt_rest_pk;
+	private int restaurant_rest_pk;
 	private String menu_category;
 	private String menu_name;
 	private int menu_price;
@@ -20,11 +20,11 @@ public class RestrauntMenuDto {
 	public void setMenu_pk(int menu_pk) {
 		this.menu_pk = menu_pk;
 	}
-	public int getRestraunt_rest_pk() {
-		return restraunt_rest_pk;
+	public int getRestaurant_rest_pk() {
+		return restaurant_rest_pk;
 	}
-	public void setRestraunt_rest_pk(int restraunt_rest_pk) {
-		this.restraunt_rest_pk = restraunt_rest_pk;
+	public void setRestaurant_rest_pk(int restaurant_rest_pk) {
+		this.restaurant_rest_pk = restaurant_rest_pk;
 	}
 	public String getMenu_category() {
 		return menu_category;
