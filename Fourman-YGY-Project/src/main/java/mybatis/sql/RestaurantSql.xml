@@ -17,11 +17,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="restaurantListByEmailSelect" parameterType="String" resultType="rdto">
 		select * from restaurant where user_info_email = #{email}
 	</select>
+	
 	<insert id="restaurant_menuInsert" parameterType="rmdto">
 		INSERT INTO restaurant_menu (restaurant_rest_pk, menu_category, 
-			menu_name, menu_price, menu_desc, menu_imagefile) 
+			menu_name, menu_price, menu_desc, menu_imagefile,
+			menu_image_realname, menu_image_realpath, menu_image_size) 
 			VALUES (#{restaurant_rest_pk}, #{menu_category}, 
-				#{menu_name}, #{menu_price}, #{menu_desc}, #{menu_imagefile})
+				#{menu_name}, #{menu_price}, #{menu_desc}, #{menu_imagefile},
+				#{menu_image_realname}, #{menu_image_realpath}, #{menu_image_size})
 	</insert>
 	<select id="restaurant_menuCountSelect" parameterType="int" resultType="int">
 		select count(*) from restaurant_menu where restaurant_rest_pk = #{restaurant_rest_pk}
@@ -30,4 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from restaurant_menu where restaurant_rest_pk = #{restaurant_rest_pk} order by menu_pk asc
 	</select>
 	
+	<select id="is_restaurant_tableCountSelect" parameterType="int" resultType="int">
+		select count(*) from restaurant_table where restaurant_rest_pk = #{restaurant_rest_pk}
+	</select>
 </mapper>

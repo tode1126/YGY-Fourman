@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org// DTD Config 3.0//EN"
 	<typeAliases>
 		<typeAlias type="spring.data.restaurant.RestaurantDto" alias="rdto"/>
 		<typeAlias type="spring.data.restaurant.RestaurantMenuDto" alias="rmdto"/>
+		<typeAlias type="spring.data.restaurant.RestaurantTableDto" alias="rtdto"/>
 		<typeAlias type="spring.data.UserDto" alias="userDto"/>
 	</typeAliases>
 	<mappers>

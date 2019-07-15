@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="menuAdd.do" method="post">
+<form action="menuAdd.do" method="post" enctype="multipart/form-data">
 	<table border="1" style="width: 400px;">
 		<tr>
 			<th width="100">카테고리명</th>
@@ -41,12 +41,12 @@
 		<tr>
 			<th>메뉴 사진</th>
 			<td>
-				<input type="file" name="menu_imagefile" style="width: 200px;">
+				<input type="file" name="upfile" style="width: 200px;">
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<input type="text" name="restaurant_rest_pk" value="${restaurant_rest_pk }">
+				<input type="hidden" name="restaurant_rest_pk" value="${restaurant_rest_pk }">
 				<button style="width: 100px;" type="submit">
 					저장하기
 				</button>

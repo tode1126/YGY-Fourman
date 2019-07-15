@@ -10,7 +10,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="./menuFront.do">메뉴 화면 가기</a><br>
-<a href="./tableFront.do">테이블 화면 가기</a><br>
+<c:if test="${isRestaurantTable == 0 }">
+<a>테이블 정보 추가하기</a>
+</c:if>
+<c:if test="${isRestaurantTable > 0 }">
+<a>테이블 정보 수정하기</a>
+</c:if>
 </body>
 </html>

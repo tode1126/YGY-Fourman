@@ -9,6 +9,7 @@ import spring.data.restaurant.RestaurantDao;
 import spring.data.restaurant.RestaurantDto;
 import spring.data.restaurant.RestaurantMenuDao;
 import spring.data.restaurant.RestaurantMenuDto;
+import spring.data.restaurant.RestaurantTableDao;
 
 @Service
 public class RestaurantService {
@@ -16,6 +17,8 @@ public class RestaurantService {
 	private RestaurantDao rdao;
 	@Autowired
 	private RestaurantMenuDao rmdao;
+	@Autowired
+	private RestaurantTableDao rtdao;
 	
 	public void insertRestaurant(RestaurantDto dto) {
 		rdao.insertRestaurant(dto);
@@ -27,6 +30,7 @@ public class RestaurantService {
 	public List<RestaurantDto> selectRestaurantListByEmail(String email) {
 		return rdao.selectRestaurantListByEmail(email);
 	}
+	
 	public void insertRestaurantMenu(RestaurantMenuDto rmdto) {
 		rmdao.insertRestaurantMenu(rmdto);
 	}
@@ -36,4 +40,10 @@ public class RestaurantService {
 	public List<RestaurantMenuDto> selectRestaurantMenu(int Restaurant_rest_pk) {
 		return rmdao.selectRestaurantMenu(Restaurant_rest_pk);
 	}
+	
+	public int selectIsRestaurantTable(int restaurant_rest_pk) {
+		return rtdao.selectIsRestaurantTable(restaurant_rest_pk);
+	}
+	
+	
 }

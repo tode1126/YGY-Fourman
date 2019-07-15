@@ -12,7 +12,10 @@ public class RestaurantMenuDto {
 	private int menu_price;
 	private String menu_desc;
 	private String menu_imagefile;
-	
+	private String menu_image_realname;
+	private String menu_image_realpath;
+	private int menu_image_size;
+	private ArrayList<MultipartFile> upfile;
 	
 	public int getMenu_pk() {
 		return menu_pk;
@@ -55,5 +58,29 @@ public class RestaurantMenuDto {
 	}
 	public void setMenu_imagefile(String menu_imagefile) {
 		this.menu_imagefile = menu_imagefile;
+	}
+	public ArrayList<MultipartFile> getUpfile() {
+		return upfile;
+	}
+	public void setUpfile(ArrayList<MultipartFile> upfile) {
+		this.upfile = upfile;
+	}
+	public String getMenu_image_realname() {
+		return menu_image_realname;
+	}
+	public void setMenu_image_realname(String menu_image_realname) {
+		this.menu_image_realname = menu_image_realname;
+	}
+	public String getMenu_image_realpath() {
+		return menu_image_realpath;
+	}
+	public void setMenu_image_realpath(String menu_image_realpath) {
+		this.menu_image_realpath = menu_image_realpath;
+	}
+	public int getMenu_image_size() {
+		return menu_image_size;
+	}
+	public void setMenu_image_size(int menu_image_size) {
+		this.menu_image_size = menu_image_size;
 	}
 }
