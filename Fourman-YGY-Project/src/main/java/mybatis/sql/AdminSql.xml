@@ -43,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<update id="userEnable" parameterType="String">
-		update user_info set state = 1 where email = #{email}
+		update user_info set state = 1,dropday=NULL where email = #{email}
 	</update>
 	<update id="userDisable" parameterType="String">
 		update user_info set state = 2,dropday=now() where email = #{email}

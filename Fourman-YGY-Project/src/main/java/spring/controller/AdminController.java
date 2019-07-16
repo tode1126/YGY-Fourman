@@ -63,7 +63,7 @@ public class AdminController {
 		int startPage; // 블럭의 시작페이지
 		int endPage;// 블럭의 끝페이지
 		int no;// 출력할 시작번호
-		int perPage = 5;// 한페이지당 보여질 글의갯수
+		int perPage = 10;// 한페이지당 보여질 글의갯수
 		int perBlock = 5;// 한블럭당 보여질 페이지의 갯수
 
 		totalCount = service.allUserTotalCount();
@@ -121,7 +121,7 @@ public class AdminController {
 		int startPage; // 블럭의 시작페이지
 		int endPage;// 블럭의 끝페이지
 		int no;// 출력할 시작번호
-		int perPage = 5;// 한페이지당 보여질 글의갯수
+		int perPage = 10;// 한페이지당 보여질 글의갯수
 		int perBlock = 5;// 한블럭당 보여질 페이지의 갯수
 
 		totalCount = service.leaveUserTotalCount();
@@ -179,7 +179,7 @@ public class AdminController {
 		int startPage; // 블럭의 시작페이지
 		int endPage;// 블럭의 끝페이지
 		int no;// 출력할 시작번호
-		int perPage = 5;// 한페이지당 보여질 글의갯수
+		int perPage = 10;// 한페이지당 보여질 글의갯수
 		int perBlock = 5;// 한블럭당 보여질 페이지의 갯수
 
 		totalCount = service.allFoodUserTotalCount();
@@ -237,7 +237,7 @@ public class AdminController {
 		int startPage; // 블럭의 시작페이지
 		int endPage;// 블럭의 끝페이지
 		int no;// 출력할 시작번호
-		int perPage = 5;// 한페이지당 보여질 글의갯수
+		int perPage = 10;// 한페이지당 보여질 글의갯수
 		int perBlock = 5;// 한블럭당 보여질 페이지의 갯수
 
 		totalCount = service.leaveFoodUserTotalCount();
@@ -295,7 +295,7 @@ public class AdminController {
 		int startPage; // 블럭의 시작페이지
 		int endPage;// 블럭의 끝페이지
 		int no;// 출력할 시작번호
-		int perPage = 5;// 한페이지당 보여질 글의갯수
+		int perPage = 10;// 한페이지당 보여질 글의갯수
 		int perBlock = 5;// 한블럭당 보여질 페이지의 갯수
 
 		totalCount = service.adminListTotalCount();

@@ -18,7 +18,7 @@ response.setStatus(HttpServletResponse.SC_OK);
 </head>
 <body class="loading">
   <h1>ERROR</h1>
-  <h2>올바르지 않은 접근입니다  <b>:(</b></h2>
+  <h2>올바르지 않은 접근입니다  <b>:(<br/>관리자에게 문의 바랍니다</b></h2>
   <div class="gears">
     <div class="gear one">
       <div class="bar"></div>
@@ -36,6 +36,5 @@ response.setStatus(HttpServletResponse.SC_OK);
       <div class="bar"></div>
     </div>
   </div>
-
 </body>
 </html>

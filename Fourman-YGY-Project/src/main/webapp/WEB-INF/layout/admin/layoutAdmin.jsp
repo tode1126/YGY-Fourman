@@ -11,6 +11,7 @@
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <link rel="stylesheet" href="${root }/css/layout/layoutStyle.css"/>
 <link rel="stylesheet" href="${root }/css/admin/layoutAdminStyle.css"/>
+<link rel="shortcut icon" href="${root }/favicon.ico">
 </head>
 <body>
 <div id="top" class="layout">
