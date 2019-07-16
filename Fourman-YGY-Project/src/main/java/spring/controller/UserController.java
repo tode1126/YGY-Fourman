@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 
 import spring.data.LoginDto;
@@ -123,8 +125,8 @@ public class UserController {
 	@RequestMapping("/user/logout.do")
 	public String logout(HttpServletRequest request) {
 
-		HttpSession session = request.getSession();
-		session.removeAttribute("userLoginInfo");
+	    RequestContextHolder.getRequestAttributes().removeAttribute("userLoginInfo", RequestAttributes.SCOPE_SESSION);
+	    request.getSession().invalidate();
 
 		return "main.tiles";
 	}
@@ -142,7 +144,12 @@ public class UserController {
 				LoginDto dto = new LoginDto();
 				dto.setUser_Email(email);
 				dto.setUser_grade(udto.getGrade());
+				LoginManager manager = new LoginManager();
+				if(manager.isUsing(email)) {
+					manager.removeSession(email);
+				}
 				session.setAttribute("userLoginInfo", dto);
+				session.setAttribute(email, manager);
 				if (udto.getGrade() == 1)
 					go = "main.tiles";
 				if (udto.getGrade() == 2)
@@ -290,5 +297,7 @@ public class UserController {
 		}
 		return SHA;
 	}
+	
+	
 
 }
