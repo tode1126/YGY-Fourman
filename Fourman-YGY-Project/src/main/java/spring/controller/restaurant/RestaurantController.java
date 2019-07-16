@@ -133,9 +133,9 @@ public class RestaurantController {
 			HttpServletRequest request)
 	{
 		//일단 파일명이 어떻게 넣어오는지부터 확인-입력안했을시: 빈 문자열이 들어간다
-		for (MultipartFile f : rmdto.getUpfile()) {
+		/*for (MultipartFile f : rmdto.getUpfile()) {
 			System.out.println("파일명: " + f.getOriginalFilename());
-		}
+		}*/
 		
 		// 식당 고유값 가져오기
 		HttpSession session = request.getSession();
@@ -206,6 +206,24 @@ public class RestaurantController {
 		service.insertRestaurantMenu(rmdto);
 		return "redirect:/restaurant/menuFront.do";
 	}
+	/*** 메뉴 수정 폼*/
+	@RequestMapping(value="/restaurant/menuUpdateForm.do")
+	public ModelAndView menuUpdateForm(
+			@RequestParam(value="m") int menu_pk) {
+		RestaurantMenuDto rmdto = service.selectOneRestaurantMenu(menu_pk);
+		ModelAndView model = new ModelAndView();
+		model.addObject("dto", rmdto);
+		model.setViewName("/restaurant/menu/menu-update-form");
+		return model;
+	}
+	/*** 메뉴 수정 update*/
+	@RequestMapping(value="/restaurant/menuUpdate.do")
+	public ModelAndView menuUpdate() {
+		ModelAndView model = new ModelAndView();
+		
+		model.setViewName("/restaurant/menu/menu-update-form");
+		return model;
+	}
 	
 	/*** 테이블 관련 컨트롤러*/
 	@RequestMapping(value="/restaurant/tableFront.do")
@@ -219,10 +237,30 @@ public class RestaurantController {
 			restaurant_rest_pk = (Integer) session.getAttribute("rest_pk");
 			System.out.println("tableFront.do: "+restaurant_rest_pk);
 			isRestaurantTable = service.selectIsRestaurantTable(restaurant_rest_pk);
-			System.out.println(isRestaurantTable);
+			//System.out.println(isRestaurantTable);
+			//없으면 0, 있으면 1이 나온다
 		}
 		model.addObject("isRestaurantTable", isRestaurantTable);
 		model.setViewName("/restaurant/table/tableFront");
+		return model;
+	}
+	
+	/*** 식당 소개 관련 컨트롤러*/
+	@RequestMapping(value="/restaurant/introFront.do")
+	public ModelAndView introFront(HttpServletRequest request) {
+		ModelAndView model = new ModelAndView();
+		HttpSession session = request.getSession();
+		boolean isRest_pk = (session.getAttribute("rest_pk")!=null) ? true : false;
+		int restaurant_rest_pk = -1;
+		int isRestaurantIntro = -1;
+		if(isRest_pk) {
+			restaurant_rest_pk = (Integer) session.getAttribute("rest_pk");
+			System.out.println("introFront.do: "+restaurant_rest_pk);
+			isRestaurantIntro = service.selectIsRestaurantIntro(restaurant_rest_pk);
+			System.out.println(isRestaurantIntro);
+		}
+		model.addObject("isRestaurantIntro", isRestaurantIntro);
+		model.setViewName("/restaurant/intro/introFront");
 		return model;
 	}
 }

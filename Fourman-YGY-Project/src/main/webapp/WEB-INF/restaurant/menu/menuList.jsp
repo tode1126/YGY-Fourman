@@ -35,7 +35,7 @@
 			<td align="center">${dto.menu_price }</td>
 			<td align="center">${dto.menu_desc }</td>
 			<td align="center">
-				<button>수정</button>&nbsp;&nbsp;
+				<button onclick="location.href='./menuUpdateForm.do?m=${dto.menu_pk}'">수정</button>&nbsp;&nbsp;
 				<button>삭제</button>
 			</td>
 		</tr>

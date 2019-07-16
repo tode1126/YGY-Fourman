@@ -10,8 +10,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="./menuFront.do">메뉴 화면 가기</a><br>
-<a href="./introFront.do">소개 화면 가기</a><br>
-<a href="./tableFront.do">테이블 화면 가기</a><br>
+<c:if test="${isRestaurantIntro == 0 }">
+<a>식당 소개 쓰기</a>
+</c:if>
+
+<c:if test="${isRestaurantIntro > 0 }">
+<a>식당 소개 수정</a>
+</c:if>
 </body>
 </html>

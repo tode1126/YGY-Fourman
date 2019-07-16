@@ -69,7 +69,7 @@ public class UserController {
 				if(udto.getGrade()==1)
 					go="main.tiles";
 				if(udto.getGrade()==2)
-					go="redirect://restaurant/main.do";
+					go="redirect:/restaurant/main.do";
 				if(udto.getGrade()==3)
 					go="admin.tiles";
 			}else if(udto.getState() == 0){
