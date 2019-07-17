@@ -148,7 +148,7 @@ public class UserController {
 				dto.setUser_grade(udto.getGrade());
 				LoginManager manager = new LoginManager();
 
-				if (udto.getGrade() == 1)
+				if (udto.getGrade() == 1) {
 					if(manager.isUsing(email)) {
 						manager.removeSession(email);
 					}
@@ -156,20 +156,22 @@ public class UserController {
 					session.setAttribute(email, manager);
 					
 					go = "main.tiles";
-					
-				if (udto.getGrade() == 2)
+				}
+				if (udto.getGrade() == 2) {
 					session.setAttribute("userLoginInfo", dto);
 					session.setAttribute(email, manager);
 					
 					go = "restraunt.tiles";
-				if (udto.getGrade() == 3)
+				}	
+				if (udto.getGrade() == 3) {
 					if(manager.isUsing(email)) {
 						manager.removeSession(email);
 					}
 					session.setAttribute("userLoginInfo", dto);
 					session.setAttribute(email, manager);
-					go = "admin.tiles";
 					
+					go = "admin.tiles";
+				}
 			} else if (udto.getState() == 0) {
 				model.addAttribute("email", email);
 				go = "/main/user/userMailCheck";
