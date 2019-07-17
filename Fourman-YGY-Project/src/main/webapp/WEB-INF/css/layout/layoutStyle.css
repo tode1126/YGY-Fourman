@@ -2,7 +2,6 @@
 	
 	div.layout{
 		border: 1px solid black;	
-		
 	}
 	
 	#top{
@@ -15,15 +14,13 @@
 		height: 70px;
 		z-index: 1;
 		text-align: center;
-		
 	}
 	
 	#main{
 		width: 1100px;
-		margin: auto;
 		min-height: 700px;
 		height: auto;
-		
+		margin: auto;
 	}
 	
 	#bottom{

@@ -8,12 +8,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 </head>
 <body>
 main<br>
 master<br>
-add Hello dev(hotfix) aaaaa<br>
-add Kim branchmain check
-
+add Hello dev(hotfix) check
+<c:if test="${not empty param.gaip}">
+	<script type="text/javascript">
+	gaiptrue();
+	</script>
+</c:if>
+<c:if test="${not empty param.userLeave }">
+	<script type="text/javascript">
+	userLeave();
+	</script>
+</c:if>
 </body>
 </html>
