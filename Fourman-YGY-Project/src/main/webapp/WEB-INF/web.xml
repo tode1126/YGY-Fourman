@@ -20,6 +20,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     
+    <listener>
+      <listener-class>
+          spring.controller.LoginManager
+      </listener-class>
+  	</listener>
+
+
     <!-- korean encoding -->
     
 	<filter>

@@ -68,7 +68,8 @@ public class UserController {
 			LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
 			if (service.userLoginCheck(ldto.getUser_Email(), pass) == 1) {
 				service.userLeave(ldto.getUser_Email());
-				session.removeAttribute("userLoginInfo");
+				 RequestContextHolder.getRequestAttributes().removeAttribute("userLoginInfo", RequestAttributes.SCOPE_SESSION);
+				 request.getSession().invalidate();
 			} else {
 				go = "redirect:/" + layout + "/user/userLeave.do?profalse=true";
 			}
@@ -118,7 +119,8 @@ public class UserController {
 		if (service.userSelectCount(ldto.getUser_Email()) == 1) {
 			service.userUpdate(dto);
 		}
-		session.removeAttribute("userLoginInfo");
+	    RequestContextHolder.getRequestAttributes().removeAttribute("userLoginInfo", RequestAttributes.SCOPE_SESSION);
+	    request.getSession().invalidate();
 		return "main.tiles";
 	}
 
@@ -145,17 +147,29 @@ public class UserController {
 				dto.setUser_Email(email);
 				dto.setUser_grade(udto.getGrade());
 				LoginManager manager = new LoginManager();
-				if(manager.isUsing(email)) {
-					manager.removeSession(email);
-				}
-				session.setAttribute("userLoginInfo", dto);
-				session.setAttribute(email, manager);
+
 				if (udto.getGrade() == 1)
+					if(manager.isUsing(email)) {
+						manager.removeSession(email);
+					}
+					session.setAttribute("userLoginInfo", dto);
+					session.setAttribute(email, manager);
+					
 					go = "main.tiles";
+					
 				if (udto.getGrade() == 2)
+					session.setAttribute("userLoginInfo", dto);
+					session.setAttribute(email, manager);
+					
 					go = "restraunt.tiles";
 				if (udto.getGrade() == 3)
+					if(manager.isUsing(email)) {
+						manager.removeSession(email);
+					}
+					session.setAttribute("userLoginInfo", dto);
+					session.setAttribute(email, manager);
 					go = "admin.tiles";
+					
 			} else if (udto.getState() == 0) {
 				model.addAttribute("email", email);
 				go = "/main/user/userMailCheck";
