@@ -128,12 +128,19 @@
 		    <version>${tiles.version}</version>
 		</dependency>
 		
+		
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis</artifactId>
 		    <version>3.2.7</version>
 		</dependency>
+<!-- 		
+		<dependency>
+	<groupId>org.mybatis</groupId>
+	<artifactId>mybatis</artifactId>
+	<version>3.4.5</version>
+        </dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 		<dependency>
@@ -168,6 +175,12 @@
 		          <artifactId>mysql-connector-java</artifactId>
 		          <version>5.1.31</version>
 		</dependency>
+		
+		<!-- <dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>6.0.6</version>
+        </dependency> -->
 		
 		<dependency>
            <groupId>com.fasterxml.jackson.core</groupId>

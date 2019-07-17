@@ -34,12 +34,12 @@
 				
 			</a> 
 			&nbsp;&nbsp;&nbsp;
-			<a href="${root}/client/service.do"> <img src="${root}/image/client/K_F&Q.png"
+			<a href="${root}/answer/main.do"> <img src="${root}/image/client/K_F&Q.png"
 				width="40" >
 				<b>자주 묻는 질문</b>
 			</a> 
 			&nbsp;&nbsp;&nbsp;
-			<a href="${root}/client/service.do"> <img src="${root}/image/client/K_notice.png"
+			<a href="${root}/notice/noticemain.do"> <img src="${root}/image/client/K_notice.png"
 				width="40">
 				<b>공지사항</b>
 			</a> 

@@ -35,7 +35,7 @@
 	</li>
 	
 	<li>
-		<a href="${root}/board/list.do"><b>공지사항</b></a>
+		<a href="${root}/notice/noticemain.do"><b>공지사항</b></a>
 	</li>	
 
 
