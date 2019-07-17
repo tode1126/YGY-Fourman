@@ -70,7 +70,7 @@
 								<td align="center">관리자</td>
 							</c:if>
 							<td align="center">
-							<input type="button" value="일반회원전환" class="red button" onclick="location.href='${root}/admin/adminManagement/userUpdate.do?targetEmail=${dto.email }'">
+							<input type="button" value="일반회원전환" class="red button" onclick="location.href='${root}/admin/adminManagement/userUpdate.do?targetEmail=${dto.email }&pageNum=${currentPage }'">
 							</td>
 						</tr>
 					</c:forEach>

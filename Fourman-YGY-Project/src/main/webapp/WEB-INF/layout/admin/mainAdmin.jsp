@@ -11,7 +11,9 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <script type="text/javascript" src="${root }/js/admin/adminRedirectJs.js"></script>
+<script type="text/javascript" src="${root }/js/admin/mainAdminJs.js"></script>
 <link rel="stylesheet" href="${root }/css/admin/mainAdminStyle.css"/>
+<link rel="stylesheet" href="${root }/css/Ji_Button_style.css"/>
 </head>
 <body>
 	<c:if test="${sessionScope.userLoginInfo.user_grade ne 3}">
@@ -20,7 +22,17 @@
 		</script>
 	</c:if>
 	<c:if test="${not empty sessionScope.userLoginInfo and sessionScope.userLoginInfo.user_grade eq '3'}">
-	<h2 style="color: white;">관리자 페이지</h2>
+	<div class="mainAdminLayout">
+		<div class="userContainer">
+			<div class="conetionUser">
+				<h2>현재 접속자수</h2>
+				<p class="userCount">0</p>
+			</div>
+			<div class="userList">
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+	</div>
 	</c:if>
 </body>
 </html>

@@ -95,4 +95,18 @@ public class LoginManager implements HttpSessionBindingListener {
 		return collection;
 	}
 
+	public List<String> getUsersList() {
+		Enumeration e = loginUsers.keys();
+		HttpSession session = null;
+		int i = 0;
+		List<String> list = new ArrayList<String>();
+
+		while (e.hasMoreElements()) {
+			session = (HttpSession) e.nextElement();
+			String str = (String) loginUsers.get(session);
+			list.add(str);
+		}
+		return list;
+	}
+
 }
