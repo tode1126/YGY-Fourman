@@ -1,6 +1,9 @@
 package spring.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -12,8 +15,10 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import spring.data.LoginDto;
@@ -395,5 +400,37 @@ public class AdminController {
 			go = "redirect:/admin/mailService/allMailSend.do?send=true";
 		}
 		return go;
+	}
+	
+	@RequestMapping("/admin/userCount.do")
+	@ResponseBody
+	public Map<Object, Object> userCount() {
+		int count = 0;
+		
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		LoginManager manager = new LoginManager();
+		count = manager.getUserCount();
+		map.put("cnt", count);
+
+		return map;
+	}
+	
+	@RequestMapping("/admin/userList.do")
+	@ResponseBody
+	public Map<Object, Object> userList(){
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		LoginManager manager = new LoginManager();
+		
+		List<String> list = manager.getUsersList();
+		map.put("userList", list);
+		return map;
+	}
+	
+	@RequestMapping("/admin/userUnConnection.do")
+	@ResponseBody
+	public void userUnConnection(@RequestBody String email) {
+		LoginManager manager = new LoginManager();
+		manager.removeSession(email);
+		return;
 	}
 }
