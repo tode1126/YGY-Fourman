@@ -26,7 +26,7 @@ $(function(){
 
 </head>
 <body>
-
+<hr>
 <div class="FnQ">
 
 		<a href="#" id="All" class="li1 Active" onclick="myFunction()">전체</a>
