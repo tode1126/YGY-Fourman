@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="/js/restaurant/menu/menu-insert-formJS.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -41,7 +42,8 @@
 		<tr>
 			<th>메뉴 사진</th>
 			<td>
-				<input type="file" name="upfile" style="width: 200px;">
+				<input type="file" name="upfile" class="menu-insert-upfile" style="width: 200px;">
+				<div class="select_img"><img src="" /></div>
 			</td>
 		</tr>
 		<tr>

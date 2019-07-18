@@ -16,7 +16,6 @@
 			<th width="100">카테고리명</th>
 			<td width="200">
 				<input type="text" name="menu_category" value="${dto.menu_category }">
-				
 			</td>
 		</tr>
 		<tr>
@@ -32,7 +31,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th colspan="2">메뉴 설명</th>			
+			<th colspan="2">메뉴 설명</th>
 		</tr>
 		<tr>
 			<td colspan="2">
