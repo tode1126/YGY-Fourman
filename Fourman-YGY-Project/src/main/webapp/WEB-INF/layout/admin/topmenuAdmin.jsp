@@ -16,17 +16,30 @@
 <body>
 	<div class="menuLayer">
 		<ul class="menu">
-			<li><a href="${root }/admin/userManagement/allUserList.do"><span class="button">전체회원</span></a></li>
-			<li><a href="${root }/admin/userManagement/leaveUserList.do"><span class="button">탈퇴회원</span></a></li>
-			<li><a href="${root }/admin/userManagement/allFoodUserList.do"><span class="button">전체기업회원</span></a></li>
-			<li><a href="${root }/admin/userManagement/leaveFoodUserList.do"><span class="button">탈퇴기업회원</span></a></li>
-			<li><a><span class="button">전체식당</span></a></li>
-			<li><a><span class="button">탈퇴식당</span></a></li>
-			<li><a href="${root }/admin/adminManagement/adminList.do"><span class="button">관리자관리</span></a></li>
-			<li><a href="${root }/admin/mailService/allMailSend.do"><span class="button">일괄메일</span></a></li>
-			<li><a><span class="button">이벤트관리</span></a></li>
-			<li><a><span class="button">공지관리</span></a></li>
-			<li><a><span class="button">후기관리</span></a></li>
+			<li><a href="${root}/admin/admin.do">Home</a></li>
+			<li><a href="${root }/admin/userManagement/allUserList.do" id="current">회원관리</a>
+				<ul>
+					<li><a href="${root }/admin/userManagement/allUserList.do">전체회원</a></li>
+					<li><a href="${root }/admin/userManagement/leaveUserList.do">탈퇴회원</a></li>
+					<li><a href="${root }/admin/userManagement/allFoodUserList.do">전체기업회원</a></li>
+					<li><a href="${root }/admin/userManagement/leaveFoodUserList.do">탈퇴기업회원</a></li>
+				</ul>
+			</li>
+			<li><a href="#">식당관리</a>
+				<ul>
+					<li><a href="#">전체식당</a></li>
+					<li><a href="#">탈퇴식당</a></li>
+				</ul>
+			</li>
+			<li><a href="${root }/admin/adminManagement/adminList.do">관리자관리</a></li>
+			<li><a href="${root }/admin/mailService/allMailSend.do">일괄메일</a></li>
+			<li><a href="#">게시판관리</a>
+				<ul>
+					<li><a href="#">이벤트관리</a></li>
+					<li><a href="#">공지관리</a></li>
+					<li><a href="#">후기관리</a></li>
+				</ul>
+			</li>
 		</ul>
 	</div>
 </body>

@@ -1,6 +1,5 @@
 package spring.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -406,12 +405,11 @@ public class AdminController {
 	@ResponseBody
 	public Map<Object, Object> userCount() {
 		int count = 0;
-		
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		LoginManager manager = new LoginManager();
+		
 		count = manager.getUserCount();
 		map.put("cnt", count);
-
 		return map;
 	}
 	
@@ -420,8 +418,8 @@ public class AdminController {
 	public Map<Object, Object> userList(){
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		LoginManager manager = new LoginManager();
-		
 		List<String> list = manager.getUsersList();
+		
 		map.put("userList", list);
 		return map;
 	}
@@ -430,7 +428,9 @@ public class AdminController {
 	@ResponseBody
 	public void userUnConnection(@RequestBody String email) {
 		LoginManager manager = new LoginManager();
-		manager.removeSession(email);
+		if(manager.isUsing(email)) {
+			manager.removeSession(email);
+		}
 		return;
 	}
 }
