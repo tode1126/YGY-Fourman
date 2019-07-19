@@ -72,12 +72,5 @@
 	<definition name="/client/*/*" extends="clientLayout">
 		<put-attribute name="clientMain" value="/WEB-INF/client/{1}/{2}.jsp"/>				
 	</definition>
-    
-    
-    
-	
-	
-			
-	
 
 </tiles-definitions>
