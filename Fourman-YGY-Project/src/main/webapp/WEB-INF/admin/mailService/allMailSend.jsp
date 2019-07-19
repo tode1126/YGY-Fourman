@@ -39,13 +39,14 @@
 					method="post" >
 					<h2>일괄 전송</h2>
 					<p>
-						<input type="radio" name="target" value="1">일반회원 <input
-							type="radio" name="target" value="2">기업회원 <input
-							type="radio" name="target" value="3">관리자
+						<select name="target">
+							<option value="1" selected="selected">일반회원</option>
+							<option value="2" selected="selected">기업회원</option>
+							<option value="3" selected="selected">관리자</option>
+						</select>
 					</p>
 					<p>
-						<textarea name="editor" id="editor"
-							style="height: 212px; width: 386px;"></textarea>
+						<textarea name="editor" id="editor"></textarea>
 					</p>
 					<p>
 						<input type="submit" id="insertBoard" value="Email Send">
