@@ -16,8 +16,8 @@ div.conetionUser{
   	padding: 2em 2em 2em;
 	max-width: 250px;
  	max-height: 200px;
- 	margin-top:  50px;
-  	margin-left: 50px;
+ 	margin-top:  100px;
+  	margin-left: 100px;
   	box-shadow: 0 0 1em #222;
  	border-radius: 2px;
  	text-align: center;
@@ -44,8 +44,8 @@ div.userList {
 	width: 600px;
 	height: 600px;
  	max-height: 600px;
- 	margin-bottom: 50px;
- 	margin-top:  50px;
+ 	margin-bottom: 100px;
+ 	margin-top:  100px;
   	margin-left: 50px;
   	box-shadow: 0 0 1em #222;
  	border-radius: 2px;

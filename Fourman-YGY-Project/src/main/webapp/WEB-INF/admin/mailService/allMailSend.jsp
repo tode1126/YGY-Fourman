@@ -39,11 +39,9 @@
 					method="post" >
 					<h2>일괄 전송</h2>
 					<p>
-						<select name="target">
-							<option value="1" selected="selected">일반회원</option>
-							<option value="2" selected="selected">기업회원</option>
-							<option value="3" selected="selected">관리자</option>
-						</select>
+						<input type="radio" name="target" value="1" checked="checked">일반회원 
+						<input type="radio" name="target" value="2">기업회원 
+						<input type="radio" name="target" value="3">관리자
 					</p>
 					<p>
 						<textarea name="editor" id="editor"></textarea>

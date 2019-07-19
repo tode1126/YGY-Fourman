@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #editor {
-	width: 300px;
+	width: 98%;
 	height: 300px;
 }
 
@@ -11,12 +11,13 @@ div.mailCheck {
 }
 
 div.mailCheckform {
+	text-align:center;
 	background: #fff;
 	padding: 4em 4em 2em;
 	max-width: 600px;
 	max-height: 800px;
-	margin: 150px auto 0;
-	margin-bottom: 150px;
+	margin: 100px auto 0;
+	margin-bottom: 100px;
 	box-shadow: 0 0 1em #222;
 	border-radius: 2px;
 }
