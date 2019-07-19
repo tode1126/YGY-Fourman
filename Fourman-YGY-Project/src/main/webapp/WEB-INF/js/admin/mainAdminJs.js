@@ -31,7 +31,7 @@ $(function() {
 				$("p.userCount").html(data.cnt);
 			},
 			error : function(error) {
-				alert("error : " + error);
+
 			}
 		});
 
@@ -51,7 +51,7 @@ $(function() {
 				str="";
 			},
 			error : function(error) {
-				alert("error : " + error);
+
 			}
 		});
 

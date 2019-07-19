@@ -36,7 +36,7 @@ text-align:center;
 text-decoration:none;
 }
 
-.menuLayer li a:hover, .menubar ul li:hover a{
+.menuLayer li a:hover, .menuLayer ul li:hover a{
 background: blue;
 color:#FFFFFF;
 text-decoration:none;

@@ -375,7 +375,7 @@ public class AdminController {
 	}
 
 	@RequestMapping("/admin/mailService/allMailSendAction.do")
-	public String userSearchAction(@RequestParam int target,@RequestParam String content, HttpServletRequest request) {
+	public String userSearchAction(@RequestParam int target,@RequestParam String editor, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
 		String go = "redirect:/admin/mailService/allMailSend.do?sendFalse=true";
@@ -384,11 +384,10 @@ public class AdminController {
 			List<UserDto> list = service.mailGetList(target);
 			for (UserDto udto : list) {
 				MimeMessage message = mailSender.createMimeMessage();
-
 				try {
 					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 					messageHelper.setSubject("여기요 서비스 입니다");// 메일 제목
-					messageHelper.setText("<html><body><pre>"+content+"</pre></body></html>",true);// 메일내용
+					messageHelper.setText("<html><body>"+editor+"</body></html>",true);// 메일내용
 					message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(udto.getEmail()));
 					mailSender.send(message);
 				} catch (Exception e) {

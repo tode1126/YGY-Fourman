@@ -9,7 +9,7 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
-<link rel="stylesheet" href="${root }/css/user/userCheckStyle.css">
+<link rel="stylesheet" href="${root }/css/user/userMailCheckStyle.css">
 <script type="text/javascript" src="${root }/js/user/sha-256.js"></script>
 <script type="text/javascript" src="${root }/js/user/userCheckJs.js"></script>
 </head>
