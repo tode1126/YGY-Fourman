@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 #userListLayout {
+	width: 1200px;
 	background: #fff;
 	margin: 0 auto 0;
 	margin-top: 100px;
@@ -10,6 +11,18 @@
 	box-shadow: 0 0 1em #222;
 }
 
+#searchUser{
+	float: left;
+}
+
+#multipleButton{
+	float: right;
+	margin-bottom: 10px;
+}
+
+#targetEmail{
+	height: 20px;
+}
 
 #userList {
 	border-top: 1px solid #444444;

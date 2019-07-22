@@ -31,8 +31,6 @@
 					<li><a href="#">탈퇴식당</a></li>
 				</ul>
 			</li>
-			<li><a href="${root }/admin/adminManagement/adminList.do">관리자관리</a></li>
-			<li><a href="${root }/admin/mailService/allMailSend.do">일괄메일</a></li>
 			<li><a href="#">게시판관리</a>
 				<ul>
 					<li><a href="#">이벤트관리</a></li>
@@ -40,6 +38,8 @@
 					<li><a href="#">후기관리</a></li>
 				</ul>
 			</li>
+			<li><a href="${root }/admin/adminManagement/adminList.do">관리자관리</a></li>
+			<li><a href="${root }/admin/mailService/allMailSend.do">일괄메일</a></li>
 		</ul>
 	</div>
 </body>

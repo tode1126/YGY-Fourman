@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org// DTD Config 3.0//EN"
 		<typeAlias type="spring.data.ReboardDto" alias="bdto"/>
 		<typeAlias type="spring.data.noticeDto" alias="ndto"/>
 		<typeAlias type="spring.data.UserDto" alias="userDto"/>
+		<typeAlias type="spring.data.UserSearchDto" alias="userSearchDto"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/sql/ReboardSql.xml"/>

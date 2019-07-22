@@ -15,21 +15,23 @@
 	src="${root }/js/admin/adminRedirectJs.js"></script>
 </head>
 <body>
-	<c:if test="${sessionScope.userLoginInfo.user_grade ne 3 and empty list}">
+	<c:if test="${empty sessionScope.userLoginInfo or sessionScope.userLoginInfo.user_grade ne 3}">
 		<script type="text/javascript">
 			adminCheck();
 		</script>
 	</c:if>
 	<c:if test="${not empty sessionScope.userLoginInfo and sessionScope.userLoginInfo.user_grade eq '3' and not empty list}">
 		<div id="userListLayout">
+			<h2>관리자 목록</h2>
 			<div id="addAdmin">
 				<form action="adminUpdate.do" method="post">
-					<input name="targetEmail" type="text" placeholder="관리자 추가 이메일"
+					<input  id="targetEmail" name="targetEmail" type="text" placeholder="관리자 추가 이메일"
 						size="30">&nbsp;&nbsp;
 					<button class="blue button">관리자 추가</button>
 				</form>
 			</div>
-			<h2>관리자 목록</h2>
+			<div style="clear: both;">
+			</div>
 			<div class="page">
 				<table id="userList">
 					<tr>

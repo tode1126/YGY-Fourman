@@ -12,7 +12,7 @@
 	
 	<definition name="adminLayout" template="/WEB-INF/layout/admin/layoutAdmin.jsp">
 		<put-attribute name="top" value="/WEB-INF/layout/admin/topAdmin.jsp"/>
-		<put-attribute name="bottom" value="/WEB-INF/layout/admin/bottomAdmin.jsp"/>
+		<put-attribute name="bottom" value="/WEB-INF/layout/bottom.jsp"/>
 		<put-attribute name="topmenu" value="/WEB-INF/layout/admin/topmenuAdmin.jsp"/>
 		<put-attribute name="main" value="/WEB-INF/layout/admin/mainAdmin.jsp"/>
 	</definition>
