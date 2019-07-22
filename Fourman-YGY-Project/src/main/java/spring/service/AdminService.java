@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import spring.data.AdminDao;
 import spring.data.UserDto;
+import spring.data.UserSearchDto;
 
 @Service
 public class AdminService {
@@ -81,4 +82,37 @@ public class AdminService {
 	public List<UserDto> mailGetList(int target) {
 		return dao.mailGetList(target);
 	}
+	
+	public List<UserDto> searchUser(UserSearchDto dto){
+		return dao.searchUser(dto);
+	}
+	
+	public List<UserDto> searchLeaveUser(UserSearchDto dto){
+		return dao.searchLeaveUser(dto);
+	}
+	
+	public List<UserDto> searchFoodUser(UserSearchDto dto){
+		return dao.searchFoodUser(dto);
+	}
+	
+	public List<UserDto> searchLeaveFoodUser(UserSearchDto dto){
+		return dao.searchLeaveFoodUser(dto);
+	}
+	
+	public int searchUserCount(String targetEmail){
+		return dao.searchUserCount(targetEmail);
+	}
+	
+	public int searchLeaveUserCount(String targetEmail){
+		return dao.searchUserCount(targetEmail);
+	}
+	
+	public int searchFoodUserCount(String targetEmail){
+		return dao.searchUserCount(targetEmail);
+	}
+	
+	public int searchLeaveFoodUserCount(String targetEmail){
+		return dao.searchUserCount(targetEmail);
+	}
+	
 }

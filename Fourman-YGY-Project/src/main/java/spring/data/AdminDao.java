@@ -91,4 +91,30 @@ public class AdminDao extends SqlSessionDaoSupport {
 	public List<UserDto> mailGetList(int target) {
 		return getSqlSession().selectList("admin.mailGetList", target);
 	}
+	
+	public List<UserDto> searchUser(UserSearchDto dto){
+		return getSqlSession().selectList("admin.userSearch",dto);
+	}
+	public List<UserDto> searchLeaveUser(UserSearchDto dto){
+		return getSqlSession().selectList("admin.searchLeaveUser",dto);
+	}
+	public List<UserDto> searchFoodUser(UserSearchDto dto){
+		return getSqlSession().selectList("admin.searchFoodUser",dto);
+	}
+	public List<UserDto> searchLeaveFoodUser(UserSearchDto dto){
+		return getSqlSession().selectList("admin.searchLeaveFoodUser",dto);
+	}
+	
+	public int searchUserCount(String targetEmail){
+		return getSqlSession().selectOne("admin.searchUserCount",targetEmail);
+	}
+	public int searchLeaveUserCount(String targetEmail){
+		return getSqlSession().selectOne("admin.searchLeaveUserCount",targetEmail);
+	}
+	public int searchFoodUserCount(String targetEmail){
+		return getSqlSession().selectOne("admin.searchFoodUserCount",targetEmail);
+	}
+	public int searchLeaveFoodUserCount(String targetEmail){
+		return getSqlSession().selectOne("admin.searchLeaveFoodUserCount",targetEmail);
+	}
 }
