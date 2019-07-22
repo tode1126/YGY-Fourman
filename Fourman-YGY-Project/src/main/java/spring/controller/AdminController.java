@@ -528,6 +528,7 @@ public class AdminController {
 			USDto.setTargetEmail(targetEmail);
 			USDto.setPerPage(perPage);
 			USDto.setNo((currentPage - 1) * perPage);
+			
 			List<UserDto> list = service.searchUser(USDto);
 
 			// 가져온 리스트 model에 저장
