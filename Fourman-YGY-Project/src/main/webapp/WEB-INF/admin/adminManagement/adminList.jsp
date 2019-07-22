@@ -15,7 +15,7 @@
 	src="${root }/js/admin/adminRedirectJs.js"></script>
 </head>
 <body>
-	<c:if test="${sessionScope.userLoginInfo.user_grade ne 3 or empty list}">
+	<c:if test="${empty sessionScope.userLoginInfo or sessionScope.userLoginInfo.user_grade ne 3}">
 		<script type="text/javascript">
 			adminCheck();
 		</script>

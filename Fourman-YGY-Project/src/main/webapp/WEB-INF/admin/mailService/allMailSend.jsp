@@ -16,7 +16,7 @@
 <script type="text/javascript" src="${root }/editor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body>
-	<c:if test="${sessionScope.userLoginInfo.user_grade ne 3}">
+	<c:if test="${empty sessionScope.userLoginInfo or sessionScope.userLoginInfo.user_grade ne 3}">
 		<script type="text/javascript">
 			adminCheck();
 		</script>
