@@ -61,15 +61,16 @@ public class UserController {
 			@RequestParam String pass) {
 		ModelAndView model = new ModelAndView();
 		HttpSession session = request.getSession();
-		
+
 		String go = "main.tiles";
 
 		if (session.getAttribute("userLoginInfo") != null) {
 			LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
 			if (service.userLoginCheck(ldto.getUser_Email(), pass) == 1) {
 				service.userLeave(ldto.getUser_Email());
-				 RequestContextHolder.getRequestAttributes().removeAttribute("userLoginInfo", RequestAttributes.SCOPE_SESSION);
-				 request.getSession().invalidate();
+				RequestContextHolder.getRequestAttributes().removeAttribute("userLoginInfo",
+						RequestAttributes.SCOPE_SESSION);
+				request.getSession().invalidate();
 			} else {
 				go = "redirect:/" + layout + "/user/userLeave.do?profalse=true";
 			}
@@ -85,7 +86,7 @@ public class UserController {
 		ModelAndView model = new ModelAndView();
 		HttpSession session = request.getSession();
 		String path = request.getContextPath();
-		String go = "redirect:"+path+"/main.do";
+		String go = "redirect:" + path + "/main.do";
 
 		if (session.getAttribute("userLoginInfo") != null) {
 			LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
@@ -111,24 +112,28 @@ public class UserController {
 	@RequestMapping("/*/user/userProfileAction.do")
 	public String userProfileAction(@ModelAttribute UserDto dto, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
+		if (session.getAttribute("userLoginInfo") != null && dto != null) {
+			LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
 
-		String fullHp = dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3();
-		dto.setHp(fullHp);
+			String fullHp = dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3();
+			dto.setHp(fullHp);
 
-		if (service.userSelectCount(ldto.getUser_Email()) == 1) {
-			service.userUpdate(dto);
+			if (service.userSelectCount(ldto.getUser_Email()) == 1) {
+				service.userUpdate(dto);
+			}
+
+			RequestContextHolder.getRequestAttributes().removeAttribute("userLoginInfo",
+					RequestAttributes.SCOPE_SESSION);
+			request.getSession().invalidate();
 		}
-	    RequestContextHolder.getRequestAttributes().removeAttribute("userLoginInfo", RequestAttributes.SCOPE_SESSION);
-	    request.getSession().invalidate();
 		return "main.tiles";
 	}
 
 	@RequestMapping("/user/logout.do")
 	public String logout(HttpServletRequest request) {
 
-	    RequestContextHolder.getRequestAttributes().removeAttribute("userLoginInfo", RequestAttributes.SCOPE_SESSION);
-	    request.getSession().invalidate();
+		RequestContextHolder.getRequestAttributes().removeAttribute("userLoginInfo", RequestAttributes.SCOPE_SESSION);
+		request.getSession().invalidate();
 
 		return "main.tiles";
 	}
@@ -140,7 +145,7 @@ public class UserController {
 
 		String go = "main.tiles";
 
-		if (service.userLoginCheck(email,pass) == 1) {
+		if (service.userLoginCheck(email, pass) == 1) {
 			UserDto udto = service.userGradeCheck(email, pass);
 			if (udto.getState() == 1) {
 				LoginDto dto = new LoginDto();
@@ -149,27 +154,27 @@ public class UserController {
 				LoginManager manager = new LoginManager();
 
 				if (udto.getGrade() == 1) {
-					if(manager.isUsing(email)) {
+					if (manager.isUsing(email)) {
 						manager.removeSession(email);
 					}
 					session.setAttribute("userLoginInfo", dto);
 					session.setAttribute(email, manager);
-					
+
 					go = "main.tiles";
 				}
 				if (udto.getGrade() == 2) {
 					session.setAttribute("userLoginInfo", dto);
 					session.setAttribute(email, manager);
-					
+
 					go = "restraunt.tiles";
-				}	
+				}
 				if (udto.getGrade() == 3) {
-					if(manager.isUsing(email)) {
+					if (manager.isUsing(email)) {
 						manager.removeSession(email);
 					}
 					session.setAttribute("userLoginInfo", dto);
 					session.setAttribute(email, manager);
-					
+
 					go = "admin.tiles";
 				}
 			} else if (udto.getState() == 0) {
@@ -223,39 +228,44 @@ public class UserController {
 	}
 
 	@RequestMapping("/main/user/userAction.do")
-	public ModelAndView userAction(@ModelAttribute UserDto dto,HttpServletRequest request) {
+	public ModelAndView userAction(@ModelAttribute UserDto dto, HttpServletRequest request) {
 		ModelAndView model = new ModelAndView();
 		String go = "main.tiles";
+		if (dto != null) {
 
-		String fullHp = dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3();
-		dto.setHp(fullHp);
+			String fullHp = dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3();
+			dto.setHp(fullHp);
 
-		dto.setState(0);
+			dto.setState(0);
 
-		service.userInsert(dto);
-
+			service.userInsert(dto);
+		}
 		model.setViewName(go);
 		return model;
 	}
 
 	@RequestMapping("/main/user/userMailCheckAction.do")
 	public String usermailcheck(@RequestParam String email, Model model) {
+		if (email != null) {
+			model.addAttribute("email", email);
 
-		model.addAttribute("email", email);
+			MimeMessage message = mailSender.createMimeMessage();
 
-		MimeMessage message = mailSender.createMimeMessage();
-
-		try {
-			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-			messageHelper.setSubject("이메일 인증");// 메일 제목
-			messageHelper.setText("<html><body><h1>아래 링크를 누르시면 인증이 완료됩니다</h1><br><a href='http://tjdrn4765.cafe24.com/main/user/userStateUpdate.do?email="+ email + "'>인증</a></body></html>",true);// 메일내용
-			// messageHelper.setText("<html><body><h1>아래 링크를 누르시면 인증이 완료됩니다</h1><br><a
-			// href='http://localhost:9000/YGY-Project/main/user/userStateUpdate.do?email="+email+"'>인증</a></body></html>",true);//메일
-			// 내용
-			message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email));
-			mailSender.send(message);
-		} catch (Exception e) {
-			System.out.println("메일 보내기 오류:" + e.getMessage());
+			try {
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+				messageHelper.setSubject("이메일 인증");// 메일 제목
+				messageHelper.setText(
+						"<html><body><h1>아래 링크를 누르시면 인증이 완료됩니다</h1><br><a href='http://tjdrn4765.cafe24.com/main/user/userStateUpdate.do?email="
+								+ email + "'>인증</a></body></html>",
+						true);// 메일내용
+				// messageHelper.setText("<html><body><h1>아래 링크를 누르시면 인증이 완료됩니다</h1><br><a
+				// href='http://localhost:9000/YGY-Project/main/user/userStateUpdate.do?email="+email+"'>인증</a></body></html>",true);//메일
+				// 내용
+				message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email));
+				mailSender.send(message);
+			} catch (Exception e) {
+				System.out.println("메일 보내기 오류:" + e.getMessage());
+			}
 		}
 		return "/main/user/userMailCheck";
 	}
@@ -263,7 +273,7 @@ public class UserController {
 	@RequestMapping("/main/user/userStateUpdate.do")
 	public String userStateUpdate(HttpServletRequest request, @RequestParam String email) {
 		String path = request.getContextPath();
-		String go = "redirect:" + path +"/main.do";
+		String go = "redirect:" + path + "/main.do";
 		if (service.userSelectCount(email) > 0) {
 			service.userStateUpdate(email);
 			go = "redirect:" + path + "/main.do?gaip=true";
@@ -276,16 +286,18 @@ public class UserController {
 		int random = (int) (Math.random() * (9999999 - 100000 + 1)) + 100000;
 		String result = "!a" + Integer.toString(random);
 		String Cyresult = testSHA256(result);
-		service.userMailPassSet(email, Cyresult);
+		if (email != null) {
+			service.userMailPassSet(email, Cyresult);
 
-		MimeMessage message = mailSender.createMimeMessage();
-		try {
-			message.setSubject("비밀번호 찾기 결과 입니다");// 메일 제목
-			message.setText("랜덤 비밀번호인 " + result + "로 초기화 되었습니다.");// 메일 내용
-			message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email));
-			mailSender.send(message);
-		} catch (MessagingException e) {
-			System.out.println("메일 보내기 오류:" + e.getMessage());
+			MimeMessage message = mailSender.createMimeMessage();
+			try {
+				message.setSubject("비밀번호 찾기 결과 입니다");// 메일 제목
+				message.setText("랜덤 비밀번호인 " + result + "로 초기화 되었습니다.");// 메일 내용
+				message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email));
+				mailSender.send(message);
+			} catch (MessagingException e) {
+				System.out.println("메일 보내기 오류:" + e.getMessage());
+			}
 		}
 		return "/main/user/userSearch";
 	}
@@ -313,7 +325,5 @@ public class UserController {
 		}
 		return SHA;
 	}
-	
-	
 
 }
