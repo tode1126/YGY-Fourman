@@ -353,22 +353,4 @@ public class RestaurantController {
 		return model;
 	}
 	
-	/*** 식당 소개 관련 컨트롤러*/
-	@RequestMapping(value="/restaurant/introFront.do")
-	public ModelAndView introFront(HttpServletRequest request) {
-		ModelAndView model = new ModelAndView();
-		HttpSession session = request.getSession();
-		boolean isRest_pk = (session.getAttribute("rest_pk")!=null) ? true : false;
-		int restaurant_rest_pk = -1;
-		int isRestaurantIntro = -1;
-		if(isRest_pk) {
-			restaurant_rest_pk = (Integer) session.getAttribute("rest_pk");
-			System.out.println("introFront.do: "+restaurant_rest_pk);
-			isRestaurantIntro = service.selectIsRestaurantIntro(restaurant_rest_pk);
-			System.out.println(isRestaurantIntro);
-		}
-		model.addObject("isRestaurantIntro", isRestaurantIntro);
-		model.setViewName("/restaurant/intro/introFront");
-		return model;
-	}
 }
