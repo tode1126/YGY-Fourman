@@ -48,6 +48,15 @@ public class RestaurantService {
 	public RestaurantMenuDto selectOneRestaurantMenu(int menu_pk) {
 		return rmdao.selectOneRestaurantMenu(menu_pk);
 	}
+	public void updateRestaurantMenuImage(RestaurantMenuDto rmdto) {
+		rmdao.updateRestaurantMenuImage(rmdto);
+	}
+	public void updateRestaurantMenuContent(RestaurantMenuDto rmdto) {
+		rmdao.updateRestaurantMenuContent(rmdto);
+	}
+	public void deleteRestaurantMenu(int menu_pk) {
+		rmdao.deleteRestaurantMenu(menu_pk);
+	}
 	
 	/*** 테이블 관련 서비스*/
 	public int selectIsRestaurantTable(int restaurant_rest_pk) {

@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="../js/restaurant/menu/menu-update-formJS.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -41,14 +42,24 @@
 		<tr>
 			<th>메뉴 사진</th>
 			<td>
-				<input type="file" name="upfile" style="width: 200px;" value="${dto.menu_imagefile }">
+				<input type="file" name="upfile" class="menu-update-upfile" style="width: 200px;">
+				<div class="select_img">
+					<%-- <img src="${dto.menu_image_realpath+dto.menu_image_realname }" /> --%>
+					<img src="<c:out value='../save/restaurant/menu/${dto.restaurant_rest_pk }/${dto.menu_image_realname}'/>" 
+						style="width:300px;" />
+					<%-- <c:out value="${dto.menu_image_realpath}\\${dto.menu_image_realname}" /> --%>
+				</div>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<input type="hidden" name="restaurant_rest_pk" value="${restaurant_rest_pk }">
+				<input type="hidden" name="menu_pk" value="${dto.menu_pk }">
+				<input type="hidden" name="restaurant_rest_pk" value="${dto.restaurant_rest_pk }">
 				<button style="width: 100px;" type="submit">
 					저장하기
+				</button>
+				<button style="width: 100px;" type="button" onclick="history.go(-1)">
+					취소
 				</button>
 			</td>
 		</tr>

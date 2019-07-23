@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="../js/restaurant/menu/menuListJS.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -35,8 +36,8 @@
 			<td align="center">${dto.menu_price }</td>
 			<td align="center">${dto.menu_desc }</td>
 			<td align="center">
-				<button onclick="location.href='./menuUpdateForm.do?m=${dto.menu_pk}'">수정</button>&nbsp;&nbsp;
-				<button>삭제</button>
+				<button type="button" onclick="location.href='./menuUpdateForm.do?m=${dto.menu_pk}'">수정</button>&nbsp;&nbsp;
+				<button type="button" onclick="" class="btn-delete" menu_pk="${dto.menu_pk }">삭제</button>
 			</td>
 		</tr>
 	</c:forEach>

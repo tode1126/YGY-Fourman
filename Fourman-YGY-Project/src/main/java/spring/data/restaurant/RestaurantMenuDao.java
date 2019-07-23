@@ -19,4 +19,13 @@ public class RestaurantMenuDao extends SqlSessionDaoSupport {
 	public RestaurantMenuDto selectOneRestaurantMenu(int menu_pk) {
 		return getSqlSession().selectOne("one_restaurant_menuSelect", menu_pk);
 	}
+	public void updateRestaurantMenuImage(RestaurantMenuDto rmdto) {
+		getSqlSession().update("restaurant_menuImageUpdate", rmdto);
+	}
+	public void updateRestaurantMenuContent(RestaurantMenuDto rmdto) {
+		getSqlSession().update("restaurant_menuContentUpdate", rmdto);
+	}
+	public void deleteRestaurantMenu(int menu_pk) {
+		getSqlSession().delete("restaurant_menuDelete", menu_pk);
+	}
 }

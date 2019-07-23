@@ -20,4 +20,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="one_restaurant_menuSelect" parameterType="int" resultType="rmdto">
 		select * from restaurant_menu where menu_pk = #{menu_pk}
 	</select>
+	<update id="restaurant_menuImageUpdate">
+		update restaurant_menu set menu_imagefile=#{menu_imagefile},
+			menu_image_realname=#{menu_image_realname}, menu_image_realpath=#{menu_image_realpath}, 
+			menu_image_size=#{menu_image_size}
+			where menu_pk=#{menu_pk}
+	</update>
+	<update id="restaurant_menuContentUpdate" parameterType="rmdto">
+		update restaurant_menu set menu_category=#{menu_category}, 
+			menu_name=#{menu_name}, menu_price=#{menu_price}, menu_desc=#{menu_desc}
+			where menu_pk=#{menu_pk}
+	</update>
+	<delete id="restaurant_menuDelete" parameterType="int">
+		delete from restaurant_menu where menu_pk=#{menu_pk}
+	</delete>
+	
 </mapper>

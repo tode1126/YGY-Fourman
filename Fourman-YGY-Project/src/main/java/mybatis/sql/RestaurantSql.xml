@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			rest_regdate) 
 			VALUES(#{user_info_email}, #{rest_name}, #{rest_category}, 
 				#{rest_phone}, #{rest_addr}, #{rest_start}, #{rest_end}, #{rest_state},
-				now());
+				now())
 	</insert>
 	<select id="restaurant_pkByEmailSelect" parameterType="String" resultType="int">
 		select rest_pk from restaurant where user_info_email = #{email}

@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="/js/restaurant/menu/menu-insert-formJS.js"></script>
+<script src="../js/restaurant/menu/menu-insert-formJS.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
