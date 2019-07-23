@@ -897,7 +897,7 @@ public class AdminController {
 	//식당 검색기능
 
 		@RequestMapping("/admin/foodManagement/searchAllFoodList.do")
-		public ModelAndView searchAllFoodList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
+		public ModelAndView searchAllFoodList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage, @RequestParam(defaultValue = "1") String targetEmail) {
 			ModelAndView model = new ModelAndView();
 
 			if (service.searchAllFoodTotalCount() > 0) {
@@ -957,7 +957,7 @@ public class AdminController {
 		}
 
 		@RequestMapping("/admin/foodManagement/searchLeaveFoodList.do")
-		public ModelAndView searchLeaveFoodList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
+		public ModelAndView searchLeaveFoodList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage, @RequestParam(defaultValue = "1") String targetEmail) {
 			ModelAndView model = new ModelAndView();
 
 			if (service.searchLeaveFoodTotalCount() > 0) {

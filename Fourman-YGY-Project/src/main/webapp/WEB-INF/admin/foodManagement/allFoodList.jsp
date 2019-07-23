@@ -25,7 +25,7 @@
 		<div id="userListLayout">
 			<h2>식당 목록</h2>
 			<div id="searchUser">
-				<form action="searchFoodUser.do" method="post">
+				<form action="searchAllFoodList.do" method="post">
 					<input id="targetEmail" name="targetEmail" type="text"
 						placeholder="회원 이메일" size="30">&nbsp;&nbsp;
 					<button class="blue button">식당 검색</button>
