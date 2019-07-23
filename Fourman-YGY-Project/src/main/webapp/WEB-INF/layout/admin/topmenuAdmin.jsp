@@ -27,8 +27,8 @@
 			</li>
 			<li><a href="#">식당관리</a>
 				<ul>
-					<li><a href="#">전체식당</a></li>
-					<li><a href="#">탈퇴식당</a></li>
+					<li><a href="${root }/admin/foodManagement/allFoodList.do">전체식당</a></li>
+					<li><a href="${root }/admin/foodManagement/leaveFoodList.do">탈퇴식당</a></li>
 				</ul>
 			</li>
 			<li><a href="#">게시판관리</a>
