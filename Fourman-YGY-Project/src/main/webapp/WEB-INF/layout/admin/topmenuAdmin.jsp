@@ -25,7 +25,7 @@
 					<li><a href="${root }/admin/userManagement/leaveFoodUserList.do">탈퇴기업회원</a></li>
 				</ul>
 			</li>
-			<li><a href="#">식당관리</a>
+			<li><a href="${root }/admin/foodManagement/allFoodList.do">식당관리</a>
 				<ul>
 					<li><a href="${root }/admin/foodManagement/allFoodList.do">전체식당</a></li>
 					<li><a href="${root }/admin/foodManagement/leaveFoodList.do">탈퇴식당</a></li>

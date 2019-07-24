@@ -171,4 +171,12 @@ public class AdminDao extends SqlSessionDaoSupport {
 	public int searchLeaveFoodTotalCount() {
 		return getSqlSession().selectOne("admin.searchLeaveFoodTotalCount");
 	}
+	
+	public int selectRestaurantCount(int rest_pk) {
+		return getSqlSession().selectOne("admin.selectRestaurantCount",rest_pk);
+	}
+	
+	public int userSelectCount(String email) {
+		return getSqlSession().selectOne("admin.userSelectCount",email);
+	}
 }

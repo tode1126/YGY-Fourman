@@ -8,6 +8,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from user_info where grade = 3 and email= #{email}
 	</select>
 	
+	<!-- 유저 카운트 -->
+	<select id="userSelectCount" parameterType="String" resultType="int">
+		select count(*) from user_info where email = #{email}
+	</select>
+	
 	<!-- 유저 관리 -->
 	<select id="allUserList" resultType="userDto" parameterType="map">
 		select user.* from user_info user where state !=2 order by regday desc limit #{perPage} offset #{no}
@@ -70,10 +75,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from user_info user where state = 2 and email Like concat(#{targetEmail},'%')
 	</select>
 	<select id="searchFoodUserTotalCount" parameterType="String" resultType="int">
-		select count(*) from user_info user where state != 2 and grade = 2 email Like concat(#{targetEmail},'%')
+		select count(*) from user_info user where state != 2 and grade = 2 and email Like concat(#{targetEmail},'%')
 	</select>
 	<select id="searchLeaveFoodUserTotalCount" parameterType="String" resultType="int">
-		select count(*) from user_info user where state = 2 and grade = 2 email Like concat(#{targetEmail},'%')
+		select count(*) from user_info user where state = 2 and grade = 2 and email Like concat(#{targetEmail},'%')
 	</select>
 	
 	
@@ -92,6 +97,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="adminUpdate" parameterType="String">
 		update user_info set grade = 3 where email = #{email}
 	</update>
+	
+	<!-- 식당 체크문  -->
+	<select id="selectRestaurantCount" parameterType="int" resultType="int">
+		select count(*) from restaurant where rest_pk = #{rest_pk}
+	</select>
 	
 	<!-- 식당 관리 파라미터 반환 dto 로해서 넣기-->
 	<select id="allFoodList" >

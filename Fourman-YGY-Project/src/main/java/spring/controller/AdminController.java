@@ -25,7 +25,6 @@ import spring.data.LoginDto;
 import spring.data.UserDto;
 import spring.data.UserSearchDto;
 import spring.service.AdminService;
-import spring.service.UserService;
 
 @Controller
 public class AdminController {
@@ -37,10 +36,6 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 
-	// 필요한 유저서비스 가져오기위해
-	@Autowired
-	private UserService Uservice;
-
 	// 유저관리
 	@RequestMapping("/admin/userManagement/{pageName}/userDisable.do")
 	public String userDisable(@RequestParam String targetEmail, HttpServletRequest request,
@@ -48,7 +43,7 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
 
-		if (service.adminCheck(dto.getUser_Email()) > 0 && Uservice.userSelectCount(targetEmail) > 0)
+		if (service.adminCheck(dto.getUser_Email()) > 0 && service.userSelectCount(targetEmail) > 0)
 			service.userDisable(targetEmail);
 
 		return "redirect:/admin/userManagement/" + pageName + ".do?pageNum=" + pageNum;
@@ -63,7 +58,7 @@ public class AdminController {
 
 		if (service.adminCheck(dto.getUser_Email()) > 0 && targetEmails != null) {
 			for (String targetEmail : targetEmails) {
-				if (Uservice.userSelectCount(targetEmail) > 0) {
+				if (service.userSelectCount(targetEmail) > 0) {
 					service.userDisable(targetEmail);
 				}
 			}
@@ -77,8 +72,8 @@ public class AdminController {
 			@RequestParam(defaultValue = "1") String pageNum, @PathVariable("pageName") String pageName) {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
-
-		if (service.adminCheck(dto.getUser_Email()) > 0 && Uservice.userSelectCount(targetEmail) > 0)
+		
+		if (service.adminCheck(dto.getUser_Email()) > 0 && service.userSelectCount(targetEmail) > 0)
 			service.userEnable(targetEmail);
 
 		return "redirect:/admin/userManagement/" + pageName + ".do?pageNum=" + pageNum;
@@ -93,7 +88,7 @@ public class AdminController {
 
 		if (service.adminCheck(dto.getUser_Email()) > 0 && targetEmails != null) {
 			for (String targetEmail : targetEmails) {
-				if (Uservice.userSelectCount(targetEmail) > 0) {
+				if (service.userSelectCount(targetEmail) > 0) {
 					service.userEnable(targetEmail);
 				}
 			}
@@ -409,7 +404,7 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
 
-		if (service.adminCheck(dto.getUser_Email()) > 0 && Uservice.userSelectCount(targetEmail) > 0)
+		if (service.adminCheck(dto.getUser_Email()) > 0 && service.userSelectCount(targetEmail) > 0)
 			service.adminUpdate(targetEmail);
 
 		return "redirect:/admin/adminManagement/adminList.do?pageNum=" + pageNum;
@@ -422,7 +417,7 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
 
-		if (service.adminCheck(dto.getUser_Email()) > 0 && Uservice.userSelectCount(targetEmail) > 0)
+		if (service.adminCheck(dto.getUser_Email()) > 0 && service.userSelectCount(targetEmail) > 0)
 			service.userUpdate(targetEmail);
 
 		return "redirect:/admin/adminManagement/adminList.do?pageNum=" + pageNum;
@@ -876,13 +871,13 @@ public class AdminController {
 	
 	// 식당 상태 변경
 	@RequestMapping("/admin/foodManagement/foodStateChange.do")
-	public String foodStateChange(@RequestParam String rest_pk, @RequestParam String changeVal,
+	public String foodStateChange(@RequestParam int rest_pk, @RequestParam String changeVal,
 			HttpServletRequest request, @RequestParam(defaultValue = "1") String pageNum) {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
 		// food dto 오면 dto 선언해서 값넣기
 
-		if (service.adminCheck(dto.getUser_Email()) > 0)// rest_pk가있는지 체크문도필요 관리자 dao 가 아닌 그쪽 dao 문에서 처리예정
+		if (service.adminCheck(dto.getUser_Email()) > 0 && service.selectRestaurantCount(rest_pk)>0)
 		{
 			if (changeVal.equals("2")) {
 				service.foodLeaveChange();

@@ -164,4 +164,12 @@ public class AdminService {
 		dao.searchLeaveFoodList();
 		return;
 	}
+	
+	public int selectRestaurantCount(int rest_pk) {
+		return dao.selectRestaurantCount(rest_pk);
+	}
+	
+	public int userSelectCount(String email) {
+		return dao.userSelectCount(email);
+	}
 }
