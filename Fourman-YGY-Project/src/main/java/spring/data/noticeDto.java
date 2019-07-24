@@ -1,12 +1,14 @@
 package spring.data;
 
+import java.sql.Timestamp;
+
 public class noticeDto {
 	private int notice_pk;
 	private String notice_writer;
 	private String notice_subject;
 	private String notice_content;
-	private String notice_readcount;
-	private String notice_writedate;
+	private int notice_readcount;
+	private Timestamp notice_writedate;
 	public int getNotice_pk() {
 		return notice_pk;
 	}
@@ -31,16 +33,16 @@ public class noticeDto {
 	public void setNotice_content(String notice_content) {
 		this.notice_content = notice_content;
 	}
-	public String getNotice_readcount() {
+	public int getNotice_readcount() {
 		return notice_readcount;
 	}
-	public void setNotice_readcount(String notice_readcount) {
+	public void setNotice_readcount(int notice_readcount) {
 		this.notice_readcount = notice_readcount;
 	}
-	public String getNotice_writedate() {
+	public Timestamp getNotice_writedate() {
 		return notice_writedate;
 	}
-	public void setNotice_writedate(String notice_writedate) {
+	public void setNotice_writedate(Timestamp notice_writedate) {
 		this.notice_writedate = notice_writedate;
 	}
 	
