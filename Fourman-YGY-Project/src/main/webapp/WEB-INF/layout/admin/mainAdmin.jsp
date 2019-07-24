@@ -22,7 +22,7 @@
 		</script>
 	</c:if>
 	<c:if test="${not empty sessionScope.userLoginInfo and sessionScope.userLoginInfo.user_grade eq '3'}">
-	<div class="mainAdminLayout">
+	<div class="mainLayouts">
 		<div class="userContainer">
 			<div class="conetionUser">
 				<h2>현재 접속자수</h2>

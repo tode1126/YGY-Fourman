@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
-<link rel="stylesheet" href="${root }/css/layout/topmenuStyle.css" />
 <link rel="stylesheet" href="${root }/css/Ji_Button_Style.css" />
 <link rel="stylesheet" href="${root }/css/admin/topmenuAdminStyle.css" />
 </head>
@@ -34,7 +33,7 @@
 			<li><a href="#">게시판관리</a>
 				<ul>
 					<li><a href="#">이벤트관리</a></li>
-					<li><a href="#">공지관리</a></li>
+					<li><a href="${root }/admin/notice_boardManagement/notice_boardList.do">공지관리</a></li>
 					<li><a href="#">후기관리</a></li>
 				</ul>
 			</li>

@@ -1,34 +1,42 @@
 @charset "UTF-8";
 
-.menuLayer {
-	border: none;
-	border: 0px;
-	margin: 0px;
-	padding: 0px;
-	font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans",
-		"Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica,
-		sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-		background: #36D1DC; /* fallback for old browsers */
+#topmenu {
+	background: #36D1DC; /* fallback for old browsers */
 	background: -webkit-linear-gradient(to top, #5B86E5, #36D1DC);
 	/* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(to top, #5B86E5, #36D1DC);
 	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+.menuLayer {
+	border: none;
+	border: 0px;
+	width: 960px;
+	margin: 0 auto;
+	padding: 0px;
+	font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans",
+		"Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica,
+		sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
+
 .menuLayer ul {
 	height: 50px;
 	list-style: none;
-	width: 1200px;
-	margin: 0 auto;
+	margin: 0;
+	text-align: center;
 	padding: 0;
+}
+
+.menuLayer ul li {
+	display: inline-block;
 }
 
 .menuLayer li {
 	float: left;
 	padding: 0px;
-	width: 200px;
+	width: 160px;
 }
 
 .menuLayer li a {
@@ -60,7 +68,7 @@
 	margin: 0px;
 	border: 0px;
 	position: absolute;
-	width: 200px;
+	width: 160px;
 	z-index: 200;
 	/*top:1em;
 /*left:0;*/
@@ -75,7 +83,7 @@
 	float: none;
 	margin: 0px;
 	padding: 0px;
-	width: 200px;
+	width: 160px;
 }
 
 .menuLayer li:hover li a {

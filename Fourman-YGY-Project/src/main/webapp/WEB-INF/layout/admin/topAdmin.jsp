@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>" />
-<link rel="stylesheet" href="${root }/css/layout/topStyle.css" />
 <link rel="stylesheet" href="${root }/css/admin/topAdminStyle.css" />
 </head>
 
