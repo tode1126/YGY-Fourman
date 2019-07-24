@@ -37,9 +37,20 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping("/restaurant/signupForm.do")
-	public String frontPage()
+	public ModelAndView frontPage(HttpServletRequest request)
 	{
-		return "/restaurant/signup/signupForm";
+		ModelAndView model = new ModelAndView();
+		HttpSession session = request.getSession();
+		String email = "";
+		boolean isLoginDto = (session.getAttribute("userLoginInfo")!=null) ? true : false;
+		System.out.println(isLoginDto);
+		if(isLoginDto) {
+			LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
+			email = ldto.getUser_Email();
+		}
+		model.addObject("email", email);
+		model.setViewName("/restaurant/signup/signupForm");
+		return model;
 	}
 	
 	@RequestMapping(value="/restaurant/signup.do", method=RequestMethod.POST)

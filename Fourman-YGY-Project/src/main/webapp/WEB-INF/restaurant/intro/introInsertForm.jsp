@@ -10,12 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${isRestaurantIntro == 0 }">
-<a href="">식당 소개 쓰기</a>
-</c:if>
-
-<c:if test="${isRestaurantIntro > 0 }">
-<a>식당 소개 수정</a>
-</c:if>
+	<form action=""></form>
 </body>
 </html>

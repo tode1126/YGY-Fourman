@@ -6,4 +6,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="is_restaurant_introCountSelect" parameterType="int" resultType="int">
 		select count(*) from restaurant_intro where restaurant_rest_pk = #{restaurant_rest_pk}
 	</select>
+	<insert id="restaurant_introInsert" parameterType="ridto">
+		insert into restaurant_intro (intro_text) values (#{intro_text})
+	</insert>
+	<insert id="restaurant_intro_imageInsert" parameterType="riimgdto">
+		insert into restaurant_intro_image 
+			(restaurant_rest_pk, restaurant_intro_image, restaurant_intro_image_realpath, 
+			restaurant_intro_image_size, restaurant_intro_image_realname) 
+			values (#{restaurant_rest_pk}, #{restaurant_intro_image}, #{restaurant_intro_image_realpath}, 
+			#{restaurant_intro_image_size}, #{restaurant_intro_image_realname})
+	</insert>
 </mapper>
