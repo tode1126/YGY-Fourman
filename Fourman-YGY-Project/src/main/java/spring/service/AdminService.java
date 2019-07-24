@@ -99,20 +99,77 @@ public class AdminService {
 		return dao.searchLeaveFoodUser(dto);
 	}
 	
-	public int searchUserCount(String targetEmail){
-		return dao.searchUserCount(targetEmail);
+	public int searchUserTotalCount(String targetEmail){
+		return dao.searchUserTotalCount(targetEmail);
 	}
 	
-	public int searchLeaveUserCount(String targetEmail){
-		return dao.searchUserCount(targetEmail);
+	public int searchLeaveUserTotalCount(String targetEmail){
+		return dao.searchLeaveUserTotalCount(targetEmail);
 	}
 	
-	public int searchFoodUserCount(String targetEmail){
-		return dao.searchUserCount(targetEmail);
+	public int searchFoodUserTotalCount(String targetEmail){
+		return dao.searchFoodUserTotalCount(targetEmail);
 	}
 	
-	public int searchLeaveFoodUserCount(String targetEmail){
-		return dao.searchUserCount(targetEmail);
+	public int searchLeaveFoodUserTotalCount(String targetEmail){
+		return dao.searchLeaveFoodUserTotalCount(targetEmail);
+	}
+	//인자를 그쪾 dto 로
+	public void foodStateChange() {
+		dao.foodStateChange();
+		return;
+	}
+	//인자를 그쪾 dto 로
+	public void foodLeaveChange() {
+		dao.foodLeaveChange();
+		return;
 	}
 	
+	public int allFoodTotalCount() {
+		return dao.allFoodTotalCount();
+	}
+	
+	public int leaveFoodTotalCount() {
+		return dao.leaveFoodTotalCount();
+	}
+	
+	public int searchAllFoodTotalCount() {
+		return dao.searchAllFoodTotalCount();
+	}
+	
+	public int searchLeaveFoodTotalCount() {
+		return dao.searchLeaveFoodTotalCount();
+	}
+	
+	//반환 dto 필요
+	public void allFoodList() {
+		dao.allFoodList();
+		return;
+	}
+	
+	//반환 dto 필요
+	public void leaveFoodList() {
+		dao.leaveFoodList();
+		return;
+	}
+	
+	//반환 dto 필요
+	public void searchAllFoodList() {
+		dao.searchAllFoodList();
+		return;
+	}
+	
+	//반환 dto 필요
+	public void searchLeaveFoodList() {
+		dao.searchLeaveFoodList();
+		return;
+	}
+	
+	public int selectRestaurantCount(int rest_pk) {
+		return dao.selectRestaurantCount(rest_pk);
+	}
+	
+	public int userSelectCount(String email) {
+		return dao.userSelectCount(email);
+	}
 }

@@ -108,19 +108,75 @@ public class AdminDao extends SqlSessionDaoSupport {
 		return getSqlSession().selectList("admin.searchLeaveFoodUser", dto);
 	}
 
-	public int searchUserCount(String targetEmail) {
-		return getSqlSession().selectOne("admin.searchUserCount", targetEmail);
+	public int searchUserTotalCount(String targetEmail) {
+		return getSqlSession().selectOne("admin.searchUserTotalCount", targetEmail);
 	}
 
-	public int searchLeaveUserCount(String targetEmail) {
-		return getSqlSession().selectOne("admin.searchLeaveUserCount", targetEmail);
+	public int searchLeaveUserTotalCount(String targetEmail) {
+		return getSqlSession().selectOne("admin.searchLeaveUserTotalCount", targetEmail);
 	}
 
-	public int searchFoodUserCount(String targetEmail) {
-		return getSqlSession().selectOne("admin.searchFoodUserCount", targetEmail);
+	public int searchFoodUserTotalCount(String targetEmail) {
+		return getSqlSession().selectOne("admin.searchFoodUserTotalCount", targetEmail);
 	}
 
-	public int searchLeaveFoodUserCount(String targetEmail) {
-		return getSqlSession().selectOne("admin.searchLeaveFoodUserCount", targetEmail);
+	public int searchLeaveFoodUserTotalCount(String targetEmail) {
+		return getSqlSession().selectOne("admin.searchLeaveFoodUserTotalCount", targetEmail);
+	}
+	
+	//해당 dto 타입을 반환값으로
+	public void allFoodList() {
+		getSqlSession().selectList("admin.allFoodList");
+		return;
+	}
+	//해당 dto 타입을 반환값으로
+	public void leaveFoodList() {
+		getSqlSession().selectList("admin.leaveFoodList");
+		return;
+	}
+	//해당 dto 타입을 반환값으로
+	public void searchAllFoodList() {
+		getSqlSession().selectList("admin.searchAllFoodList");
+		return;
+	}
+	//해당 dto 타입을 반환값으로
+	public void searchLeaveFoodList() {
+		getSqlSession().selectList("admin.searchLeaveFoodList");
+		return;
+	}
+	
+	//해당 dto 타입을 인자로
+	public void foodStateChange() {
+		getSqlSession().update("admin.foodStateChange");
+		return;
+	}
+	//해당 dto 타입을 인자로
+	public void foodLeaveChange() {
+		getSqlSession().update("admin.foodLeaveChange");
+		return;
+	}
+	
+	public int allFoodTotalCount() {
+		return getSqlSession().selectOne("admin.allFoodTotalCount");
+	}
+	
+	public int leaveFoodTotalCount() {
+		return getSqlSession().selectOne("admin.leaveFoodTotalCount");
+	}
+	
+	public int searchAllFoodTotalCount() {
+		return getSqlSession().selectOne("admin.searchAllFoodTotalCount");
+	}
+	
+	public int searchLeaveFoodTotalCount() {
+		return getSqlSession().selectOne("admin.searchLeaveFoodTotalCount");
+	}
+	
+	public int selectRestaurantCount(int rest_pk) {
+		return getSqlSession().selectOne("admin.selectRestaurantCount",rest_pk);
+	}
+	
+	public int userSelectCount(String email) {
+		return getSqlSession().selectOne("admin.userSelectCount",email);
 	}
 }
