@@ -13,14 +13,27 @@
 <script type="text/javascript" src="${root }/js/admin/adminRedirectJs.js"></script>
 </head>
 <body>
-	<c:if test="${sessionScope.userLoginInfo.user_grade ne 3 and empty list}">
+	<c:if test="${empty sessionScope.userLoginInfo or sessionScope.userLoginInfo.user_grade ne 3 }">
 		<script type="text/javascript">
 			adminCheck();
 		</script>
 	</c:if>
-<c:if test="${not empty sessionScope.userLoginInfo and sessionScope.userLoginInfo.user_grade eq '3' and not empty list }">
+<c:if test="${not empty sessionScope.userLoginInfo and sessionScope.userLoginInfo.user_grade eq '3' }">
 <div id="userListLayout">
 <h2>회원 목록</h2>
+<div id="searchUser">
+		<form action="searchLeaveFoodUser.do" method="post">
+			<input id="targetEmail"name="targetEmail" type="text" placeholder="회원 이메일" size="30">&nbsp;&nbsp;
+			<button class="blue button">회원 검색</button>
+		</form>
+</div>
+<form method="post" action="leaveFoodUserList/userMultiEnable.do">
+<div id="multipleButton">
+	<input type="hidden" name="pageNum" value="${currentPage }">	
+	<button class="green button">다중 처리</button>
+</div>
+	<div style="clear: both;">
+	</div>
 <div class="page">
 		  <table id="userList">
  			 <tr>
@@ -32,7 +45,9 @@
 			  	<th width="180">탈퇴일</th>
 			  	<th width="80">회원등급</th>
   				<th width="80">비활성화</th>
+  				<th width="80">다중처리</th>
 			</tr>
+<c:if test ="${not empty list }">
   	<c:forEach items="${list }" var="dto" varStatus="i">
 			<tr>
 				<td align="center">${no - i.index }</td>
@@ -59,12 +74,16 @@
 				<c:if test="${dto.grade eq 3 }">
 				<td align="center">관리자</td>
 				</c:if>
-				<td align="center"><input type="button" value="활성화" class="green button" onclick="location.href='${root}/admin/userManagement/leaveFoodUserList/userEnable.do?targetEmail=${dto.email }'"></td>
+				<td align="center"><input type="button" value="활성화" class="green button" onclick="location.href='${root}/admin/userManagement/leaveFoodUserList/userEnable.do?targetEmail=${dto.email }&pageNum=${currentPage }'"></td>
+				<td align="center"><input type="checkbox" name="multipleAction" value="${dto.email }"></td>
 			</tr>
 		</c:forEach>
+</c:if>		
 	</table>
 </div> 
+</form>
 	<div class="pageNum">
+<c:if test ="${not empty list }">	
 			<c:if test="${startPage > 1 }">
 				<div><a href="leaveFoodUserList.do?pageNum=${startPage-1 }">◀</a></div>
 			</c:if>
@@ -81,6 +100,7 @@
 			<c:if test="${endPage<totalPage }">
 				<div><a href="leaveFoodUserList.do?pageNum=${endPage+1 }">▶</a></div>
 			</c:if>
+</c:if>			
 	</div>
 </div>
 </c:if>
