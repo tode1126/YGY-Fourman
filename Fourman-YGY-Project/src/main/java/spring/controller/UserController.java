@@ -166,7 +166,7 @@ public class UserController {
 					session.setAttribute("userLoginInfo", dto);
 					session.setAttribute(email, manager);
 
-					go = "restraunt.tiles";
+					go = "redirect:/restaurant/main.do";
 				}
 				if (udto.getGrade() == 3) {
 					if (manager.isUsing(email)) {
