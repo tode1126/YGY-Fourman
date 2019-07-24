@@ -10,6 +10,7 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <link rel="stylesheet" href="${root }/css/admin/allUserListStyle.css">
+<link rel="stylesheet" href="${root }/css/admin/allFoodListStyle.css">
 <script type="text/javascript" src="${root }/js/admin/adminRedirectJs.js"></script>
 <script type="text/javascript" src="${root }/js/admin/allFoodListJs.js"></script>
 </head>
@@ -59,11 +60,11 @@
 								<td>${dto.rest_end }</td>
 								<td>
 								<select class="state" rest_pk="${dto.rest_pk }" pageNum="${currentPage }">
-									<option <c:if test="${dto.state eq 0 }">selected</c:if> value="0">정상</option>
-									<option <c:if test="${dto.state eq 1 }">selected</c:if> value="1">휴무</option>
-									<option <c:if test="${dto.state eq 2 }">selected</c:if> value="2">탈퇴</option>
+									<option <c:if test="${dto.rest_state eq '0' }">selected</c:if> value="0">정상</option>
+									<option <c:if test="${dto.rest_state eq '1' }">selected</c:if> value="1">휴무</option>
+									<option <c:if test="${dto.rest_state eq '2' }">selected</c:if> value="2">탈퇴</option>
 								</select></td>
-								<fmt:formatDate var="date" value="${dto.regday }" pattern="yyyy년 MM월 dd일" />
+								<fmt:formatDate var="date" value="${dto.rest_regdate }" pattern="yyyy년 MM월 dd일" />
 								<td align="center">${date }</td>
 						</tr>
 						</c:forEach>

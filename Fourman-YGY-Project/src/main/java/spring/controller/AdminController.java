@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import spring.data.LoginDto;
 import spring.data.UserDto;
 import spring.data.UserSearchDto;
+import spring.data.restaurant.RestaurantDto;
 import spring.service.AdminService;
 
 @Controller
@@ -793,8 +794,7 @@ public class AdminController {
 			no = totalCount - (currentPage - 1) * perPage;
 
 			// 리스트 가져오기
-			List<UserDto> list =new ArrayList<UserDto>(); 
-			//service.allFoodList(perPage, (currentPage - 1) * perPage);
+			List<RestaurantDto> list = service.allFoodList(perPage, (currentPage - 1) * perPage);
 
 			// 가져온 리스트 model에 저장
 			model.addObject("list", list);
@@ -853,8 +853,7 @@ public class AdminController {
 			no = totalCount - (currentPage - 1) * perPage;
 
 			// 리스트 가져오기
-			List<UserDto> list =new ArrayList<UserDto>(); 
-			//service.allFoodList(perPage, (currentPage - 1) * perPage);
+			List<RestaurantDto> list = service.leaveFoodList(perPage, (currentPage - 1) * perPage);
 
 			// 가져온 리스트 model에 저장
 			model.addObject("list", list);
@@ -871,18 +870,21 @@ public class AdminController {
 	
 	// 식당 상태 변경
 	@RequestMapping("/admin/foodManagement/foodStateChange.do")
-	public String foodStateChange(@RequestParam int rest_pk, @RequestParam String changeVal,
+	public String foodStateChange(@RequestParam int rest_pk, @RequestParam int changeVal,
 			HttpServletRequest request, @RequestParam(defaultValue = "1") String pageNum) {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
-		// food dto 오면 dto 선언해서 값넣기
+
+		RestaurantDto rdto = new RestaurantDto();
+		rdto.setRest_pk(rest_pk);
+		rdto.setRest_state(changeVal);
 
 		if (service.adminCheck(dto.getUser_Email()) > 0 && service.selectRestaurantCount(rest_pk)>0)
 		{
-			if (changeVal.equals("2")) {
-				service.foodLeaveChange();
+			if (changeVal==2) {
+				service.foodLeaveChange(rdto);
 			} else {
-				service.foodStateChange();
+				service.foodStateChange(rdto);
 			}
 		}
 

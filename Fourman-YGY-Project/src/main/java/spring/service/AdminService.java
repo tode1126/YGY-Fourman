@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import spring.data.AdminDao;
 import spring.data.UserDto;
 import spring.data.UserSearchDto;
+import spring.data.restaurant.RestaurantDto;
 
 @Service
 public class AdminService {
@@ -114,14 +115,14 @@ public class AdminService {
 	public int searchLeaveFoodUserTotalCount(String targetEmail){
 		return dao.searchLeaveFoodUserTotalCount(targetEmail);
 	}
-	//인자를 그쪾 dto 로
-	public void foodStateChange() {
-		dao.foodStateChange();
+
+	public void foodStateChange(RestaurantDto dto) {
+		dao.foodStateChange(dto);
 		return;
 	}
-	//인자를 그쪾 dto 로
-	public void foodLeaveChange() {
-		dao.foodLeaveChange();
+
+	public void foodLeaveChange(RestaurantDto dto) {
+		dao.foodLeaveChange(dto);
 		return;
 	}
 	
@@ -141,28 +142,21 @@ public class AdminService {
 		return dao.searchLeaveFoodTotalCount();
 	}
 	
-	//반환 dto 필요
-	public void allFoodList() {
-		dao.allFoodList();
-		return;
+	public List<RestaurantDto> allFoodList(int perPage, int no) {
+		return dao.allFoodList(perPage,no);
 	}
 	
-	//반환 dto 필요
-	public void leaveFoodList() {
-		dao.leaveFoodList();
-		return;
+	public List<RestaurantDto> leaveFoodList(int perPage, int no) {
+		return dao.leaveFoodList(perPage,no);
 	}
 	
-	//반환 dto 필요
-	public void searchAllFoodList() {
-		dao.searchAllFoodList();
-		return;
+	public List<RestaurantDto> searchAllFoodList() {
+		return dao.searchAllFoodList();
+
 	}
 	
-	//반환 dto 필요
-	public void searchLeaveFoodList() {
-		dao.searchLeaveFoodList();
-		return;
+	public List<RestaurantDto> searchLeaveFoodList() {
+		return dao.searchLeaveFoodList();
 	}
 	
 	public int selectRestaurantCount(int rest_pk) {

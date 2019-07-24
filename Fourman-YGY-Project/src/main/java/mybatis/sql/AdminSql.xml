@@ -103,18 +103,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from restaurant where rest_pk = #{rest_pk}
 	</select>
 	
-	<!-- 식당 관리 파라미터 반환 dto 로해서 넣기-->
-	<select id="allFoodList" >
+	<!-- 식당 관리 -->
+	<select id="allFoodList" resultType="rdto" parameterType="map">
 		select rest.* from restaurant rest where rest_state != 2 order by rest_regdate desc limit #{perPage} offset #{no}
 	</select>
-	<select id="leaveFoodList">
+	<select id="leaveFoodList" resultType="rdto" parameterType="map">
 		select rest.* from restaurant rest where rest_state = 2 order by rest_regdate desc limit #{perPage} offset #{no}
 	</select>
 	
-	<select id="searchAllFoodList" >
+	<select id="searchAllFoodList" resultType="rdto" parameterType="map">
 		select rest.* from restaurant rest where rest_state != 2 and email Like concat(#{targetEmail},'%') order by rest_regdate desc limit #{perPage} offset #{no}
 	</select>
-	<select id="searchLeaveFoodList">
+	<select id="searchLeaveFoodList" resultType="rdto" parameterType="map">
 		select rest.* from restaurant rest where rest_state = 2 and email Like concat(#{targetEmail},'%') order by rest_regdate desc limit #{perPage} offset #{no}
 	</select>
 	
@@ -135,10 +135,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 식당 상태 관리   파라미터 타입 dto 로 해서 넘길 계쐭-->
-	<update id="foodStateChange" >
+	<update id="foodStateChange" parameterType="rdto" >
 		update restaurant set rest_state = #{rest_state},rest_dropday=NULL where rest_pk = #{rest_pk}
 	</update>
-	<update id="foodLeaveChange">
+	<update id="foodLeaveChange" parameterType="rdto">
 		update restaurant set rest_state = #{rest_state},rest_dropday=now() where rest_pk = #{rest_pk} 
 	</update>
 	

@@ -7,6 +7,8 @@ import java.util.Map;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import spring.data.restaurant.RestaurantDto;
+
 @Repository
 public class AdminDao extends SqlSessionDaoSupport {
 	public List<UserDto> allUserList(int perPage, int no) {
@@ -124,35 +126,37 @@ public class AdminDao extends SqlSessionDaoSupport {
 		return getSqlSession().selectOne("admin.searchLeaveFoodUserTotalCount", targetEmail);
 	}
 	
-	//해당 dto 타입을 반환값으로
-	public void allFoodList() {
-		getSqlSession().selectList("admin.allFoodList");
-		return;
+
+	public List<RestaurantDto> allFoodList(int perPage, int no) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("perPage",perPage);
+		map.put("no",no);
+		return getSqlSession().selectList("admin.allFoodList",map);
 	}
-	//해당 dto 타입을 반환값으로
-	public void leaveFoodList() {
-		getSqlSession().selectList("admin.leaveFoodList");
-		return;
+
+	public List<RestaurantDto> leaveFoodList(int perPage, int no) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("perPage",perPage);
+		map.put("no",no);
+		return getSqlSession().selectList("admin.leaveFoodList",map);
 	}
-	//해당 dto 타입을 반환값으로
-	public void searchAllFoodList() {
-		getSqlSession().selectList("admin.searchAllFoodList");
-		return;
+
+	public List<RestaurantDto> searchAllFoodList() {
+		return getSqlSession().selectList("admin.searchAllFoodList");
 	}
-	//해당 dto 타입을 반환값으로
-	public void searchLeaveFoodList() {
-		getSqlSession().selectList("admin.searchLeaveFoodList");
-		return;
+
+	public List<RestaurantDto> searchLeaveFoodList() {
+		return getSqlSession().selectList("admin.searchLeaveFoodList");
 	}
 	
-	//해당 dto 타입을 인자로
-	public void foodStateChange() {
-		getSqlSession().update("admin.foodStateChange");
+
+	public void foodStateChange(RestaurantDto dto) {
+		getSqlSession().update("admin.foodStateChange",dto);
 		return;
 	}
-	//해당 dto 타입을 인자로
-	public void foodLeaveChange() {
-		getSqlSession().update("admin.foodLeaveChange");
+
+	public void foodLeaveChange(RestaurantDto dto) {
+		getSqlSession().update("admin.foodLeaveChange",dto);
 		return;
 	}
 	
