@@ -12,7 +12,7 @@ $(function(){
 		var rest_pk = $(this).attr("rest_pk");
 		pageNum= $(this).attr("pageNum");
 		
-		window.location.href=path+"/admin/foodManagement/allFoodList/foodStateChange.do?rest_pk="+rest_pk+"&changeVal="+changeVal+"&pageNum=";
+		window.location.href=path+"/admin/foodManagement/leaveFoodList/foodStateChange.do?rest_pk="+rest_pk+"&changeVal="+changeVal+"&pageNum=";
 	});
 	
 });

@@ -1,6 +1,5 @@
 package spring.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import spring.data.LoginDto;
 import spring.data.UserDto;
 import spring.data.UserSearchDto;
+import spring.data.noticeDto;
 import spring.data.restaurant.RestaurantDto;
 import spring.service.AdminService;
 
@@ -73,7 +75,7 @@ public class AdminController {
 			@RequestParam(defaultValue = "1") String pageNum, @PathVariable("pageName") String pageName) {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
-		
+
 		if (service.adminCheck(dto.getUser_Email()) > 0 && service.userSelectCount(targetEmail) > 0)
 			service.userEnable(targetEmail);
 
@@ -867,11 +869,11 @@ public class AdminController {
 		model.setViewName("/admin/foodManagement/leaveFoodList");
 		return model;
 	}
-	
+
 	// 식당 상태 변경
-	@RequestMapping("/admin/foodManagement/foodStateChange.do")
-	public String foodStateChange(@RequestParam int rest_pk, @RequestParam int changeVal,
-			HttpServletRequest request, @RequestParam(defaultValue = "1") String pageNum) {
+	@RequestMapping("/admin/foodManagement/{pageName}/foodStateChange.do")
+	public String foodStateChange(@RequestParam int rest_pk, @RequestParam int changeVal, HttpServletRequest request,
+			@RequestParam(defaultValue = "1") String pageNum, @PathVariable("pageName") String pageName) {
 		HttpSession session = request.getSession();
 		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
 
@@ -879,137 +881,292 @@ public class AdminController {
 		rdto.setRest_pk(rest_pk);
 		rdto.setRest_state(changeVal);
 
-		if (service.adminCheck(dto.getUser_Email()) > 0 && service.selectRestaurantCount(rest_pk)>0)
-		{
-			if (changeVal==2) {
+		if (service.adminCheck(dto.getUser_Email()) > 0 && service.selectRestaurantCount(rest_pk) > 0) {
+			if (changeVal == 2) {
 				service.foodLeaveChange(rdto);
 			} else {
 				service.foodStateChange(rdto);
 			}
 		}
 
-		return "redirect:/admin/foodManagement/allFoodList.do?pageNum=" + pageNum;
+		return "redirect:/admin/foodManagement/" + pageName + ".do?pageNum=" + pageNum;
 	}
 
-	//식당 검색기능
+	// 식당 검색기능
 
-		@RequestMapping("/admin/foodManagement/searchAllFoodList.do")
-		public ModelAndView searchAllFoodList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage, @RequestParam(defaultValue = "1") String targetEmail) {
-			ModelAndView model = new ModelAndView();
+	@RequestMapping("/admin/foodManagement/searchAllFoodList.do")
+	public ModelAndView searchAllFoodList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage,
+			@RequestParam(defaultValue = "1") String targetEmail) {
+		ModelAndView model = new ModelAndView();
 
-			if (service.searchAllFoodTotalCount() > 0) {
-				int totalCount;// 전체갯수
+		if (service.searchAllFoodTotalCount(targetEmail) > 0) {
+			int totalCount;// 전체갯수
 
-				int totalPage; // 총페이지
-				int startNum;// 각페이지의시작번호
-				int endNum;// 각페이지의끝번호
-				int startPage; // 블럭의 시작페이지
-				int endPage;// 블럭의 끝페이지
-				int no;// 출력할 시작번호
-				int perPage = 10;// 한페이지당 보여질 글의갯수
-				int perBlock = 5;// 한블럭당 보여질 페이지의 갯수
+			int totalPage; // 총페이지
+			int startNum;// 각페이지의시작번호
+			int endNum;// 각페이지의끝번호
+			int startPage; // 블럭의 시작페이지
+			int endPage;// 블럭의 끝페이지
+			int no;// 출력할 시작번호
+			int perPage = 10;// 한페이지당 보여질 글의갯수
+			int perBlock = 5;// 한블럭당 보여질 페이지의 갯수
 
-				totalCount = service.searchAllFoodTotalCount();
-				// 총페이지의 갯수
-				totalPage = totalCount / perPage + (totalCount % perPage > 0 ? 1 : 0);
+			totalCount = service.searchAllFoodTotalCount(targetEmail);
+			// 총페이지의 갯수
+			totalPage = totalCount / perPage + (totalCount % perPage > 0 ? 1 : 0);
 
-				// 존재하지않는페이지인경우
-				if (totalPage < currentPage)
-					currentPage = totalPage;
+			// 존재하지않는페이지인경우
+			if (totalPage < currentPage)
+				currentPage = totalPage;
 
-				// 각 블럭의 시작페이지와 끝 페이지를 구한다
-				startPage = ((currentPage - 1) / perBlock) * perBlock + 1;
-				endPage = startPage + perBlock - 1;
-				// ex)13페이지있을경우 15까지 불러와버리므로
-				if (endPage > totalPage)
-					endPage = totalPage;
+			// 각 블럭의 시작페이지와 끝 페이지를 구한다
+			startPage = ((currentPage - 1) / perBlock) * perBlock + 1;
+			endPage = startPage + perBlock - 1;
+			// ex)13페이지있을경우 15까지 불러와버리므로
+			if (endPage > totalPage)
+				endPage = totalPage;
 
-				// 각페이지의 시작번호와 끝번호를 구한다
-				// perpage가 5일경우
-				// 1페이지 1, 5 3페이지 11, 15
-				startNum = (currentPage - 1) * perPage + 1;
-				endNum = startNum + perPage - 1;
-				if (endNum > totalCount)
-					endNum = totalCount;
+			// 각페이지의 시작번호와 끝번호를 구한다
+			// perpage가 5일경우
+			// 1페이지 1, 5 3페이지 11, 15
+			startNum = (currentPage - 1) * perPage + 1;
+			endNum = startNum + perPage - 1;
+			if (endNum > totalCount)
+				endNum = totalCount;
 
-				// 각 페이지마다 출력할 시작번호
-				// 총페이지가 30일경우 1페이지는 30 2페이지는 25...
-				no = totalCount - (currentPage - 1) * perPage;
+			// 각 페이지마다 출력할 시작번호
+			// 총페이지가 30일경우 1페이지는 30 2페이지는 25...
+			no = totalCount - (currentPage - 1) * perPage;
 
-				// 리스트 가져오기
-				List<UserDto> list =new ArrayList<UserDto>(); 
-				//service.allFoodList(perPage, (currentPage - 1) * perPage);
+			// 리스트 가져오기
+			UserSearchDto udto = new UserSearchDto();
+			udto.setTargetEmail(targetEmail);
+			udto.setPerPage(perPage);
+			udto.setNo((currentPage - 1) * perPage);
+			List<RestaurantDto> list = service.searchAllFoodList(udto);
 
-				// 가져온 리스트 model에 저장
-				model.addObject("list", list);
-				model.addObject("totalCount", totalCount);
-				model.addObject("currentPage", currentPage);
-				model.addObject("startPage", startPage);
-				model.addObject("endPage", endPage);
-				model.addObject("no", no);
-				model.addObject("totalPage", totalPage);
-			}
-			model.setViewName("/admin/foodManagement/allFoodList");
-			return model;
+			// 가져온 리스트 model에 저장
+			model.addObject("list", list);
+			model.addObject("totalCount", totalCount);
+			model.addObject("currentPage", currentPage);
+			model.addObject("startPage", startPage);
+			model.addObject("endPage", endPage);
+			model.addObject("no", no);
+			model.addObject("totalPage", totalPage);
+		}
+		model.setViewName("/admin/foodManagement/allFoodList");
+		return model;
+	}
+
+	@RequestMapping("/admin/foodManagement/searchLeaveFoodList.do")
+	public ModelAndView searchLeaveFoodList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage,
+			@RequestParam(defaultValue = "1") String targetEmail) {
+		ModelAndView model = new ModelAndView();
+
+		if (service.searchLeaveFoodTotalCount(targetEmail) > 0) {
+			int totalCount;// 전체갯수
+
+			int totalPage; // 총페이지
+			int startNum;// 각페이지의시작번호
+			int endNum;// 각페이지의끝번호
+			int startPage; // 블럭의 시작페이지
+			int endPage;// 블럭의 끝페이지
+			int no;// 출력할 시작번호
+			int perPage = 10;// 한페이지당 보여질 글의갯수
+			int perBlock = 5;// 한블럭당 보여질 페이지의 갯수
+
+			totalCount = service.searchLeaveFoodTotalCount(targetEmail);
+			// 총페이지의 갯수
+			totalPage = totalCount / perPage + (totalCount % perPage > 0 ? 1 : 0);
+
+			// 존재하지않는페이지인경우
+			if (totalPage < currentPage)
+				currentPage = totalPage;
+
+			// 각 블럭의 시작페이지와 끝 페이지를 구한다
+			startPage = ((currentPage - 1) / perBlock) * perBlock + 1;
+			endPage = startPage + perBlock - 1;
+			// ex)13페이지있을경우 15까지 불러와버리므로
+			if (endPage > totalPage)
+				endPage = totalPage;
+
+			// 각페이지의 시작번호와 끝번호를 구한다
+			// perpage가 5일경우
+			// 1페이지 1, 5 3페이지 11, 15
+			startNum = (currentPage - 1) * perPage + 1;
+			endNum = startNum + perPage - 1;
+			if (endNum > totalCount)
+				endNum = totalCount;
+
+			// 각 페이지마다 출력할 시작번호
+			// 총페이지가 30일경우 1페이지는 30 2페이지는 25...
+			no = totalCount - (currentPage - 1) * perPage;
+
+			// 리스트 가져오기
+			UserSearchDto udto = new UserSearchDto();
+			udto.setTargetEmail(targetEmail);
+			udto.setPerPage(perPage);
+			udto.setNo((currentPage - 1) * perPage);
+			List<RestaurantDto> list = service.searchLeaveFoodList(udto);
+
+			// 가져온 리스트 model에 저장
+			model.addObject("list", list);
+			model.addObject("totalCount", totalCount);
+			model.addObject("currentPage", currentPage);
+			model.addObject("startPage", startPage);
+			model.addObject("endPage", endPage);
+			model.addObject("no", no);
+			model.addObject("totalPage", totalPage);
+		}
+		model.setViewName("/admin/foodManagement/leaveFoodList");
+		return model;
+	}
+
+	// 공지 게시판 처리
+	@RequestMapping("/admin/notice_boardManagement/notice_boardList.do")
+	public ModelAndView notice_boardList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage,
+			@RequestParam(defaultValue = "1") String targetEmail) {
+		ModelAndView model = new ModelAndView();
+
+		if (service.notice_boardTotalCount() > 0) {
+			int totalCount;// 전체갯수
+
+			int totalPage; // 총페이지
+			int startNum;// 각페이지의시작번호
+			int endNum;// 각페이지의끝번호
+			int startPage; // 블럭의 시작페이지
+			int endPage;// 블럭의 끝페이지
+			int no;// 출력할 시작번호
+			int perPage = 10;// 한페이지당 보여질 글의갯수
+			int perBlock = 5;// 한블럭당 보여질 페이지의 갯수
+
+			totalCount = service.notice_boardTotalCount();
+			// 총페이지의 갯수
+			totalPage = totalCount / perPage + (totalCount % perPage > 0 ? 1 : 0);
+
+			// 존재하지않는페이지인경우
+			if (totalPage < currentPage)
+				currentPage = totalPage;
+
+			// 각 블럭의 시작페이지와 끝 페이지를 구한다
+			startPage = ((currentPage - 1) / perBlock) * perBlock + 1;
+			endPage = startPage + perBlock - 1;
+			// ex)13페이지있을경우 15까지 불러와버리므로
+			if (endPage > totalPage)
+				endPage = totalPage;
+
+			// 각페이지의 시작번호와 끝번호를 구한다
+			// perpage가 5일경우
+			// 1페이지 1, 5 3페이지 11, 15
+			startNum = (currentPage - 1) * perPage + 1;
+			endNum = startNum + perPage - 1;
+			if (endNum > totalCount)
+				endNum = totalCount;
+
+			// 각 페이지마다 출력할 시작번호
+			// 총페이지가 30일경우 1페이지는 30 2페이지는 25...
+			no = totalCount - (currentPage - 1) * perPage;
+
+			// 리스트 가져오기
+			List<noticeDto> list = service.notice_boardList(perPage, (currentPage - 1) * perPage);
+
+			// 가져온 리스트 model에 저장
+			model.addObject("list", list);
+			model.addObject("totalCount", totalCount);
+			model.addObject("currentPage", currentPage);
+			model.addObject("startPage", startPage);
+			model.addObject("endPage", endPage);
+			model.addObject("no", no);
+			model.addObject("totalPage", totalPage);
+		}
+		model.setViewName("/admin/notice_boardManagement/notice_boardList");
+		return model;
+	}
+
+	@RequestMapping("/admin/notice_boardManagement/notice_boardListEdit.do")
+	public String notice_boardListEdit(HttpServletRequest request, Model model,
+			@RequestParam(defaultValue = "1") String pageNum) {
+		HttpSession session = request.getSession();
+		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
+		String go = "admin.tiles";
+
+		if (service.adminCheck(dto.getUser_Email()) > 0) {
+			model.addAttribute("pageNum", pageNum);
+			go = "/admin/notice_boardManagement/notice_boardListEdit";
 		}
 
-		@RequestMapping("/admin/foodManagement/searchLeaveFoodList.do")
-		public ModelAndView searchLeaveFoodList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage, @RequestParam(defaultValue = "1") String targetEmail) {
-			ModelAndView model = new ModelAndView();
+		return go;
+	}
 
-			if (service.searchLeaveFoodTotalCount() > 0) {
-				int totalCount;// 전체갯수
-
-				int totalPage; // 총페이지
-				int startNum;// 각페이지의시작번호
-				int endNum;// 각페이지의끝번호
-				int startPage; // 블럭의 시작페이지
-				int endPage;// 블럭의 끝페이지
-				int no;// 출력할 시작번호
-				int perPage = 10;// 한페이지당 보여질 글의갯수
-				int perBlock = 5;// 한블럭당 보여질 페이지의 갯수
-
-				totalCount = service.searchLeaveFoodTotalCount();
-				// 총페이지의 갯수
-				totalPage = totalCount / perPage + (totalCount % perPage > 0 ? 1 : 0);
-
-				// 존재하지않는페이지인경우
-				if (totalPage < currentPage)
-					currentPage = totalPage;
-
-				// 각 블럭의 시작페이지와 끝 페이지를 구한다
-				startPage = ((currentPage - 1) / perBlock) * perBlock + 1;
-				endPage = startPage + perBlock - 1;
-				// ex)13페이지있을경우 15까지 불러와버리므로
-				if (endPage > totalPage)
-					endPage = totalPage;
-
-				// 각페이지의 시작번호와 끝번호를 구한다
-				// perpage가 5일경우
-				// 1페이지 1, 5 3페이지 11, 15
-				startNum = (currentPage - 1) * perPage + 1;
-				endNum = startNum + perPage - 1;
-				if (endNum > totalCount)
-					endNum = totalCount;
-
-				// 각 페이지마다 출력할 시작번호
-				// 총페이지가 30일경우 1페이지는 30 2페이지는 25...
-				no = totalCount - (currentPage - 1) * perPage;
-
-				// 리스트 가져오기
-				List<UserDto> list =new ArrayList<UserDto>(); 
-				//service.allFoodList(perPage, (currentPage - 1) * perPage);
-
-				// 가져온 리스트 model에 저장
-				model.addObject("list", list);
-				model.addObject("totalCount", totalCount);
-				model.addObject("currentPage", currentPage);
-				model.addObject("startPage", startPage);
-				model.addObject("endPage", endPage);
-				model.addObject("no", no);
-				model.addObject("totalPage", totalPage);
-			}
-			model.setViewName("/admin/foodManagement/leaveFoodList");
-			return model;
+	@RequestMapping("/admin/notice_boardManagement/notice_boardListEditAciton.do")
+	public String notice_boardListEditAciton(HttpServletRequest request,
+			@RequestParam(defaultValue = "1") String pageNum, @ModelAttribute noticeDto dto) {
+		HttpSession session = request.getSession();
+		LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
+		String go = "admin.tiles";
+		if (service.adminCheck(ldto.getUser_Email()) > 0) {
+			service.notice_boardListEdit(dto);
+			go = "redirect:/admin/notice_boardManagement/notice_boardList.do?pageNum=" + pageNum;
 		}
+
+		return go;
+	}
+
+	@RequestMapping("/admin/notice_boardManagement/notice_boardListContent.do")
+	public ModelAndView notice_boardListContent(HttpServletRequest request, @RequestParam int notice_pk, @RequestParam(defaultValue = "1") String pageNum) {
+		ModelAndView model = new ModelAndView();
+		HttpSession session = request.getSession();
+		LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
+		String go = "admin.tiles";
+		if(service.adminCheck(ldto.getUser_Email())>0 && service.notice_boardListSelectCount(notice_pk) > 0) {
+			noticeDto dto = service.notice_boardListSelect(notice_pk);
+			model.addObject("dto", dto);
+			go = "/admin/notice_boardManagement/notice_boardListContent";
+		}
+		model.setViewName(go);
+		return model;
+	}
+
+	@RequestMapping("/admin/notice_boardManagement/notice_boardListModified.do")
+	public ModelAndView notice_boardListModified(HttpServletRequest request, @RequestParam int notice_pk, @RequestParam(defaultValue = "1") String pageNum) {
+		ModelAndView model = new ModelAndView();
+		HttpSession session = request.getSession();
+		LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
+		String go = "admin.tiles";
+		if(service.adminCheck(ldto.getUser_Email())>0 && service.notice_boardListSelectCount(notice_pk) > 0){
+			noticeDto dto = service.notice_boardListSelect(notice_pk);
+			model.addObject("dto", dto);
+			go = "/admin/notice_boardManagement/notice_boardListModified";
+		}
+		
+		model.setViewName(go);
+		return model;
+	}
+	
+	@RequestMapping("/admin/notice_boardManagement/notice_boardListModifiedAction.do")
+	public String notice_boardListModifiedAction(HttpServletRequest request, @ModelAttribute noticeDto dto,@RequestParam(defaultValue = "1") String pageNum) {
+		HttpSession session = request.getSession();
+		LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
+		String go = "admin.tiles";
+		if(service.adminCheck(ldto.getUser_Email())>0 && service.notice_boardListSelectCount(dto.getNotice_pk()) > 0){
+			service.notice_boardListUpdate(dto);
+			go = "redirect:/admin/notice_boardManagement/notice_boardListContent.do?notice_pk="+dto.getNotice_pk()+"&pageNum="+pageNum;
+		}
+		return go;
+	}
+
+	@RequestMapping("/admin/notice_boardManagement/notice_boardListDelete.do")
+	public String notice_boardListDelete(HttpServletRequest request, @RequestParam(defaultValue = "1") String pageNum,
+			@RequestParam int notice_pk) {
+		HttpSession session = request.getSession();
+		LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
+		String go = "admin.tiles";
+		if (service.adminCheck(ldto.getUser_Email()) > 0 && service.notice_boardListSelectCount(notice_pk) > 0) {
+			service.notice_boardDelete(notice_pk);
+			go = "redirect:/admin/notice_boardManagement/notice_boardList.do?pageNum=" + pageNum;
+		}
+
+		return go;
+	}
+
 }

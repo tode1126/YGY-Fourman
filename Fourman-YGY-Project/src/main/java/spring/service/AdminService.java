@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import spring.data.AdminDao;
 import spring.data.UserDto;
 import spring.data.UserSearchDto;
+import spring.data.noticeDto;
 import spring.data.restaurant.RestaurantDto;
 
 @Service
@@ -134,12 +135,12 @@ public class AdminService {
 		return dao.leaveFoodTotalCount();
 	}
 	
-	public int searchAllFoodTotalCount() {
-		return dao.searchAllFoodTotalCount();
+	public int searchAllFoodTotalCount(String targetEmail) {
+		return dao.searchAllFoodTotalCount(targetEmail);
 	}
 	
-	public int searchLeaveFoodTotalCount() {
-		return dao.searchLeaveFoodTotalCount();
+	public int searchLeaveFoodTotalCount(String targetEmail) {
+		return dao.searchLeaveFoodTotalCount(targetEmail);
 	}
 	
 	public List<RestaurantDto> allFoodList(int perPage, int no) {
@@ -150,13 +151,13 @@ public class AdminService {
 		return dao.leaveFoodList(perPage,no);
 	}
 	
-	public List<RestaurantDto> searchAllFoodList() {
-		return dao.searchAllFoodList();
+	public List<RestaurantDto> searchAllFoodList(UserSearchDto dto) {
+		return dao.searchAllFoodList(dto);
 
 	}
 	
-	public List<RestaurantDto> searchLeaveFoodList() {
-		return dao.searchLeaveFoodList();
+	public List<RestaurantDto> searchLeaveFoodList(UserSearchDto dto) {
+		return dao.searchLeaveFoodList(dto);
 	}
 	
 	public int selectRestaurantCount(int rest_pk) {
@@ -165,5 +166,36 @@ public class AdminService {
 	
 	public int userSelectCount(String email) {
 		return dao.userSelectCount(email);
+	}
+	
+	public List<noticeDto> notice_boardList(int perPage, int no){
+		return dao.notice_boardList(perPage,no);
+	}
+	
+	public int notice_boardTotalCount() {
+		return dao.notice_boardTotalCount();
+	}
+	
+	public void notice_boardListEdit(noticeDto dto) {
+		dao.notice_boardListEdit(dto);
+		return;
+	}
+	
+	public void notice_boardDelete(int notice_pk) {
+		dao.notice_boardDelete(notice_pk);
+		return;
+	}
+	
+	public int notice_boardListSelectCount(int notice_pk) {
+		return dao.notice_boardListSelectCount(notice_pk);
+	}
+	
+	public noticeDto notice_boardListSelect(int notice_pk) {
+		return dao.notice_boardListSelect(notice_pk);
+	}
+	
+	public void notice_boardListUpdate(noticeDto dto) {
+		dao.notice_boardListUpdate(dto);
+		return;
 	}
 }

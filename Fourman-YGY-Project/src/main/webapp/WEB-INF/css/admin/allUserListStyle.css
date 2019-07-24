@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 #userListLayout {
-	width: 1200px;
+	font-size: 12px;
+	width: 90%;
 	background: #fff;
 	margin: 0 auto 0;
 	margin-top: 100px;
@@ -17,14 +18,15 @@
 
 #multipleButton{
 	float: right;
-	margin-bottom: 10px;
 }
 
 #targetEmail{
 	height: 20px;
+	margin-bottom: 10px;
 }
 
 #userList {
+	width: 100%;
 	border-top: 1px solid #444444;
 	border-collapse: collapse;
 }

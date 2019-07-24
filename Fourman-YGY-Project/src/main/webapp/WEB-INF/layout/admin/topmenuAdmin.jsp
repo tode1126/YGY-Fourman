@@ -33,7 +33,7 @@
 			<li><a href="#">게시판관리</a>
 				<ul>
 					<li><a href="#">이벤트관리</a></li>
-					<li><a href="#">공지관리</a></li>
+					<li><a href="${root }/admin/notice_boardManagement/notice_boardList.do">공지관리</a></li>
 					<li><a href="#">후기관리</a></li>
 				</ul>
 			</li>

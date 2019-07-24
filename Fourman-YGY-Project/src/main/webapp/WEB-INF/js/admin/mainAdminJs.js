@@ -45,7 +45,7 @@ $(function() {
 				values = data.userList;
 				str="<h2>현재 접속 중인 유저</h2>"
 				$.each(values, function(index, value) {
-					str+="<p>" + (index + 1) + ". &nbsp;&nbsp;" + value + "<button email='"+value+"' class='button red f-right logout'>로그아웃</button></p>"
+					str+="<p>" + value + "<button email='"+value+"' class='button red f-right logout'>로그아웃</button></p>"
 				});
 				$("div.userList").html(str);
 				str="";

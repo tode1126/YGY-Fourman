@@ -45,7 +45,7 @@
 						<th width="80">여는시간</th>
 						<th width="80">닫는시간</th>
 						<th width="80">상태</th>
-						<th width="150">가입일</th>
+						<th width="180">가입일</th>
 					</tr>
 					<c:if test="${not empty list }">
 						<c:forEach items="${list }" var="dto" varStatus="i">
@@ -53,12 +53,12 @@
 								<td align="center">${no - i.index }</td>
 								<td>${dto.user_info_email }</td>
 								<td>${dto.rest_name }</td>
-								<td>${dto.rest_category}</td>
+								<td align="center">${dto.rest_category}</td>
 								<td align="center">${dto.rest_phone }</td>
 								<td>${dto.rest_addr }</td>
-								<td>${dto.rest_start }</td>
-								<td>${dto.rest_end }</td>
-								<td>
+								<td align="center">${dto.rest_start }</td>
+								<td align="center">${dto.rest_end }</td>
+								<td align="center">
 								<select class="state" rest_pk="${dto.rest_pk }" pageNum="${currentPage }">
 									<option <c:if test="${dto.rest_state eq '0' }">selected</c:if> value="0">정상</option>
 									<option <c:if test="${dto.rest_state eq '1' }">selected</c:if> value="1">휴무</option>

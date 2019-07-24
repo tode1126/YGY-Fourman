@@ -141,12 +141,12 @@ public class AdminDao extends SqlSessionDaoSupport {
 		return getSqlSession().selectList("admin.leaveFoodList",map);
 	}
 
-	public List<RestaurantDto> searchAllFoodList() {
-		return getSqlSession().selectList("admin.searchAllFoodList");
+	public List<RestaurantDto> searchAllFoodList(UserSearchDto dto) {
+		return getSqlSession().selectList("admin.searchAllFoodList",dto);
 	}
 
-	public List<RestaurantDto> searchLeaveFoodList() {
-		return getSqlSession().selectList("admin.searchLeaveFoodList");
+	public List<RestaurantDto> searchLeaveFoodList(UserSearchDto dto) {
+		return getSqlSession().selectList("admin.searchLeaveFoodList",dto);
 	}
 	
 
@@ -168,12 +168,12 @@ public class AdminDao extends SqlSessionDaoSupport {
 		return getSqlSession().selectOne("admin.leaveFoodTotalCount");
 	}
 	
-	public int searchAllFoodTotalCount() {
-		return getSqlSession().selectOne("admin.searchAllFoodTotalCount");
+	public int searchAllFoodTotalCount(String targetEmail) {
+		return getSqlSession().selectOne("admin.searchAllFoodTotalCount",targetEmail);
 	}
 	
-	public int searchLeaveFoodTotalCount() {
-		return getSqlSession().selectOne("admin.searchLeaveFoodTotalCount");
+	public int searchLeaveFoodTotalCount(String targetEmail) {
+		return getSqlSession().selectOne("admin.searchLeaveFoodTotalCount",targetEmail);
 	}
 	
 	public int selectRestaurantCount(int rest_pk) {
@@ -182,5 +182,39 @@ public class AdminDao extends SqlSessionDaoSupport {
 	
 	public int userSelectCount(String email) {
 		return getSqlSession().selectOne("admin.userSelectCount",email);
+	}
+	
+	public List<noticeDto> notice_boardList(int perPage, int no) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("perPage",perPage);
+		map.put("no",no);
+		return getSqlSession().selectList("admin.notice_boardList",map);
+	}
+	
+	public int notice_boardTotalCount() {
+		return getSqlSession().selectOne("admin.notice_boardTotalCount");
+	}
+	
+	public void notice_boardListEdit(noticeDto dto) {
+		getSqlSession().insert("admin.notice_boardListEdit",dto);
+		return;
+	}
+	
+	public void notice_boardDelete(int notice_pk) {
+		getSqlSession().delete("admin.notice_boardDelete",notice_pk);
+		return;
+	}
+	
+	public int notice_boardListSelectCount(int notice_pk) {
+		return getSqlSession().selectOne("admin.notice_boardListSelectCount",notice_pk);
+	}
+	
+	public noticeDto notice_boardListSelect(int notice_pk) {
+		return getSqlSession().selectOne("admin.notice_boardListSelect",notice_pk);
+	}
+	
+	public void notice_boardListUpdate(noticeDto dto) {
+		getSqlSession().update("admin.notice_boardListUpdate",dto);
+		return;
 	}
 }
