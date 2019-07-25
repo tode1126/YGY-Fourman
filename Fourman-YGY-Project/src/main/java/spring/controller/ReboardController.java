@@ -3,6 +3,9 @@ package spring.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
+import spring.data.ReboardDao;
 import spring.data.ReboardDto;
 import spring.service.ReboardService;
 
@@ -90,10 +95,10 @@ public class ReboardController {
 		return model;
 	}
 	
-	@RequestMapping("/reboard/reboardform.do")
+	@RequestMapping("/reboard/reboardwrite.do")
 	public String form()
 	{
-		return "/main/reboard/reboardform";
+		return "/main/reboard/reboardwrite";
 	}
 	
 	@RequestMapping(value="/reboard/write.do",method=RequestMethod.POST)
@@ -161,4 +166,55 @@ public class ReboardController {
 		//map.put("reboard_happy", reboard_happy);
 		return "{\"reboard_happy\":"+reboard_happy+"}";
 	}
+	
+	@RequestMapping("/reboard/unhappy.aj")
+	public @ResponseBody String reboard_unhappy(@RequestParam int num,Model model)
+	{
+		service.reboardUnHappyUpdate(num);
+		int reboard_unhappy=service.getSelectUnHappy(num);
+		System.out.println("reboard_unhappy: "+reboard_unhappy);
+		
+		return "{\"reboard_unhappy\":"+reboard_unhappy+"}";
+	}
+	
+	// 답글 부분
+	@RequestMapping(value="/reboard/reply.do",method=RequestMethod.GET)
+	public ModelAndView reply(@RequestParam int reboard_pk)
+	{
+		ModelAndView model=new ModelAndView();
+		model.addObject("reboard_pk",reboard_pk);
+		model.setViewName("/main/reboard/reboardreplyform");
+		return model;
+	} 
+	
+//	@RequestMapping(value="/reboard/reboardlist.do",method=RequestMethod.POST)
+//	public String replyform(
+//			HttpServletRequest request,
+//			@RequestParam int reboard_pk,
+//			@RequestParam int groupno,
+//			@RequestParam int restep,
+//			@RequestParam int relevel,
+//			@RequestParam(value="pageNum",defaultValue="1") int currentPage)
+//	{
+//		ModelAndView model=new ModelAndView();
+//		String subject="";
+//		
+//		//reboard_pk 이나 groupno 이 널값이면 원글, 널값이 아니면 답글일경우이다
+//
+//		if(reboard_pk!=reboard_pk) //답글인 경우
+//		{
+//			ReboardDao dao=new ReboardDao();
+//			subject=dao.getData(reboard_pk).getReboard_subject();
+//			
+//		}else { //원글인 경우
+//			reboard_pk="0";
+//		}
+//		
+//	}
+	
+	
+	
+	
+	
+	
 }

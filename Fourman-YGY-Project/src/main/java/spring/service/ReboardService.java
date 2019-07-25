@@ -57,4 +57,14 @@ public class ReboardService {
 		return dao.getSelectHappy(num);
 	}
 	
+	public void reboardUnHappyUpdate(int num)
+	{
+		dao.reboardUnHappyUpdate(num);
+	}
+	
+	public int getSelectUnHappy(int num)
+	{
+		return dao.getSelectUnHappy(num);
+	}
+	
 }

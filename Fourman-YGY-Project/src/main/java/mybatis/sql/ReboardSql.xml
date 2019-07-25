@@ -74,4 +74,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="reboardHappySelect" parameterType="int" resultType="int">
 		select reboard_happy from reboard where reboard_pk=#{reboard_pk}
 	</select>
+	
+	<update id="reboardUnHappyUpdate" parameterType="int">
+		update reboard set reboard_unhappy=reboard_unhappy+1 where reboard_pk=#{reboard_pk}
+	</update>
+	
+	<select id="reboardUnHappySelect" parameterType="int" resultType="int">
+		select reboard_unhappy from reboard where reboard_pk=#{reboard_pk}
+	</select>
+	
+	
 </mapper>

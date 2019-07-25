@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 보기</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <link rel="stylesheet" href="${root }/css/layout/reboardStyle.css"/>
@@ -14,7 +14,20 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Cute+Font" rel="stylesheet">
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
+	$(document).ready(function(){
+		$("#btnDelete").click(function(){		
+			if(confirm("정말 삭제하시겠습니까?")==true){
+				location.href=""+n.
+			}else{
+				return
+			}
+		});
+	});
+</script> -->
+
+<script type="text/javascript">	
+	// 좋아요,싫어요 part
 	$(function() {
 		$("img.heart").hide();
 		$("span.reboard_happy").click(function() {
@@ -36,7 +49,36 @@
 				},
 				error:function(err){
 					alert("errorcode:"+err.status);//에러코드출력
-					//200: 응답페이지오류:chudata.jsp 문제
+					//200: 응답페이지오류:~data.jsp 문제
+					//404: 매핑오류거나 jsp 를 못찾거나
+					//500: 문법오류
+				}
+			});
+		});
+	});
+	
+	$(function() {
+		$("img.no").hide();
+		$("span.reboard_unhappy").click(function() {
+			var num=$(this).attr("num")
+			//alert(num);
+			var n=$(this);
+			
+			$(n).next().show('fast').animate({
+				"width":"+=20px"}).hide('fast');
+			
+			$.ajax({
+				type:'get',
+				url:"unhappy.aj",
+				data:{"num":num},
+				dataType:"json",
+				success:function(redata){	
+					console.log(redata.reboard_unhappy);
+					$(n).text(redata.reboard_unhappy);	 	
+				},
+				error:function(err){
+					alert("errorcode:"+err.status);//에러코드출력
+					//200: 응답페이지오류:~data.jsp 문제
 					//404: 매핑오류거나 jsp 를 못찾거나
 					//500: 문법오류
 				}
@@ -44,6 +86,7 @@
 		});
 	});
 </script>
+
 </head>
 <body>
 <div class="BoardContent">
@@ -64,13 +107,17 @@
 				조회 ${dto.readcount}</span>
 				<br><br>
 				<span>별점 : ${dto.reboard_rating}</span>
+				
 				<span style="margin-left: 300px;">좋아요
   				<span style="color: red;font-weight: bold;cursor: pointer;"
   					 class="reboard_happy" num="${dto.reboard_pk}">${dto.reboard_happy}</span>
   					 <img src="../image/Seo_heart.png" width="30" class="heart"></span>
+  					 
   				<span style="margin-left: 5px;">싫어요 
   				<span style="color: blue;font-weight: bold;cursor: pointer;"
-  					 class="Chu" num="${dto.reboard_pk}">${dto.reboard_unhappy}</span></span>	 
+  					 class="reboard_unhappy" num="${dto.reboard_pk}">${dto.reboard_unhappy}</span>
+  					 <img src="../image/Seo_no.png" width="30" class="no"></span>
+  					 	 
 				<span><pre style="height:200px; margin-top: 20px;">${dto.reboard_content}</pre></span>		
 			</td>
 		</tr>
@@ -80,13 +127,17 @@
 			onclick="location.href='reboardlist.do?pageNum=${pageNum}'">목록</button>
 			
 		<button type="button" class="btn btn-danger btn-sm" style="width: 80px;"
-		  onclick="location.href='reboardform.do'">글쓰기</button>  
+		  onclick="location.href='reboardwrite.do'">글쓰기</button>  
 		
 		<button type="button" class="btn btn-success btn-sm" style="width: 80px;"
 		  onclick="location.href='reboardupdate.do?num=${dto.reboard_pk}&pageNum=${pageNum}'">수정</button>
 		
-		<button type="button" class="btn btn-warning btn-sm" style="width: 80px;"
-		  onclick="location.href='delete.do?num=${dto.reboard_pk}&pageNum=${pageNum}'">삭제</button>  		
+		<button type="button" class="btn btn-warning btn-sm" id="btnDelete" style="width: 80px;"
+		  onclick="location.href='delete.do?num=${dto.reboard_pk}&pageNum=${pageNum}'">삭제</button>
+		
+		<button type="button" class="btn btn-info btn-sm" id="btnWrite" style="width: 80px;"
+		  onclick="location.href='reply.do?num=${dto.reboard_pk}&pageNum=${pageNum}'">답글</button>
+		    		
 	</div>
 </div>
 

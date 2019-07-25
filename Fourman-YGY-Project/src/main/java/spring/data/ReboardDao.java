@@ -59,4 +59,15 @@ public class ReboardDao extends SqlSessionDaoSupport{
 	{
 		return getSqlSession().selectOne("reboardHappySelect",num);
 	}
+	
+	public void reboardUnHappyUpdate(int num)
+	{
+		getSqlSession().update("reboardUnHappyUpdate",num);
+	}
+	
+	public int getSelectUnHappy(int num)
+	{
+		return getSqlSession().selectOne("reboardUnHappySelect",num);
+	}
+	
 }

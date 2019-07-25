@@ -1,3 +1,4 @@
+<%@page import="spring.data.ReboardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -6,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 목록</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <link rel="stylesheet" href="${root }/css/layout/reboardStyle.css"/>
@@ -19,8 +20,10 @@
 	전체 총<strong>${totalCount}</strong>건
 </div>
 <div>
-	<button class="btn btn-info btn-sm" 
-  		onclick="location.href='reboardform.do'">글쓰기</button>
+	
+		<button class="btn btn-info btn-sm" 
+  			onclick="location.href='reboardwrite.do'">글쓰기</button>
+	
 </div>
 <form name="quickSrchForm" id="quickSrchForm" method="post" action onsubmit="return false;">
 	<div class="QuickSrch">
@@ -35,7 +38,7 @@
 <div class="Boardlist">
 	<table class="table table-bordered">
 		<br>
-		<tr style="background: #f5ftdc;">
+		<tr>
 			<th style="width: 70px; text-align: center">번호</th>
 			<th style="width: 100px; text-align: center">별점</th>
 			<th style="width: 200px; text-align: center">제목</th>
@@ -49,6 +52,18 @@
 				<c:set var="no" value="${no-1}"/>
 				<td align="center">${dto.reboard_rating}</td>
 				<td>
+				<!-- 제목부분 -->
+				<!-- 1레벨당 2칸 띄기 -->
+				<c:forEach var="sp" begin="1" end="${dto.relevel}">
+					&nbsp;&nbsp;
+				</c:forEach>
+				
+				<!-- 답글인 경우 re 이미지 출력 -->
+					<c:if test="${dto.relevel>0 }">
+						<img src="Seo_re.gif" width="">
+					</c:if>
+				
+				
 				<a href="content.do?num=${dto.reboard_pk}&pageNum=${currentPage}">
 					${dto.reboard_subject}</a>
 				</td>

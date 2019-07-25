@@ -43,6 +43,8 @@
 	border: 0px solid gray; 
 	position: absolute;
 	font-family: 'Cute Font';
+	width: 1050px;
+	margin-left: 30px;
 }
 
 .BoardContent{
@@ -61,10 +63,6 @@
 
 .Pagination li{
 	float: left;
-}
-
-.Boardlist{
-	margin-left: 250px;
 }
 
 .BoardUpdate{
