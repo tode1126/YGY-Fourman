@@ -11,11 +11,14 @@
 </head>
 <body>
 <c:if test="${isRestaurantIntro == 0 }">
-<a href="">식당 소개 쓰기</a>
+<a href="./introAddForm.do">식당 소개 쓰기</a>
 </c:if>
 
 <c:if test="${isRestaurantIntro > 0 }">
-<a>식당 소개 수정</a>
+<a>식당 소개 수정</a> <br>
+<div class="restaurant-intro restaurant-intro-text">
+	<span>${intro_text }</span>
+</div>
 </c:if>
 </body>
 </html>

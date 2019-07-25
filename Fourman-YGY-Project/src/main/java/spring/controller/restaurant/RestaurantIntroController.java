@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import spring.data.restaurant.RestaurantIntroDto;
+import spring.data.restaurant.RestaurantIntroImageDto;
 import spring.data.restaurant.RestaurantMenuDto;
 import spring.service.restaurant.RestaurantService;
 import upload.util.SpringFileWriter;
@@ -32,16 +34,21 @@ public class RestaurantIntroController {
 		boolean isRest_pk = (session.getAttribute("rest_pk")!=null) ? true : false;
 		int restaurant_rest_pk = -1;
 		int isRestaurantIntro = -1;
+		String intro_text = "";
 		if(isRest_pk) {
 			restaurant_rest_pk = (Integer) session.getAttribute("rest_pk");
 			System.out.println("introFront.do: "+restaurant_rest_pk);
 			isRestaurantIntro = service.selectIsRestaurantIntro(restaurant_rest_pk);
 			System.out.println(isRestaurantIntro);
+			if(isRestaurantIntro!=0) {
+				intro_text = service.selectOneRestaurantIntro(restaurant_rest_pk).getIntro_text();
+			}
 		} else {
-			model.setViewName("redirect:/main.do");
+			model.setViewName("redirect:/restaurant/main.do");
 			return model;
 		}
 		model.addObject("isRestaurantIntro", isRestaurantIntro);
+		model.addObject("intro_text", intro_text);
 		model.setViewName("/restaurant/intro/introFront");
 		return model;
 	}
@@ -57,18 +64,25 @@ public class RestaurantIntroController {
 			System.out.println("introAddForm.do: "+restaurant_rest_pk);
 			model.addObject("restaurant_rest_pk", restaurant_rest_pk);
 		}
-		model.setViewName("/restaurant/intro/intro-insert-form");
+		model.setViewName("/restaurant/intro/introInsertForm");
 		return model;
 	}
 	@RequestMapping(value="/restaurant/introAdd.do", method=RequestMethod.POST)
-	public String menuAdd(
-			@ModelAttribute RestaurantMenuDto rmdto, 
+	public String introAdd(
+			@ModelAttribute RestaurantIntroDto ridto, 
+			@ModelAttribute RestaurantIntroImageDto riimgdto, 
 			HttpServletRequest request)
 	{
 		//일단 파일명이 어떻게 넣어오는지부터 확인-입력안했을시: 빈 문자열이 들어간다
 		/*for (MultipartFile f : rmdto.getUpfile()) {
 			System.out.println("파일명: " + f.getOriginalFilename());
 		}*/
+		System.out.println("ridto rest_pk: "+ridto.getRestaurant_rest_pk());
+		System.out.println("ridto intro_text: "+ridto.getIntro_text());
+		System.out.println("riimgdto : "+riimgdto.getRestaurant_rest_pk());
+		
+		// 텍스트문 먼저 처리
+		service.insertRestaurantIntro(ridto);
 		
 		// 식당 고유값 가져오기
 		HttpSession session = request.getSession();
@@ -83,12 +97,12 @@ public class RestaurantIntroController {
 		String path = request.getSession().getServletContext().getRealPath("/save/restaurant/intro/"+restaurant_rest_pk);
 		//이미지 업로드 경로 확인하기
 		//식당 메뉴 업로드 경로 : /save/restaurant/menu/[식당고유값]/(이미지)
-		File Folder = new File(path);
+		File folder = new File(path);
 
 		// 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
-		if (!Folder.exists()) {
+		if (!folder.exists()) {
 			try{
-			    Folder.mkdir(); //폴더 생성합니다.
+			    folder.mkdirs(); //폴더 생성합니다.
 			    System.out.println("폴더가 생성되었습니다.");
 	        } catch(Exception e) {
 	        	e.getStackTrace();
@@ -104,39 +118,37 @@ public class RestaurantIntroController {
 		String imagename = "";
 		String realname = "";
 		int size=0;
-		for (MultipartFile f : rmdto.getUpfile()) {
-			//빈문자열이 아닐 경우에만 저장
-			if(f.getOriginalFilename().length()>0){
-				imagename += f.getOriginalFilename()+",";
-				String[] st = imagename.split(".");
-				System.out.println(st.length+" "+imagename);
-				
+		for (MultipartFile f : riimgdto.getUpfile()) {
+			if(f.getOriginalFilename().length()==0) {
+				//System.out.println("파일 등록 안함");
+				imagename = "noimage";
+				riimgdto.setRestaurant_intro_image(imagename);
+				riimgdto.setRestaurant_intro_image_realname("");
+				riimgdto.setRestaurant_intro_image_realpath("");
+				riimgdto.setRestaurant_intro_image_size(0);
+			} else if (f.getOriginalFilename().length()>0) {//빈문자열이 아닐 경우에만 저장
+				imagename = f.getOriginalFilename();
 				int pos = imagename.lastIndexOf( "." );
 				String fileExtension = imagename.substring( pos + 1 );
-				fileExtension = fileExtension.substring(0, fileExtension.length()-1);
+				//fileExtension = fileExtension.substring(0, fileExtension.length());
 				realname = UUID.randomUUID().toString()+"."+fileExtension;
 				size = (int) f.getSize();
 				fileWriter.writeFile(f, path, realname);
+				riimgdto.setRestaurant_intro_image(imagename);
+				riimgdto.setRestaurant_intro_image_realname(realname);
+				riimgdto.setRestaurant_intro_image_realpath(path);
+				riimgdto.setRestaurant_intro_image_size(size);
+			}
+			if(riimgdto.getRestaurant_intro_image().equals("noimage")) {
+				imagename = "";
+				riimgdto.setRestaurant_intro_image(imagename);
+			} else {
+				service.insertRestaurantIntroImage(riimgdto);
 			}
 		}
-		if(imagename.length()==0) {
-			//System.out.println("파일 등록 안함");
-			imagename = "noimage";
-			rmdto.setMenu_imagefile(imagename);
-			rmdto.setMenu_image_realname("");
-			rmdto.setMenu_image_realpath("");
-			rmdto.setMenu_image_size(0);
-		} else {
-			//마지막 , 제거하기
-			imagename = imagename.substring(0, imagename.length()-1);
-			rmdto.setMenu_imagefile(imagename);
-			rmdto.setMenu_image_realname(realname);
-			rmdto.setMenu_image_realpath(path);
-			rmdto.setMenu_image_size(size);
-		}
 		
-		//db에 저장
-		service.insertRestaurantMenu(rmdto);
-		return "redirect:/restaurant/menuFront.do";
+		
+		
+		return "redirect:/restaurant/introFront.do";
 	}
 }
