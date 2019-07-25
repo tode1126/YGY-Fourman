@@ -11,16 +11,29 @@
 	</definition>
 	
 	<definition name="adminLayout" template="/WEB-INF/layout/admin/layoutAdmin.jsp">
-		<put-attribute name="top" value="/WEB-INF/layout/top.jsp"/>
+		<put-attribute name="top" value="/WEB-INF/layout/admin/topAdmin.jsp"/>
 		<put-attribute name="bottom" value="/WEB-INF/layout/bottom.jsp"/>
 		<put-attribute name="topmenu" value="/WEB-INF/layout/admin/topmenuAdmin.jsp"/>
-		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/layout/admin/mainAdmin.jsp"/>
 	</definition>
-	<definition name="restrauntLayout" template="/WEB-INF/layout/restraunt/layoutRestraunt.jsp">
+
+	<definition name="restaurantLayout" template="/WEB-INF/layout/restaurant/layoutRestaurant.jsp">
 		<put-attribute name="top" value="/WEB-INF/layout/top.jsp"/>
 		<put-attribute name="bottom" value="/WEB-INF/layout/bottom.jsp"/>
-		<put-attribute name="topmenu" value="/WEB-INF/layout/restraunt/topmenuRestraunt.jsp"/>
+		<put-attribute name="topmenu" value="/WEB-INF/layout/restaurant/topmenuRestaurant.jsp"/>
 		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	</definition>
+	
+	<definition name="clientLayout" template="/WEB-INF/client/clientLayout/clientlayout.jsp">
+	
+	    <put-attribute name="top" value="/WEB-INF/layout/top.jsp"/>
+	    <put-attribute name="topmenu" value="/WEB-INF/layout/topmenu.jsp"/>
+	    <put-attribute name="bottom" value="/WEB-INF/client/clientLayout/clientbottom.jsp"/>
+	       
+		<put-attribute name="top2" value="/WEB-INF/client/clientLayout/clienttop2.jsp"/>
+		<put-attribute name="top3" value="/WEB-INF/client/clientLayout/clienttop3.jsp"/>		
+		<put-attribute name="leftmenu" value="/WEB-INF/client/clientLayout/clientleftmenu.jsp"/>
+		<put-attribute name="clientMain" value="/WEB-INF/client/clientLayout/clientmain.jsp"/>
 	</definition>
 	
 	
@@ -28,11 +41,17 @@
 	<definition name="main.tiles" extends="mainLayout">
 		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
 	</definition>
+	
 	<definition name="admin.tiles" extends="adminLayout">
+		<put-attribute name="main" value="/WEB-INF/layout/admin/mainAdmin.jsp"/>
+	</definition>
+
+	<definition name="restaurant.tiles" extends="restaurantLayout">
 		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
 	</definition>
-	<definition name="restraunt.tiles" extends="restrauntLayout">
-		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	
+	<definition name="clientMain.tiles" extends="clientLayout">
+		<put-attribute name="clientMain" value="/WEB-INF/client/clientLayout/clientmain.jsp"/>
 	</definition>
 	
 	
@@ -41,12 +60,17 @@
 	<definition name="/main/*/*" extends="mainLayout">
 		<put-attribute name="main" value="/WEB-INF/main/{1}/{2}.jsp"/>
 	</definition>
+	
 	<definition name="/admin/*/*" extends="adminLayout">
 		<put-attribute name="main" value="/WEB-INF/admin/{1}/{2}.jsp"/>
 	</definition>
-	<definition name="/restraunt/*/*" extends="restrauntLayout">
-		<put-attribute name="main" value="/WEB-INF/restraunt/{1}/{2}.jsp"/>
-	</definition>
 
+	<definition name="/restaurant/*/*" extends="restaurantLayout">
+		<put-attribute name="main" value="/WEB-INF/restaurant/{1}/{2}.jsp"/>
+	</definition>
+	
+	<definition name="/client/*/*" extends="clientLayout">
+		<put-attribute name="clientMain" value="/WEB-INF/client/{1}/{2}.jsp"/>				
+	</definition>
 
 </tiles-definitions>

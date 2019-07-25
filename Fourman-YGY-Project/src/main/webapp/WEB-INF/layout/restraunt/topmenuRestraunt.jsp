@@ -21,7 +21,12 @@
 		<li><a>중</a></li>
 		<li><a>식당 관리자</a></li>
 		<li><a>메뉴</a></li>
-		<li><a href="${root }/user/loginform.do">로그인</a></li>
+		<c:if test="${not empty sessionScope.userLoginInfo}">
+			<li>이메일 : ${sessionScope.userLoginInfo.user_Email} 
+			<a href="${root }/user/logout.do">로그아웃</a></li>
+			<li><a href="${root }/restraunt/user/userCheck.do">회원정보</a></li>
+			<li><a href="${root }/restraunt/user/userLeave.do">회원탈퇴</a></li>
+		</c:if>
 	</ul>
 </div>
 </body>
