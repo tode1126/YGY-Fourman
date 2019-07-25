@@ -83,5 +83,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select reboard_unhappy from reboard where reboard_pk=#{reboard_pk}
 	</select>
 	
-	
 </mapper>

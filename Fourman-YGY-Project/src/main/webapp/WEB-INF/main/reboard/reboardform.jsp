@@ -15,60 +15,45 @@
 <link href="https://fonts.googleapis.com/css?family=Cute+Font" rel="stylesheet">
 </head>
 <body>
-<div class="BoardUpdate">
-	<form action="update.do" method="post">
+<div class="BoardWrite">
+	<form action="write.do" method="post">
 		<table class="table-table-striped" style="width: 400px;">
-			<caption style="text-align: center"><b>게시판 글수정</b></caption>
+			<caption style="text-align: center"><b>게시판 글쓰기</b></caption>
 			<tr>
 				<th style="width: 100px;">별점</th>
 				<td>
-					<input type="text" class="form-Control" name="reboard_rating"
-						value="${dto.reboard_rating}">
+					<input type="text" class="form-Control" name="reboard_rating">
 				</td>
 			</tr>
 			<tr>
 				<th style="width: 100px;">제목</th>
 				<td>
-					<input type="text" class="form-Control" name="reboard_subject" 
-						value="${dto.reboard_subject}">
+					<input type="text" class="form-Control" name="reboard_subject">
 				</td>
 			</tr>
 			<tr>
 				<th style="width: 100px;">작성자</th>
 				<td>
-					<input type="text" class="form-Control" name="user_info_nickname"
-						value="${dto.user_info_nickname}">
+					<input type="text" class="form-Control" name="user_info_nickname">
 				</td>
 			</tr>
 			<tr>
 				<th style="width: 100px;">이메일</th>
 				<td>
-					<input type="text" class="form-Control" name="user_info_email"
-						value="${dto.user_info_email}">
+					<input type="text" class="form-Control" name="user_info_email">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-				<textarea rows="5" cols="40" class="form-Control" name="reboard_content">${dto.reboard_content}</textarea>
+				<textarea rows="5" cols="40" class="form-Control" name="reboard_content"></textarea>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<!-- hidden list -->
-					<input type="hidden" name="reboard_pk" value="${dto.reboard_pk}">
-					<input type="hidden" name="pageNum" value="${pageNum}">
-					
-					<button class="btn btn-default btn-sm"
-						style="width: 100px;" type="submit">수정하기</button>
-					
-					<button class="btn btn-default btn-sm" style="width: 100px;" type="button"
-						onclick="location.href='reboardlist.do?pageNum=${pageNum}'">목록</button>
-					
-					<button class="btn btn-default btn-sm" style="width: 100px;" type="button"
-					onclick="history.back()">취소</button>
-				</td>
+				<button class="btn btn-default btn-lg"
+				style="width: 100px;" type="submit">저장하기</button>
 			</tr>
 		</table>
 	</form>
-</div>	
+</div>
 </body>
 </html>
