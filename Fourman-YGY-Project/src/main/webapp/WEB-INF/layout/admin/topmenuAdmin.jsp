@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
-<link rel="stylesheet" href="${root }/css/layout/topmenuStyle.css" />
 <link rel="stylesheet" href="${root }/css/Ji_Button_Style.css" />
 <link rel="stylesheet" href="${root }/css/admin/topmenuAdminStyle.css" />
 </head>
@@ -25,21 +24,21 @@
 					<li><a href="${root }/admin/userManagement/leaveFoodUserList.do">탈퇴기업회원</a></li>
 				</ul>
 			</li>
-			<li><a href="#">식당관리</a>
+			<li><a href="${root }/admin/foodManagement/allFoodList.do">식당관리</a>
 				<ul>
-					<li><a href="#">전체식당</a></li>
-					<li><a href="#">탈퇴식당</a></li>
+					<li><a href="${root }/admin/foodManagement/allFoodList.do">전체식당</a></li>
+					<li><a href="${root }/admin/foodManagement/leaveFoodList.do">탈퇴식당</a></li>
+				</ul>
+			</li>
+			<li><a href="#">게시판관리</a>
+				<ul>
+					<li><a href="#">이벤트관리</a></li>
+					<li><a href="${root }/admin/notice_boardManagement/notice_boardList.do">공지관리</a></li>
+					<li><a href="#">후기관리</a></li>
 				</ul>
 			</li>
 			<li><a href="${root }/admin/adminManagement/adminList.do">관리자관리</a></li>
 			<li><a href="${root }/admin/mailService/allMailSend.do">일괄메일</a></li>
-			<li><a href="#">게시판관리</a>
-				<ul>
-					<li><a href="#">이벤트관리</a></li>
-					<li><a href="#">공지관리</a></li>
-					<li><a href="#">후기관리</a></li>
-				</ul>
-			</li>
 		</ul>
 	</div>
 </body>

@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import spring.data.AdminDao;
 import spring.data.UserDto;
+import spring.data.UserSearchDto;
+import spring.data.noticeDto;
+import spring.data.restaurant.RestaurantDto;
 
 @Service
 public class AdminService {
@@ -80,5 +83,119 @@ public class AdminService {
 
 	public List<UserDto> mailGetList(int target) {
 		return dao.mailGetList(target);
+	}
+	
+	public List<UserDto> searchUser(UserSearchDto dto){
+		return dao.searchUser(dto);
+	}
+	
+	public List<UserDto> searchLeaveUser(UserSearchDto dto){
+		return dao.searchLeaveUser(dto);
+	}
+	
+	public List<UserDto> searchFoodUser(UserSearchDto dto){
+		return dao.searchFoodUser(dto);
+	}
+	
+	public List<UserDto> searchLeaveFoodUser(UserSearchDto dto){
+		return dao.searchLeaveFoodUser(dto);
+	}
+	
+	public int searchUserTotalCount(String targetEmail){
+		return dao.searchUserTotalCount(targetEmail);
+	}
+	
+	public int searchLeaveUserTotalCount(String targetEmail){
+		return dao.searchLeaveUserTotalCount(targetEmail);
+	}
+	
+	public int searchFoodUserTotalCount(String targetEmail){
+		return dao.searchFoodUserTotalCount(targetEmail);
+	}
+	
+	public int searchLeaveFoodUserTotalCount(String targetEmail){
+		return dao.searchLeaveFoodUserTotalCount(targetEmail);
+	}
+
+	public void foodStateChange(RestaurantDto dto) {
+		dao.foodStateChange(dto);
+		return;
+	}
+
+	public void foodLeaveChange(RestaurantDto dto) {
+		dao.foodLeaveChange(dto);
+		return;
+	}
+	
+	public int allFoodTotalCount() {
+		return dao.allFoodTotalCount();
+	}
+	
+	public int leaveFoodTotalCount() {
+		return dao.leaveFoodTotalCount();
+	}
+	
+	public int searchAllFoodTotalCount(String targetEmail) {
+		return dao.searchAllFoodTotalCount(targetEmail);
+	}
+	
+	public int searchLeaveFoodTotalCount(String targetEmail) {
+		return dao.searchLeaveFoodTotalCount(targetEmail);
+	}
+	
+	public List<RestaurantDto> allFoodList(int perPage, int no) {
+		return dao.allFoodList(perPage,no);
+	}
+	
+	public List<RestaurantDto> leaveFoodList(int perPage, int no) {
+		return dao.leaveFoodList(perPage,no);
+	}
+	
+	public List<RestaurantDto> searchAllFoodList(UserSearchDto dto) {
+		return dao.searchAllFoodList(dto);
+
+	}
+	
+	public List<RestaurantDto> searchLeaveFoodList(UserSearchDto dto) {
+		return dao.searchLeaveFoodList(dto);
+	}
+	
+	public int selectRestaurantCount(int rest_pk) {
+		return dao.selectRestaurantCount(rest_pk);
+	}
+	
+	public int userSelectCount(String email) {
+		return dao.userSelectCount(email);
+	}
+	
+	public List<noticeDto> notice_boardList(int perPage, int no){
+		return dao.notice_boardList(perPage,no);
+	}
+	
+	public int notice_boardTotalCount() {
+		return dao.notice_boardTotalCount();
+	}
+	
+	public void notice_boardListEdit(noticeDto dto) {
+		dao.notice_boardListEdit(dto);
+		return;
+	}
+	
+	public void notice_boardDelete(int notice_pk) {
+		dao.notice_boardDelete(notice_pk);
+		return;
+	}
+	
+	public int notice_boardListSelectCount(int notice_pk) {
+		return dao.notice_boardListSelectCount(notice_pk);
+	}
+	
+	public noticeDto notice_boardListSelect(int notice_pk) {
+		return dao.notice_boardListSelect(notice_pk);
+	}
+	
+	public void notice_boardListUpdate(noticeDto dto) {
+		dao.notice_boardListUpdate(dto);
+		return;
 	}
 }
