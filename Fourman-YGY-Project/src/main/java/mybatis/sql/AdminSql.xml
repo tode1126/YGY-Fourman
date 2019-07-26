@@ -204,7 +204,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- qna 삭제 -->
 	<update id="qna_boardListDelete" parameterType="qdto">
-		update qna_board set qna_ref = #{qna_ref}, qna_subject = #{qna_subject} where qna_pk = #{qna_pk}
+		update qna_board set qna_state = 1 , qna_subject = #{qna_subject} where qna_pk = #{qna_pk} and qna_state = 0
 	</update>
 	
 	<!-- qna 답글추가 -->
