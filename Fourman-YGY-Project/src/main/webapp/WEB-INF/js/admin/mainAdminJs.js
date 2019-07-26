@@ -43,11 +43,10 @@ $(function() {
 			contentType : "application/json; charset=UTF-8",
 			success : function(data) {
 				values = data.userList;
-				str="<h2>현재 접속 중인 유저</h2>"
 				$.each(values, function(index, value) {
 					str+="<p>" + value + "<button email='"+value+"' class='button red f-right logout'>로그아웃</button></p>"
 				});
-				$("div.userList").html(str);
+				$("div.userListContent").html(str);
 				str="";
 			},
 			error : function(error) {

@@ -1104,7 +1104,7 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
 		String go = "admin.tiles";
-		if (service.adminCheck(ldto.getUser_Email()) > 0) {
+		if (service.adminCheck(ldto.getUser_Email()) > 0 && dto.getNotice_subject().length() > 0 && dto.getNotice_writer().length() > 0) {
 			service.notice_boardListEdit(dto);
 			go = "redirect:/admin/notice_boardManagement/notice_boardList.do?pageNum=" + pageNum;
 		}

@@ -40,7 +40,7 @@
 				<td><a href="notice_boardListContent.do?notice_pk=${dto.notice_pk }&pageNum=${currentPage}">${dto.notice_subject }</a></td>
 				<td align="center">${dto.notice_writer }</td>
 				<td align="center">${dto.notice_readcount }</td>
-				<fmt:formatDate var="date" value="${dto.notice_writedate }" pattern="yyyy년 MM월 dd일"/>
+				<fmt:formatDate var="date" value="${dto.notice_writedate }" pattern="yyyy년 MM월 dd일 HH시 mm분"/>
 				<td align="center">${date }</td>
 				<td align="center"><input type="button" value="삭제" class="red button" onclick="location.href='${root}/admin/notice_boardManagement/notice_boardListDelete.do?notice_pk=${dto.notice_pk }&pageNum=${currentPage }'"></td>
 			</tr>

@@ -37,8 +37,14 @@ div.userList {
 	box-shadow: 0 0 1em #222;
 	border-radius: 2px;
 	text-align: center;
-	overflow-y:scroll;
 	float: left;
+}
+
+div.userListContent{
+	display: inline-block;
+	width: 100%;
+	height: 400px;
+	overflow-y: scroll; 
 }
 
 div.conetionUser h2 {

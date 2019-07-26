@@ -15,21 +15,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 유저 관리 -->
 	<select id="allUserList" resultType="userDto" parameterType="map">
-		select user.* from user_info user where state !=2 order by regday desc limit #{perPage} offset #{no}
+		select user.email, user.hp, user.nickname, user.grade, user.state, user.regday from user_info user where state !=2 order by regday desc limit #{perPage} offset #{no}
 	</select>
 	<select id="leaveUserList" resultType="userDto" parameterType="map">
-		select user.* from user_info user where state =2 order by dropday desc limit #{perPage} offset #{no}
+		select user.email, user.hp, user.nickname, user.grade, user.state, user.dropday from user_info user where state =2 order by dropday desc limit #{perPage} offset #{no}
 	</select>
 	<select id="allFoodUserList" resultType="userDto" parameterType="map">
-		select user.* from user_info user where state !=2 and grade = 2 order by regday desc limit #{perPage} offset #{no}
+		select user.email, user.hp, user.nickname, user.grade, user.state, user.regday from user_info user where state !=2 and grade = 2 order by regday desc limit #{perPage} offset #{no}
 	</select>
 	<select id="leaveFoodUserList" resultType="userDto" parameterType="map">
-		select user.* from user_info user where state = 2 and grade = 2 order by dropday desc limit #{perPage} offset #{no}
+		select user.email, user.hp, user.nickname, user.grade, user.state, user.dropday from user_info user where state = 2 and grade = 2 order by dropday desc limit #{perPage} offset #{no}
 	</select>
 	
 	<!-- 관리자 -->
 	<select id="adminList" resultType="userDto" parameterType="map">
-		select user.* from user_info user where grade=3 order by regday desc limit #{perPage} offset #{no}
+		select user.email, user.hp, user.nickname, user.grade, user.state, user.regday, user.dropday from user_info user where grade=3 order by regday desc limit #{perPage} offset #{no}
 	</select>
 	
 	<!-- 일괄메일 전송 리스트 반환문 -->
@@ -39,16 +39,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 검색기능 -->
 	<select id="searchUser" parameterType="userSearchDto" resultType="userDto">
-		select user.* from user_info user where state != 2 and email Like concat(#{targetEmail},'%') order by regday desc limit #{perPage} offset #{no}
+		select user.email, user.hp, user.nickname, user.grade, user.state, user.regday from user_info user where state != 2 and email Like concat(#{targetEmail},'%') order by regday desc limit #{perPage} offset #{no}
 	</select>
 	<select id="searchLeaveUser" parameterType="userSearchDto" resultType="userDto">
-		select user.* from user_info user where state = 2 and email Like concat(#{targetEmail},'%') order by regday dropday limit #{perPage} offset #{no}
+		select user.email, user.hp, user.nickname, user.grade, user.state, user.dropday from user_info user where state = 2 and email Like concat(#{targetEmail},'%') order by regday dropday limit #{perPage} offset #{no}
 	</select>
 	<select id="searchFoodUser" parameterType="userSearchDto" resultType="userDto">
-		select user.* from user_info user where state != 2 and grade = 2 and email Like concat(#{targetEmail},'%') order by regday desc limit #{perPage} offset #{no}
+		select user.email, user.hp, user.nickname, user.grade, user.state, user.regday from user_info user where state != 2 and grade = 2 and email Like concat(#{targetEmail},'%') order by regday desc limit #{perPage} offset #{no}
 	</select>
 	<select id="searchLeaveFoodUser" parameterType="userSearchDto" resultType="userDto">
-		select user.* from user_info user where state = 2 and grade = 2 and email Like concat(#{targetEmail},'%') order by dropday desc limit #{perPage} offset #{no}
+		select user.email, user.hp, user.nickname, user.grade, user.state, user.dropday from user_info user where state = 2 and grade = 2 and email Like concat(#{targetEmail},'%') order by dropday desc limit #{perPage} offset #{no}
 	</select>
 
 	<!-- 카운트 -->
@@ -149,7 +149,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 공지 리스트 -->
 	<select id="notice_boardList" resultType="ndto" parameterType="map">
-		select notice.* from notice_board notice order by notice_writedate desc limit #{perPage} offset #{no}
+		select notice.notice_pk, notice.notice_writer, notice.notice_subject, notice.notice_readcount, notice.notice_writedate from notice_board notice order by notice_writedate desc limit #{perPage} offset #{no}
 	</select>
 	
 	<!-- 공지 추가 -->
@@ -176,5 +176,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="notice_boardListUpdate" parameterType="ndto">
 		update notice_board set notice_subject = #{notice_subject}, notice_content = #{notice_content} where notice_pk = #{notice_pk}
 	</update>
+	
 	
 </mapper>

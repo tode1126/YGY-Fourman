@@ -28,7 +28,10 @@
 				<h2>현재 접속자수</h2>
 				<p class="userCount">0</p>
 			</div>
+
 			<div class="userList">
+				<h2>현재 접속 중인 회원</h2>
+				<div class="userListContent"></div>
 			</div>
 			<div style="clear:both;"></div>
 		</div>
