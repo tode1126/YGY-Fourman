@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<insert id="noticeInsert" parameterType="ndto">
-	    insert into notice_board (notice_writer, notice_subject, notice_content, notice_readcount, notice_writedate) values (#{notice_writer}, #{notice_subject}, #{notice_content}, 0, now())
+	    insert into notice_board (notice_writer, notice_subject, notice_content, notice_readcount, notice_writedate) values ('관리자', #{notice_subject}, #{notice_content}, 0, now())
 	</insert>
 	
 	<update id="noticeUpdate" parameterType="ndto">
