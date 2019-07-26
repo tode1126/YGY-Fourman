@@ -28,7 +28,7 @@
 		
 		  <td class="Top2Image">
 
-			<a href="${root}/client/service.do"> <img src="${root}/image/client/K_ask.png"
+			<a href="${root}/question/questionmain.do"> <img src="${root}/image/client/K_ask.png"
 				width="40">
 				<b>1:1문의</b>
 				

@@ -31,7 +31,7 @@
 	</li>
 	
 	<li>
-		<a href="${root}/member/form.do"><b>Q&A</b></a>
+		<a href="${root}/question/questionmain.do"><b>Q&A</b></a>
 	</li>
 	
 	<li>

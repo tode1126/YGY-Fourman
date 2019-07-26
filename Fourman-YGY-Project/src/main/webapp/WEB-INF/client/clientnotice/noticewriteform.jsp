@@ -10,7 +10,7 @@
 
 <form action="noticeWrite.do" method="post">
 
-	<table class="table table-striped" style="width: 400px;">
+	<table>
 	
 		<caption><b>공지사항 쓰기</b></caption>
 		

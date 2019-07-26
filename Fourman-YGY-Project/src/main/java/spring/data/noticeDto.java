@@ -9,6 +9,7 @@ public class noticeDto {
 	private String notice_content;
 	private int notice_readcount;
 	private Timestamp notice_writedate;
+	
 	public int getNotice_pk() {
 		return notice_pk;
 	}
