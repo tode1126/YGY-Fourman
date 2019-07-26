@@ -1024,8 +1024,7 @@ public class AdminController {
 
 	// 공지 게시판 처리
 	@RequestMapping("/admin/notice_boardManagement/notice_boardList.do")
-	public ModelAndView notice_boardList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage,
-			@RequestParam(defaultValue = "1") String targetEmail) {
+	public ModelAndView notice_boardList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
 		ModelAndView model = new ModelAndView();
 
 		if (service.notice_boardTotalCount() > 0) {
@@ -1168,5 +1167,128 @@ public class AdminController {
 
 		return go;
 	}
+	
+	//qna 게시판
+	////////// 여기 밑부터 주석 확인
+	@RequestMapping("/admin/qna_boardManagement/qna_boardList.do")
+	public ModelAndView qna_boardList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
+		ModelAndView model = new ModelAndView();
 
+		if (service.qna_boardListTotalCount() > 0) {
+			int totalCount;// 전체갯수
+
+			int totalPage; // 총페이지
+			int startNum;// 각페이지의시작번호
+			int endNum;// 각페이지의끝번호
+			int startPage; // 블럭의 시작페이지
+			int endPage;// 블럭의 끝페이지
+			int no;// 출력할 시작번호
+			int perPage = 10;// 한페이지당 보여질 글의갯수
+			int perBlock = 5;// 한블럭당 보여질 페이지의 갯수
+
+			totalCount = service.qna_boardListTotalCount();
+			// 총페이지의 갯수
+			totalPage = totalCount / perPage + (totalCount % perPage > 0 ? 1 : 0);
+
+			// 존재하지않는페이지인경우
+			if (totalPage < currentPage)
+				currentPage = totalPage;
+
+			// 각 블럭의 시작페이지와 끝 페이지를 구한다
+			startPage = ((currentPage - 1) / perBlock) * perBlock + 1;
+			endPage = startPage + perBlock - 1;
+			// ex)13페이지있을경우 15까지 불러와버리므로
+			if (endPage > totalPage)
+				endPage = totalPage;
+
+			// 각페이지의 시작번호와 끝번호를 구한다
+			// perpage가 5일경우
+			// 1페이지 1, 5 3페이지 11, 15
+			startNum = (currentPage - 1) * perPage + 1;
+			endNum = startNum + perPage - 1;
+			if (endNum > totalCount)
+				endNum = totalCount;
+
+			// 각 페이지마다 출력할 시작번호
+			// 총페이지가 30일경우 1페이지는 30 2페이지는 25...
+			no = totalCount - (currentPage - 1) * perPage;
+
+			// 리스트 가져오기
+			List<E> list = service.qnaList(perPage, (currentPage - 1) * perPage);
+
+
+			// 가져온 리스트 model에 저장
+			model.addObject("list", list);
+			model.addObject("totalCount", totalCount);
+			model.addObject("currentPage", currentPage);
+			model.addObject("startPage", startPage);
+			model.addObject("endPage", endPage);
+			model.addObject("no", no);
+			model.addObject("totalPage", totalPage);
+		}
+		model.setViewName("/admin/qna_boardManagement/qna_boardList");
+		return model;
+	}
+
+	@RequestMapping("/admin/qna_boardManagement/qna_boardListContent.do")
+	public ModelAndView qna_boardListContent(HttpServletRequest request, @RequestParam int pna_pk, @RequestParam(defaultValue = "1") String pageNum) {
+		ModelAndView model = new ModelAndView();
+		HttpSession session = request.getSession();
+		LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
+		String go = "admin.tiles";
+		if(service.adminCheck(ldto.getUser_Email())>0 && service.qna_boardListSelectCount(pna_pk) > 0) {
+			dto = service.qna_boardListContent(pna_pk);
+			model.addObject("dto", dto);
+			go = "/admin/qna_boardManagement/qna_boardListContent";
+		}
+		model.setViewName(go);
+		return model;
+	}
+	
+	@RequestMapping("/admin/qna_boardManagement/qna_boardListReplyInsert.do")
+	public String qna_boardListReplyInsert(HttpServletRequest request, Model model, @RequestParam(defaultValue = "1") String pageNum, @RequestParam int qna_pk) {
+		HttpSession session = request.getSession();
+		LoginDto dto = (LoginDto) session.getAttribute("userLoginInfo");
+		String go = "admin.tiles";
+
+		if (service.adminCheck(dto.getUser_Email()) > 0 && service.qna_boardListSelectCount(qna_pk) > 0 ) {
+			model.addAttribute("pageNum", pageNum);
+			model.addAttribute("ori_qna_pk", qna_pk);
+			model.addAttribute("ori_qna_content", service.qna_boardListContentSelect(qna_pk));
+			go = "/admin/qnaManagement/qna_boardListReplyInsert";
+		}
+
+		return go;
+	}
+
+	@RequestMapping("/admin/qna_boardManagement/qna_boardListReplyInsertAction.do")
+	public String qna_boardListReplyInsertAction(HttpServletRequest request, @RequestParam(defaultValue = "1") String pageNum, 
+			@ModelAttribute noticeDto dto, @RequestParam int ori_qna_pk) {
+		HttpSession session = request.getSession();
+		LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
+		String go = "admin.tiles";
+		if (service.adminCheck(ldto.getUser_Email()) > 0 && dto.qna_subject().length() > 0 && dto.qna_writer().length() > 0) {
+			dto.setQna_ref = ori_qna_pk;
+			service.qna_boardListReplyInsert(dto);
+			go = "redirect:/admin/qnaManagement/qna_boardList.do?pageNum=" + pageNum;
+		}
+		return go;
+	}
+
+	@RequestMapping("/admin/qna_boardManagement/qna_boardListDelete.do")
+	public String qna_boardListDelete(HttpServletRequest request, @RequestParam(defaultValue = "1") String pageNum,
+			@RequestParam int qna_pk) {
+		HttpSession session = request.getSession();
+		LoginDto ldto = (LoginDto) session.getAttribute("userLoginInfo");
+		String go = "admin.tiles";
+		if (service.adminCheck(ldto.getUser_Email()) > 0 && service.qna_boardListSelectCount(qna_pk) > 0) {
+			dto = service.qna_boardListContent(qna_pk);
+			dto.qna_subject = "관리자에 의해 삭제된 글입니다";
+			service.qna_boardListDelete(dto);
+			go = "redirect:/admin/qna_boardManagement/qna_boardList.do?pageNum=" + pageNum;
+		}
+
+		return go;
+	}
+	
 }

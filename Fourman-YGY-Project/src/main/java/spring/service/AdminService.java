@@ -198,4 +198,39 @@ public class AdminService {
 		dao.notice_boardListUpdate(dto);
 		return;
 	}
+	
+	//리스트 qna bto 반환 필요
+	public void qna_boardList(int perPage, int no){
+		dao.qna_boardList(perPage, no);
+		return;
+	}
+	
+	public int qna_boardListTotalCount() {
+		return dao.qna_boardListTotalCount();
+	}
+	
+	public int qna_boardListSelectCount(int qna_pk) {
+		return dao.qna_boardListSelectCount(qna_pk);
+	}
+	
+	public int qna_boardListContentSelect(int qna_pk) {
+		return dao.qna_boardListContentSelect(qna_pk);
+	}
+	
+	//파라미터 해당 dto
+	public void qna_boardListDelete() {
+		dao.qna_boardListDelete();
+		return;
+	}
+	
+	//파라미터 해당 dto
+	public void qna_boardListReplyInsert() {
+		dao.qna_boardListReplyInsert();
+		return;
+	}
+	//반환값 해당 dto
+	public void qna_boardListContent(int qna_pk) {
+		dao.qna_boardListContent(qna_pk);
+		return;
+	}
 }
