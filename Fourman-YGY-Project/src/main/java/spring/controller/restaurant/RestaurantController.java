@@ -344,6 +344,29 @@ public class RestaurantController {
 		return "redirect:/restaurant/menuFront.do";
 	}
 	
+	/*** 식당 권한 테이블 설정*/
+	@RequestMapping("/restaurant/authorityForm.do")
+	public ModelAndView authorityConfigForm(HttpServletRequest request)
+	{
+		HttpSession session = request.getSession();
+		ModelAndView model = new ModelAndView();
+		boolean isRest_pk = (session.getAttribute("rest_pk")!=null) ? true : false;
+		if(isRest_pk) {
+			int restaurant_rest_pk = (Integer) session.getAttribute("rest_pk");
+			System.out.println("authorityForm.do: "+restaurant_rest_pk);
+			model.addObject("restaurant_rest_pk", restaurant_rest_pk);
+		} 
+		model.setViewName("/restaurant/authority/authorityConfigForm");
+		return model;
+	}
+	@RequestMapping(value="/restaurant/authorityAdd.do", method=RequestMethod.POST)
+	public String authorityConfigAdd(@ModelAttribute RestaurantDto dto) {
+		
+		//목록으로 이동
+		return "redirect:/restaurant/restaurantMain.do";
+	}
+	
+	
 	/*** 테이블 관련 컨트롤러*/
 	@RequestMapping(value="/restaurant/tableFront.do")
 	public ModelAndView tableFront(HttpServletRequest request) {

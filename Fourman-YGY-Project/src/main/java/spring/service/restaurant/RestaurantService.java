@@ -79,4 +79,16 @@ public class RestaurantService {
 	public RestaurantIntroDto selectOneRestaurantIntro (int restaurant_rest_pk) {
 		return ridao.selectOneRestaurantIntro(restaurant_rest_pk);
 	}
+	public int selectIsRestaurantIntroImage (int restaurant_rest_pk) {
+		return ridao.selectIsRestaurantIntroImage(restaurant_rest_pk);
+	}
+	public List<RestaurantIntroImageDto> selectListRestaurantIntroImage (int restaurant_rest_pk) {
+		return ridao.selectListRestaurantIntroImage(restaurant_rest_pk);
+	}
+	public void updateRestaurantIntro(RestaurantIntroDto ridto) {
+		ridao.updateRestaurantIntro(ridto);
+	}
+	public int selectRestaurantIntroImageMaxPriority (int restaurant_rest_pk) {
+		return ridao.selectRestaurantIntroImageMaxPriority(restaurant_rest_pk);
+	}
 }
