@@ -40,7 +40,7 @@
 				<c:set var="no" value="${no-1}"/>
 
 				<td>
-				<a href="questionContent.do?num=${qdto.qna_pk}&pageNum=${currentPage}">
+				<a href="questionContent.do?qna_pk=${qdto.qna_pk}&pageNum=${currentPage}">
 					${qdto.qna_subject}</a>
 				</td>
 

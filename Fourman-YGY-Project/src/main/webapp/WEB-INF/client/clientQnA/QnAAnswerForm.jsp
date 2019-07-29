@@ -40,9 +40,6 @@
 		</tr>
 
 		<tr>
-		    <%-- <!-- hidden list -->
-			<input type="hidden" name="qna_pk" value="${qdto.qna_pk}">
-			<input type="hidden" name="pageNum" value="${pageNum}">	 --%>
 
 			<td colspan="2" align="center">
 				<button type="submit">저장하기</button>

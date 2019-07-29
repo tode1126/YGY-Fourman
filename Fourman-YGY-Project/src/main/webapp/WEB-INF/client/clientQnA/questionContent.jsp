@@ -53,7 +53,7 @@
 		  onclick="location.href='questionWriteForm.do'">글쓰기</button>
 
 		 <button type="button"
-		  onclick="location.href='questionAnswerForm.do?num=${qdto.qna_pk}&pageNum=${pageNum}'">답글쓰기</button>  
+		  onclick="location.href='questionAnswerForm.do?qna_pk=${qdto.qna_pk}&pageNum=${pageNum}'">답글쓰기</button>  
 
 		<button type="button"
 		  onclick="location.href='questionUpdate.do?num=${qdto.qna_pk}&pageNum=${pageNum}'">수정</button>

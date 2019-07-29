@@ -99,11 +99,12 @@ public class QnA {
 
 	@RequestMapping("/question/questionWriteForm.do")
 	public ModelAndView noticeform(@ModelAttribute QnADto qdto)
-	{ModelAndView model=new ModelAndView();
+	{
+		ModelAndView model=new ModelAndView();
 	model.addObject("qdto",qdto);
 	model.setViewName("/client/clientQnA/QnAWriteForm");
 	return model;
-}
+    }
 
 @RequestMapping(value="/question/questionWrite.do",method=RequestMethod.POST)
 public ModelAndView readData(@ModelAttribute QnADto qdto)
@@ -122,33 +123,45 @@ public ModelAndView readData(@ModelAttribute QnADto qdto)
 
 
 @RequestMapping("/question/questionContent.do")
-public String content(Model model, @RequestParam int num,
+public ModelAndView content(@RequestParam int qna_pk,
 		@RequestParam int pageNum)
 {
+    ModelAndView model = new ModelAndView();
+	QnADto qdto=service.getQuestionData(qna_pk);
 
-	QnADto qdto=service.getQuestionData(num);
-
-	model.addAttribute("qdto", qdto);
-	model.addAttribute("pageNum", pageNum);
-	return "/client/clientQnA/questionContent";
+	model.addObject("qdto", qdto);
+	model.addObject("pageNum", pageNum);
+	model.setViewName("/client/clientQnA/questionContent");
+	return model;
 }
 
 @RequestMapping("/question/questionAnswerForm.do")
-public String questionAnswer(@RequestParam int num, @RequestParam int pageNum, @ModelAttribute QnADto qdto)
-{		
+public String questionAnswer(@RequestParam int qna_pk,
+		@RequestParam int pageNum,
+		@ModelAttribute QnADto qdto,
+		Model model)
+{
+	
+	model.addAttribute("ori_qna_pk", qna_pk);
+	model.addAttribute("pageNum", pageNum);
+	model.addAttribute("qdto", qdto);
+	System.out.println("답글쓰기 qna_pk 넘어가는지 확인"+qna_pk);
 	return "/client/clientQnA/QnAAnswerForm";
 }
 
 @RequestMapping(value="/question/questionAnswerSuccess.do",method=RequestMethod.POST)
-public String AnswerQuestion(@ModelAttribute QnADto qdto, @RequestParam int num, @RequestParam int pageNum)
+public ModelAndView AnswerQuestion(@ModelAttribute QnADto qdto,
+		@RequestParam(defaultValue = "1") String pageNum,
+		@RequestParam int ori_qna_pk)
 {
-	/*int ref = qdto.getQna_pk();
-	System.out.println(ref);
-	qdto.setQna_ref(ref);*/
+	ModelAndView model = new ModelAndView();
+	qdto.setQna_ref(ori_qna_pk);
 
 	service.AnswerQuestion(qdto);
+	
 	//목록으로 이동
-	return "redirect:questionmain.do";
+	model.setViewName("/client/clientQnA/QnAmain");
+	return model;
 }
 
 
